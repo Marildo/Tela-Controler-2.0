@@ -1,8 +1,6 @@
 from services import IAuth, JWTService
-from decorators import singleton
 
 
-@singleton
 class ProviderServices:
     def __init__(self):
         self.__authService = JWTService()

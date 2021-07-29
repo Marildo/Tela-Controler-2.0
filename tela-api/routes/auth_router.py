@@ -1,7 +1,7 @@
 from flask_restful import Resource
 
 from controller import AuthContoller
-from settings import provider_services
+from services import provider_services
 
 
 class LoginRouter(Resource):

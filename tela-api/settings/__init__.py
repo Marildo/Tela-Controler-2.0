@@ -1,1 +1,1 @@
-from .provider_services import provider_services
+from .logger import config_logger

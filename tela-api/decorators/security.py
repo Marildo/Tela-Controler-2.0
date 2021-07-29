@@ -3,7 +3,7 @@ from functools import wraps
 from flask import request
 
 from controller import AuthContoller
-from settings import provider_services
+from services import provider_services
 
 
 def valide_token(f):

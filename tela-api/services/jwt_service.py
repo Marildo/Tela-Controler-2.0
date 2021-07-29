@@ -4,6 +4,7 @@ from typing import Dict
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from jwt import encode, decode
+import logging
 
 from services import IAuth
 
@@ -11,6 +12,7 @@ from services import IAuth
 class JWTService(IAuth):
 
     def __init__(self):
+        logging.info('Carregando JWT Service')
         self.__file_key = "C:/Users/Cesar/developer/Tela-Controler-2.0/helpers/tela.pem"
         self.__algorithm = 'RS256'
         self.__expiration = datetime.now() + timedelta(minutes=60 * 24)
