@@ -13,7 +13,7 @@ class AuthContoller:
         token = self.__auth_service.encode(args)
         return {'token': token}
 
-    def check_token(self):
-        token = request.args['token']
+    def check_token(self, token: str):
+        token = token.replace('Bearer ', '')
         payload = self.__auth_service.decode(token)
         return payload

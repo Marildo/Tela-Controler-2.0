@@ -1,7 +1,8 @@
 from flask_restful import Api
 
-from .index_router import IndexRouter
 from .auth_router import LoginRouter
+from .empresa_router import EmpresaRouter
+from .index_router import IndexRouter
 
 
 class AppRouter:
@@ -12,3 +13,4 @@ class AppRouter:
         api = self.__api
         api.add_resource(IndexRouter, '/')
         api.add_resource(LoginRouter, '/login')
+        api.add_resource(EmpresaRouter, '/empresa')
