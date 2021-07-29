@@ -12,7 +12,7 @@ def valide_token(f):
         headers = request.headers
         token = headers['Authorization']
 
-        auth = AuthContoller(provider_services.auth_service())
+        auth = AuthContoller(provider_services.auth_service)
         payload = auth.check_token(token)
         request.payload = payload
 
