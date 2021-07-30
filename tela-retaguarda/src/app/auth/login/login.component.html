@@ -1,0 +1,14 @@
+<main>
+    <div class="signin">
+        <span class="ut-title-3">Login</span>
+        <mat-form-field class="input">
+            <input matInput [(ngModel)]="user.email" type="email" placeholder="E-mail" required>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+            <input matInput [(ngModel)]="user.password" type="password" placeholder="Senha" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="onLogin()">Logar</button>
+    </div>
+</main>

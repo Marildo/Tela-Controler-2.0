@@ -1,0 +1,33 @@
+body {
+  padding: 30px;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin {
+  width: 100%;
+  width: 420px;
+  padding: 0.8em 1.4em;
+  border: 0.1em solid #e5e5e5;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+    margin: 2em;
+    width: 80%;
+}
+
+.input{
+    width: 80%;
+}

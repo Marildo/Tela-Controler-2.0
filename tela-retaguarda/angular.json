@@ -18,7 +18,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "ut",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,11 +30,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/img/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/css/styles.scss"
+              "src/css/styles.scss",
+              "src/css/text.styles.scss"
             ],
             "scripts": []
           },
@@ -98,11 +99,12 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/img/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/css/styles.scss"
+              "src/css/styles.scss",
+              "src/css/text.styles.scss"
             ],
             "scripts": []
           }
