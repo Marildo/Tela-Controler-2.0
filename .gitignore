@@ -3,10 +3,7 @@
 **/.idea/*
 **/node_modules/**/*
 **/dist/*
+helpers/tela.pem
 
-
-
-
-
-**.pyc
-**.pem
+**/__pychace__/**
+*.pyc
