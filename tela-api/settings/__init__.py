@@ -1,1 +1,1 @@
-from .logger import config_logger
+from .settings import Settings
