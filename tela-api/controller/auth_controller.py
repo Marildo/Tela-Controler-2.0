@@ -1,19 +1,33 @@
+from functools import wraps
+
 from flask import request
+from webargs.flaskparser import parser
 
-from services import IAuth
+from decorators import http_response
+from services import provider_services
+from validations import user_args
 
 
-class AuthContoller:
+@http_response
+def login():
+    args = parser.parse(user_args, request, location='json')
+    token = provider_services.auth_service.encode(args)
+    return {'token': token}, 2902
 
-    def __init__(self, auth_service: IAuth):
-        self.__auth_service = auth_service
 
-    def login(self):
-        args = request.args
-        token = self.__auth_service.encode(args)
-        return {'token': token}
+def check_token(token: str):
+    token = token.replace('Bearer ', '')
+    payload = provider_services.auth_service.decode(token)
+    return payload
 
-    def check_token(self, token: str):
-        token = token.replace('Bearer ', '')
-        payload = self.__auth_service.decode(token)
-        return payload
+
+def valide_token(func):
+    @wraps(func)
+    def decorator(*args, **kwargs):
+        headers = request.headers
+        token = headers['Authorization']
+        payload = check_token(token)
+        request.payload = payload
+        return func(*args, **kwargs)
+
+    return decorator

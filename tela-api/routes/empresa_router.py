@@ -3,7 +3,7 @@ from datetime import datetime
 from flask_restful import Resource
 from flask import request
 
-from decorators import valide_token
+from controller import valide_token
 
 
 class EmpresaRouter(Resource):

@@ -7,3 +7,5 @@ helpers/tela.pem
 
 **/__pychace__/**
 *.pyc
+
+*/.vscode

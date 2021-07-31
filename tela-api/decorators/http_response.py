@@ -9,7 +9,7 @@ status_code = [100, 101, 102, 200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 
                423, 424, 426, 428, 429, 431, 444, 451, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511, 599]
 
 
-def is_status_code(code):
+def is_status_code(code: int):
     result = code in status_code
     if not result:
         log_error(f'{code} is not status code')
@@ -28,7 +28,6 @@ def log_error(msg):
 
 class Response:
 
-    # Todo - Save in log when status code not in status code list
     def __init__(self, success: bool = True, error: bool = False, data=[], code: int = 200):
         self.success = success
         self.error = error
@@ -52,12 +51,8 @@ def http_response(func):
             response = Response(data=data, code=code)
         except UnprocessableEntity as error:
             code = error.code
-            fields = ', '.join(error.exc.args[0].keys())
-            message = f'Unknown fields:[{fields}]'
-            data = {
-                'error': type(error.exc).__name__,
-                'message': message
-            }
+            args = error.exc.args[0]
+            data = [{'field': key, 'error': value[0]} for key, value in args.items()]
             log_error(data)
             response = Response(success=False, error=True, data=data, code=code)
         except Exception as error:

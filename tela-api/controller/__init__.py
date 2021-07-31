@@ -1,1 +1,1 @@
-from .auth_controller import AuthContoller
+from .auth_controller import valide_token, login
