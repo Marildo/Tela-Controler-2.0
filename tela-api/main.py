@@ -1,16 +1,15 @@
 from flask import Flask
-from flask_restful import Api
 from flask_cors import CORS
+from flask_restful import Api
 
 from settings import config_logger
+from routes import AppRouter
 
 config_logger()
 
-app = Flask(__name__)
-cors = CORS(app, resources={r"*": {"origins": "*"}})
+app = Flask('Tela-API')
+CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
-
-from routes import AppRouter
 
 router = AppRouter(api)
 router.load()
