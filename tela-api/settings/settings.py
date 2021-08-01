@@ -39,8 +39,8 @@ class Settings:
     def get_database_port(self) -> int:
         return self.__load_value('DATABASE_PORT', 3306)
 
-    def get_database_name(self) -> str:
-        return self.__load_value('DATABASE_NAME', '')
+    def get_database_master_name(self) -> str:
+        return self.__load_value('DATABASE_NAME_MASTER', '')
 
     def get_database_charset(self) -> str:
         return self.__load_value('DATABASE_CHARSET', 'utf8mb4')

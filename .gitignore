@@ -9,3 +9,5 @@ helpers/tela.pem
 *.pyc
 
 */.vscode
+
+*.env
