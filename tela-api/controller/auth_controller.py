@@ -4,20 +4,20 @@ from flask import request
 from webargs.flaskparser import parser
 
 from decorators import http_response
-from services import provider_services
-from validations import user_args
+from services import AuthService
+from validations import LOGIN_ARGS
 
 
 @http_response
 def login():
-    args = parser.parse(user_args, request, location='json')
-    token = provider_services.auth_service.encode(args)
+    args = parser.parse(LOGIN_ARGS, request, location='json')
+    token = AuthService().encode(args)
     return {'token': token}, 2902
 
 
 def check_token(token: str):
     token = token.replace('Bearer ', '')
-    payload = provider_services.auth_service.decode(token)
+    payload = AuthService.decode(token)
     return payload
 
 

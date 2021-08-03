@@ -2,8 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 
-from settings import Settings
 from routes import AppRouter
+from settings import Settings
 
 app = Flask('Tela-API')
 CORS(app, resources={r"*": {"origins": "*"}})
