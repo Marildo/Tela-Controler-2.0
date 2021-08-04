@@ -3,6 +3,7 @@ from functools import wraps
 from flask import request
 from webargs.flaskparser import parser
 
+from controller.user_controller import UserController
 from decorators import http_response
 from services import AuthService
 from validations import LOGIN_ARGS
@@ -11,8 +12,9 @@ from validations import LOGIN_ARGS
 @http_response
 def login():
     args = parser.parse(LOGIN_ARGS, request, location='json')
-    token = AuthService().encode(args)
-    return {'token': token}, 2902
+    user = UserController().find_for_login(email=args['email'], password=args['password'])
+    token = AuthService().encode(user)
+    return {'token': token}, 200
 
 
 def check_token(token: str):

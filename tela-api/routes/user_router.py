@@ -1,11 +1,11 @@
 from flask_restful import Resource
 
-from controller.usuario_controller import add_user
+from controller import UserController
 
 
 class UserRouter(Resource):
 
     @staticmethod
     def post():
-        return add_user()
+        return UserController().append()
 
