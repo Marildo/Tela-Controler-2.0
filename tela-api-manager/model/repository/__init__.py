@@ -1,1 +1,2 @@
-from .company_repository import  UsuarioRepository
+from .empresa_repository import EmpresaRepository
+

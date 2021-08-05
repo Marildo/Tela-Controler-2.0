@@ -7,4 +7,4 @@ class CompanyRouter(Resource):
 
     @staticmethod
     def get(cnpj):
-        return CompanyController.load_by_cnpj(cnpj)
+        return CompanyController().load_by_cnpj()

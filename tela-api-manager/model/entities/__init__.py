@@ -1,2 +1,2 @@
 from .base_entity import BaseEntity
-from .company import Usuario
+from .company import Empresa

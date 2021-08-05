@@ -1,15 +1,16 @@
 from abc import ABC
 
+from exceptions import DataBaseException
 from model.config import DBConfig, Base
 from model.config import DBConnection
 from model.entities import BaseEntity
-from exceptions import DataBaseException
 
 
 class IRepository(ABC):
 
     def __init__(self, config: DBConfig):
         self.connection: DBConnection = DBConnection(config)
+        Base.metadata.create_all(self.connection.get_engine())
 
     def save(self, entity: BaseEntity):
         with self.connection as conn:
