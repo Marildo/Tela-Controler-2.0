@@ -6,7 +6,6 @@ class EmpresaRepository(IRepository):
 
     def find_by_cnpj(self, cnpj) -> Empresa:
         with self.connection as conn:
-
             try:
                 return conn.session.query(Empresa). \
                     filter(Empresa.cnpj == cnpj).first()

@@ -5,7 +5,7 @@ from .base_entity import BaseEntity
 class Empresa(BaseEntity):
     __tablename__ = "empresas"
 
-    cnpj = Column(String(15), primary_key=True)
+    cnpj = Column(String(15), unique=True, index=True)
     razao_social = Column(String(255), default='')
     nome_fantasia = Column(String(255), default='')
     cnae = Column(String(8))

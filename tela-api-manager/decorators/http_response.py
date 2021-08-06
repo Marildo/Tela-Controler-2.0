@@ -30,9 +30,8 @@ def log_error(msg):
 
 class Response:
 
-    def __init__(self, success: bool = True, error: bool = False, data=[], code: int = 200):
+    def __init__(self, success: bool = True, data=[], code: int = 200):
         self.success = success
-        self.error = error
         self.data = data or []
         self.code = code if is_status_code(code) else 207
 
@@ -40,7 +39,6 @@ class Response:
         return {
                    'code': self.code,
                    'success': self.success,
-                   'error': self.error,
                    'data': self.data
                }, self.code
 
@@ -56,16 +54,16 @@ def http_response(func):
             args = error.exc.args[0]
             data = [{'field': key, 'error': value[0]} for key, value in args.items()]
             log_error(data)
-            response = Response(success=False, error=True, data=data, code=code)
+            response = Response(success=False, data=data, code=code)
         except DataBaseException as error:
             data = [{'error': error.args[0].orig.args[0]}]
-            response = Response(success=False, error=True, data=data, code=422)
+            response = Response(success=False, data=data, code=422)
         except EntityNotFound as error:
             data = [{'error': error.args[0]}]
-            response = Response(success=False, error=True, data=data, code=404)
+            response = Response(success=False, data=data, code=404)
         except Exception as error:
             log_error(error)
-            response = Response(success=False, error=True, code=500)
+            response = Response(success=False, code=500)
 
         return response.get()
 
