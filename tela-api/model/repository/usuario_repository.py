@@ -3,7 +3,6 @@ from .base_repository import IRepository
 
 
 class UsuarioRepository(IRepository):
-    pass
 
     def find_by_email(self, email) -> Usuario:
         with self.connection as conn:

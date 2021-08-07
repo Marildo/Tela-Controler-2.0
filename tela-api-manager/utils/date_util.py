@@ -1,5 +1,7 @@
 from datetime import datetime
 
+class DateUtil:
 
-def str_br_to_date(value):
-    return datetime.strptime(value, '%d/%m/%Y')
+    @staticmethod
+    def br_parse_date(value):
+        return datetime.strptime(value, '%d/%m/%Y')

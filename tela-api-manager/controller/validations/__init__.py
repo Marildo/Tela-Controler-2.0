@@ -1,1 +1,1 @@
-from .company_validations import BY_CNPJ
+from .cnpj import CNPJ

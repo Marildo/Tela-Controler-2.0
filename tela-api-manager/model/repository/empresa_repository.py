@@ -4,7 +4,7 @@ from .base_repository import IRepository
 
 class EmpresaRepository(IRepository):
 
-    def find_by_cnpj(self, cnpj) -> Empresa:
+    def find_by_cnpj(self, cnpj: str) -> Empresa:
         with self.connection as conn:
             try:
                 return conn.session.query(Empresa). \

@@ -1,2 +1,3 @@
 from .base_entity import BaseEntity
-from .company import Empresa
+from .empresa import Empresa
+from .cliente import Cliente

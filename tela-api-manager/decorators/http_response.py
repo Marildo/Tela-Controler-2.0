@@ -56,10 +56,10 @@ def http_response(func):
             log_error(data)
             response = Response(success=False, data=data, code=code)
         except DataBaseException as error:
-            data = [{'error': error.args[0].orig.args[0]}]
+            data = {'error': error.args[0].orig.args[0]}
             response = Response(success=False, data=data, code=422)
         except EntityNotFound as error:
-            data = [{'error': error.args[0]}]
+            data = {'error': error.args[0]}
             response = Response(success=False, data=data, code=404)
         except Exception as error:
             log_error(error)

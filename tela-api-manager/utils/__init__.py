@@ -1,1 +1,2 @@
-from .date_util import str_br_to_date
+from .date_util import DateUtil
+from .cnpj_util import CNPJUtil
