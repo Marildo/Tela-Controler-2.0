@@ -26,7 +26,7 @@ class CompanyController:
         company = self.find_and_save(cnpj)
         return self.__empresa_schema.dump(company), 200
 
-    def find_and_save(self, cnpj):
+    def find_and_save(self, cnpj) -> Empresa:
         cnpj_with_mask = CNPJUtil.mask(cnpj)
         company = self.__repository.find_by_cnpj(cnpj_with_mask)
         if company:

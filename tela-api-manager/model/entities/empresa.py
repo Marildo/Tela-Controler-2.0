@@ -1,7 +1,6 @@
-from model.entities import cliente
 from sqlalchemy import Column
 from sqlalchemy.sql.sqltypes import String, Date, BOOLEAN, CHAR
-from sqlalchemy.orm import relationship
+
 from .base_entity import BaseEntity
 
 
@@ -24,9 +23,3 @@ class Empresa(BaseEntity):
     municipio = Column(String(255), default='')
     complemento = Column(String(255), default='')
     email = Column(String(255), default='')
-    cliente = relationship('Cliente')
-
-
-
-
-

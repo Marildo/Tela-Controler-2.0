@@ -1,7 +1,10 @@
+import re
+
 from requests import get
 
 
 def search_from_cnpj(cnpj: str):
-    url = f'https://www.receitaws.com.br/v1/cnpj/{cnpj}'
+    value = re.sub(r'\D', '', str(cnpj))
+    url = f'https://www.receitaws.com.br/v1/cnpj/{value}'
     data = get(url).json()
     return data

@@ -1,4 +1,4 @@
-import uuid
+import datetime
 
 from flask import request
 from webargs.flaskparser import parser
@@ -26,24 +26,24 @@ class ClientController:
         if not cliente:
             raise EntityNotFound('Empresa não está cadastrada')
 
-        return self.result_uuid(cliente)
+        return {'id': cliente.uuid}, 200
 
     @http_response
     def save(self):
         arqs = parser.parse(CNPJ, request, location='view_args')
         cnpj = arqs['cnpj']
+        cnpj = CNPJUtil.mask(cnpj)
+
+        cliente = self.__repository.find(cnpj)
+        if cliente:
+            cliente.last_token = datetime.datetime.now()
+            self.__repository.save(cliente)
+            return {'token': cliente.uuid}, 200
 
         company_controller = CompanyController()
         company = company_controller.find_and_save(cnpj)
-
         cliente = Cliente()
-        cliente.uuid = uuid.uuid4().hex
+        cliente.uuid = CNPJUtil.encode(cnpj)
         cliente.empresa_id = company.id
-
-        # TODO - fazer requeste para outra API salvando os dados e retornando para edicao
-
         self.__repository.save(cliente)
-        return self.result_uuid(cliente)
-
-    def result_uuid(self, cliente: Cliente):
-        return {'id': cliente.uuid}, 200
+        return {'token': cliente.uuid}, 201

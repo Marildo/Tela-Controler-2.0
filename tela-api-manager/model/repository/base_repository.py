@@ -16,7 +16,6 @@ class IRepository(ABC):
     def save(self, entity: BaseEntity):
         with self.connection as conn:
             try:
-                conn.session.expire_on_commit = False
                 conn.session.add(entity)
                 conn.session.commit()
                 return entity

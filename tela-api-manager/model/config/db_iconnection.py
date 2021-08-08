@@ -14,7 +14,7 @@ class IDBConnection(ABC):
     def __enter__(self):
         engine = self.get_engine()
         session_maker = sessionmaker()
-        self._session = session_maker(bind=engine)
+        self._session = session_maker(bind=engine, expire_on_commit=False)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
