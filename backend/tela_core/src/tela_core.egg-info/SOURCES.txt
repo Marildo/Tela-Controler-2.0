@@ -1,0 +1,9 @@
+LICENCE
+README.md
+setup.py
+src/tela_core.egg-info/PKG-INFO
+src/tela_core.egg-info/SOURCES.txt
+src/tela_core.egg-info/dependency_links.txt
+src/tela_core.egg-info/top_level.txt
+src/tela_utils/__init__.py
+src/tela_utils/date_util.py
