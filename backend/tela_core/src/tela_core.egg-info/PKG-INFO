@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: tela-core
-Version: 0.0.2
+Version: 0.0.1
 Summary: A small example package
 Home-page: https://github.com/pypa/sampleproject
 Author: Marildo Cesar
@@ -23,5 +23,8 @@ License-File: LICENCE
 2. py -m build
 
 ## Instalando
-3. pip install -e C:\Users\Cesar\developer\Tela-Controler-2.0\backend\tela_core
+3. pip install -e C:\Users\Cesar\developer\Tela-Controler-2.0\backend\tela_core -U
+
+
+https://packaging.python.org/tutorials/packaging-projects/
 

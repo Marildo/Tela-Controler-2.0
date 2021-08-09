@@ -6,7 +6,7 @@
 2. py -m build
 
 ## Instalando
-3. pip install -e C:\Users\Cesar\developer\Tela-Controler-2.0\backend\tela_core
+3. pip install -e C:\Users\Cesar\developer\Tela-Controler-2.0\backend\tela_core -U
 
 
 https://packaging.python.org/tutorials/packaging-projects/
