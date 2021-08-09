@@ -1,1 +1,0 @@
-from .cnpj_service import search_from_cnpj
