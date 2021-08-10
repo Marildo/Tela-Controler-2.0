@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 from settings.logger import config_logger
-from decorators import singleton
+from telacore.decorators import singleton
 
 
 @singleton
