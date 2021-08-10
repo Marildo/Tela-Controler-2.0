@@ -1,4 +1,4 @@
-from tela_utils import cnpj_util
+from telacore.utils import cnpj_util
 from webargs import fields, ValidationError
 
 

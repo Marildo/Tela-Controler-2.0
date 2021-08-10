@@ -1,5 +1,5 @@
 from flask import request
-from tela_utils import date_util, cnpj_util
+from telacore.utils import date_util, cnpj_util
 from webargs.flaskparser import parser
 
 from controller.validations import CNPJ

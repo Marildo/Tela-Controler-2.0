@@ -1,6 +1,6 @@
 import re
 from abc import ABC
-from base64 import b64encode
+from base64 import b64encode, b64decode
 
 from brutils import cnpj
 
@@ -15,6 +15,9 @@ class IEncoderCNPJ(ABC):
 
 # TODO - Deve ser implementada pelo projeto que chamar a library
 class Encoder(IEncoderCNPJ):
+    def __init__(self):
+        self.encoding = 'utf-8'
+
     def encode(self, _cnpj: str) -> str:
         value = int(_cnpj) * 33
         return value
@@ -35,14 +38,23 @@ def mask(_cnpj) -> str:
 
 
 def unmask(_cnpj: str) -> int:
-    int(re.sub(r'\D', '', str(_cnpj)))
+    value = int(re.sub(r'\D', '', str(_cnpj)))
+    return value
 
 
-def encode(_cnpj, encoder: IEncoderCNPJ) -> str:
-    encoding = 'utf-8'
+def encode(_cnpj) -> str:
+    encoder = Encoder()
+
     value = unmask(_cnpj)
     value = encoder.encode(value)
-    value = str(value).encode(encoding)
+    value = str(value).encode(encoder.encoding)
     value = bytes(value)
     value = b64encode(value)
-    return value.decode(encoding)
+    return value.decode(encoder.encoding)
+
+
+def decode(_encodec) -> str:
+    encoder = Encoder()
+    value = b64decode(_encodec)
+    decoded = encoder.decode(value)
+    return decoded

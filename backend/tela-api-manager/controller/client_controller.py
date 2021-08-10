@@ -1,6 +1,7 @@
 import datetime
 
 from flask import request
+from telacore.utils import cnpj_util
 from webargs.flaskparser import parser
 
 from controller import CompanyController
@@ -9,7 +10,6 @@ from decorators import http_response
 from exceptions import EntityNotFound
 from model.entities.cliente import Cliente
 from model.repository import ClienteRepository
-from tela_utils import  cnpj_util
 
 
 class ClientController:

@@ -1,1 +1,0 @@
-from .cnpj import CNPJ
