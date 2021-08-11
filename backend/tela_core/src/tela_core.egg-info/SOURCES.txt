@@ -7,10 +7,14 @@ src/tela_core.egg-info/dependency_links.txt
 src/tela_core.egg-info/top_level.txt
 src/telacore/__init__.py
 src/telacore/decorators/__init__.py
+src/telacore/decorators/http_response.py
 src/telacore/decorators/singleton.py
 src/telacore/exceptions/__init__.py
 src/telacore/exceptions/database_exceptions.py
 src/telacore/exceptions/entity_not_found.py
+src/telacore/settings/__init__.py
+src/telacore/settings/logger.py
+src/telacore/settings/settings.py
 src/telacore/utils/__init__.py
 src/telacore/utils/cnpj_util.py
 src/telacore/utils/date_util.py

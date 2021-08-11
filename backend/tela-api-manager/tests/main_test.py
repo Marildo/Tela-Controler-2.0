@@ -1,9 +1,13 @@
-from telacore.exceptions import DataBaseException
-from telacore.decorators import http_response
+from telacore.settings import BaseSetting
 
-@http_response
+
+class TestSetting(BaseSetting):
+    pass
+
+
 def test():
-    raise DataBaseException('dsdsdds')
+    t = TestSetting()
+    print(t.get_level_log())
 
 
 test()
