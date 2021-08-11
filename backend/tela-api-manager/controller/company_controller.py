@@ -1,10 +1,10 @@
 from flask import request
+from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
 from telacore.utils import date_util, cnpj_util
 from webargs.flaskparser import parser
 
 from controller.validations import CNPJ
-from decorators import http_response
 from model.entities import Empresa
 from model.repository import EmpresaRepository
 from model.schema import EmpresaSchema
