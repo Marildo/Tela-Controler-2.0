@@ -7,7 +7,7 @@ from webargs.flaskparser import parser
 from controller import CompanyController
 from controller.validations import CNPJ
 from decorators import http_response
-from exceptions import EntityNotFound
+from telacore.exceptions import EntityNotFound
 from model.entities.cliente import Cliente
 from model.repository import ClienteRepository
 
