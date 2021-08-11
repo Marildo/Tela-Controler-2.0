@@ -7,3 +7,4 @@ def singleton(aclass):
         return instances[aclass]
 
     return decorator
+

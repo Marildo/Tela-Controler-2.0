@@ -1,14 +1,14 @@
 from flask import request
+from telacore.decorators import http_response
+from telacore.exceptions import EntityNotFound
+from telacore.utils import date_util, cnpj_util
 from webargs.flaskparser import parser
 
 from controller.validations import CNPJ
-from decorators import http_response
-from exceptions import EntityNotFound
 from model.entities import Empresa
 from model.repository import EmpresaRepository
 from model.schema import EmpresaSchema
 from services import search_from_cnpj
-from utils import DateUtil, CNPJUtil
 
 
 class CompanyController:
@@ -27,7 +27,7 @@ class CompanyController:
         return self.__empresa_schema.dump(company), 200
 
     def find_and_save(self, cnpj) -> Empresa:
-        cnpj_with_mask = CNPJUtil.mask(cnpj)
+        cnpj_with_mask = cnpj_util.mask(cnpj)
         company = self.__repository.find_by_cnpj(cnpj_with_mask)
         if company:
             return company
@@ -44,8 +44,8 @@ class CompanyController:
         empresa.cnpj = company['cnpj']
         empresa.razao_social = company['nome']
         empresa.nome_fantasia = company['fantasia']
-        empresa.abertura = DateUtil.br_parse_date(company['abertura'])
-        empresa.data_situacao = DateUtil.br_parse_date(company['data_situacao'])
+        empresa.abertura = date_util.br_parse_date(company['abertura'])
+        empresa.data_situacao = date_util.br_parse_date(company['data_situacao'])
         empresa.cnae = company['atividade_principal'][0]['code']
         empresa.logradouro = company['logradouro']
         empresa.numero = company['numero']

@@ -1,7 +1,13 @@
-print(eval('4 * 6'))
+from telacore.settings import BaseSetting
 
-from utils.cnpj_util import Encoder
 
-enco = Encoder(operation='-', value='33')
-v = 194
-print(eval(f'{v}{enco.operation}{enco.value}'))
+class TestSetting(BaseSetting):
+    pass
+
+
+def test():
+    t = TestSetting()
+    print(t.get_level_log())
+
+
+test()
