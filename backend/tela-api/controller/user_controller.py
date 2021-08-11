@@ -3,13 +3,13 @@ from hashlib import sha512
 from flask import request
 from webargs.flaskparser import parser
 
-from decorators import http_response
-from exceptions import EntityNotFound
+from telacore.decorators import http_response
+from telacore.exceptions import EntityNotFound
 from model.config import DBConfig
 from model.entities import Usuario
 from model.repository import UsuarioRepository
 from model.schema import UsuarioSchema
-from validations import ADD_USER_ARGS
+from controller.validations import ADD_USER_ARGS
 
 
 class UserController:

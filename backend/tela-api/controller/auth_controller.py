@@ -4,9 +4,9 @@ from flask import request
 from webargs.flaskparser import parser
 
 from controller.user_controller import UserController
-from decorators import http_response
+from telacore.decorators import http_response
 from services import AuthService
-from validations import LOGIN_ARGS
+from controller.validations import LOGIN_ARGS
 
 
 @http_response

@@ -3,7 +3,7 @@ from abc import ABC
 from model.config import DBConfig, Base
 from model.config import DBConnection
 from model.entities import BaseEntity
-from exceptions import DataBaseException
+from telacore.exceptions import DataBaseException
 
 
 class IRepository(ABC):
