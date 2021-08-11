@@ -1,7 +1,7 @@
-from telacore.exceptions import EntityNotFound
+from telacore.exceptions import DataBaseException
 
 def test():
-    raise EntityNotFound('dsdsdds')
+    raise DataBaseException('dsdsdds')
 
 
 test()

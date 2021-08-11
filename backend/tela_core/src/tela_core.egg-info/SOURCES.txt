@@ -9,6 +9,7 @@ src/telacore/__init__.py
 src/telacore/decorators/__init__.py
 src/telacore/decorators/singleton.py
 src/telacore/exceptions/__init__.py
+src/telacore/exceptions/database_exceptions.py
 src/telacore/exceptions/entity_not_found.py
 src/telacore/utils/__init__.py
 src/telacore/utils/cnpj_util.py
