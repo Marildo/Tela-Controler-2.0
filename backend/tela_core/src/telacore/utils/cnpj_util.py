@@ -34,11 +34,13 @@ def validate(_cnpj) -> bool:
 
 def mask(_cnpj) -> str:
     value = unmask(_cnpj)
-    return cnpj.display(str(value))
+    value = cnpj.display(str(value))
+    return value
 
 
 def unmask(_cnpj: str) -> int:
     value = int(re.sub(r'\D', '', str(_cnpj)))
+    value = str(value).rjust(14, '0')
     return value
 
 

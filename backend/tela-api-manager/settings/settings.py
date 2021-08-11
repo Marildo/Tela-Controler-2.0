@@ -1,7 +1,11 @@
+from dotenv import load_dotenv
 from telacore.decorators import singleton
-from telacore.settings import BaseSetting
+from telacore.settings import BaseSetting, config_logger
 
 
 @singleton
 class Settings(BaseSetting):
-    pass
+
+    def __init__(self):
+        load_dotenv()
+        config_logger(self.get_level_log())

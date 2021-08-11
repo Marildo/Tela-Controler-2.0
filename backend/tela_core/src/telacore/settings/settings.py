@@ -1,19 +1,17 @@
 import os
-from abc import ABC
-
-from dotenv import load_dotenv
-
-from .logger import config_logger
+from abc import ABC, abstractmethod
 
 
 class BaseSetting(ABC):
+
+    @abstractmethod
     def __init__(self):
-        load_dotenv()
-        config_logger(self.get_level_log())
+        pass
 
     @staticmethod
     def _load_value(name, default=None):
-        return os.environ[name] if name in os.environ else default
+        value = os.environ[name] if name in os.environ else default
+        return value
 
     def get_api_port(self) -> int:
         return self._load_value('API_PORT', 3100)
