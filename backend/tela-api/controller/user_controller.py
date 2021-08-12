@@ -20,7 +20,7 @@ class UserController:
         self.__user_schema = UsuarioSchema()
 
     @http_response
-    def append(self):
+    def add(self):
         args = parser.parse(ADD_USER_ARGS, request, location='json')
         password = self.__encode(args['password'])
 

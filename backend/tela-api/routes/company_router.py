@@ -6,7 +6,7 @@ from flask import request
 from controller import valide_token
 
 
-class EmpresaRouter(Resource):
+class CompanyRouter(Resource):
 
     @valide_token
     def get(self):
