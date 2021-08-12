@@ -1,20 +1,22 @@
 from abc import ABC
 
+from telacore.exceptions import DataBaseException
+
 from model.config import DBConfig, Base
 from model.config import DBConnection
 from model.entities import BaseEntity
-from telacore.exceptions import DataBaseException
 
 
 class IRepository(ABC):
 
-    def __init__(self, config: DBConfig):
+    def __init__(self, cnpj: str):
+        config = DBConfig(cnpj)
         self.connection: DBConnection = DBConnection(config)
+        Base.metadata.create_all(self.connection.get_engine())
 
     def save(self, entity: BaseEntity):
         with self.connection as conn:
             try:
-                Base.metadata.create_all(conn.get_engine())
                 conn.session.expire_on_commit = False
                 conn.session.add(entity)
                 conn.session.commit()

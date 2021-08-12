@@ -7,5 +7,5 @@ class UserRouter(Resource):
 
     @staticmethod
     def post():
-        return UserController().append()
+        return UserController().create()
 

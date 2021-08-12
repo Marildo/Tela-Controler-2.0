@@ -38,7 +38,7 @@ class ClientController:
         if cliente:
             cliente.last_token = datetime.datetime.now()
             self.__repository.save(cliente)
-            return {'token': cliente.uuid}, 200
+            return {'codigo': cliente.uuid}, 200
 
         company_controller = CompanyController()
         company = company_controller.find_and_save(cnpj)
@@ -46,4 +46,4 @@ class ClientController:
         cliente.uuid = cnpj_util.encode(cnpj)
         cliente.empresa_id = company.id
         self.__repository.save(cliente)
-        return {'token': cliente.uuid}, 201
+        return {'codigo': cliente.uuid}, 201

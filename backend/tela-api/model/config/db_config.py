@@ -3,7 +3,8 @@ from settings import Settings
 
 class DBConfig:
 
-    def __init__(self):
+    def __init__(self, cnpj: str):
+        self.__data_base = f'emp_{cnpj}'
         self.__settings: Settings = Settings()
 
     @property
@@ -15,10 +16,9 @@ class DBConfig:
         return self.__settings.get_database_password()
 
     @property
-    def database_master(self) -> str:
-        return self.__settings.get_database_master_name()
+    def database(self) -> str:
+        return self.__data_base
 
     @property
     def debug(self) -> bool:
         return self.__settings.get_debug()
-

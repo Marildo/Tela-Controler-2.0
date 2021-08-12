@@ -11,3 +11,4 @@ helpers/tela.pem
 */.vscode
 
 *.env
+*.db

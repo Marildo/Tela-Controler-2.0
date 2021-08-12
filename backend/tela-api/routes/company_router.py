@@ -1,12 +1,15 @@
 from datetime import datetime
 
-from flask_restful import Resource
 from flask import request
+from flask_restful import Resource
 
-from controller import valide_token
+from controller import valide_token, CompanyController
 
 
 class CompanyRouter(Resource):
+
+    def __init__(self):
+        self.__controller = CompanyController()
 
     @valide_token
     def get(self):
@@ -16,3 +19,6 @@ class CompanyRouter(Resource):
         p = request.payload
         print(p)
         return p
+
+    def post(self):
+        return self.__controller.create()

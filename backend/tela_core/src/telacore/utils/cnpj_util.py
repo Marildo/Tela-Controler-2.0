@@ -59,4 +59,5 @@ def decode(_encodec) -> str:
     encoder = Encoder()
     value = b64decode(_encodec)
     decoded = encoder.decode(value)
+    assert validate(decoded), 'Código Inválido'
     return decoded
