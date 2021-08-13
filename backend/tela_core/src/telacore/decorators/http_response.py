@@ -2,7 +2,7 @@ from functools import wraps
 
 from werkzeug.exceptions import UnprocessableEntity
 
-from telacore.commons.response import Response
+from telacore.models.response import Response
 from telacore.exceptions import EntityNotFound, DataBaseException
 from telacore.utils.logger_util import log_error
 

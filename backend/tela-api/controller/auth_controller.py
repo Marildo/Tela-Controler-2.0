@@ -1,7 +1,7 @@
 from functools import wraps
 
 from flask import request
-from telacore.commons.response import Response
+from telacore.models.response import Response
 from telacore.decorators import http_response
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser

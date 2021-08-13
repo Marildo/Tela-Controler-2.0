@@ -8,10 +8,9 @@ from .user_router import UserRouter
 
 class AppRouter:
     def __init__(self, api: Api):
-        self.__api: Api = api
+        self.__load(api)
 
-    def load(self):
-        api = self.__api
+    def __load(self, api):
         api.add_resource(IndexRouter, '/')
         api.add_resource(LoginRouter, '/login')
         api.add_resource(CompanyRouter, '/empresa')

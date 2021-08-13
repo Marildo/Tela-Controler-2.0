@@ -12,6 +12,7 @@ class EmpresaSchema(SQLAlchemySchema):
     id = fields.Str()
     nome_fantasia = auto_field()
     razao_social = auto_field()
+    cnpj = auto_field()
     cnae = auto_field()
     data_situacao = auto_field()
     abertura = auto_field()

@@ -10,7 +10,6 @@ CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
 
 router = AppRouter(api)
-router.load()
 
 if __name__ == '__main__':
     settings = Settings()

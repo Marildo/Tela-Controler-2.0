@@ -9,7 +9,7 @@ from webargs.flaskparser import parser
 from controller.validations.user_validations import CREATE_USER_ARGS
 from model.entities import Usuario
 from model.repository import UsuarioRepository
-from model.schema import UsuarioSchema
+from model.schemas import UsuarioSchema
 
 
 class UserController:

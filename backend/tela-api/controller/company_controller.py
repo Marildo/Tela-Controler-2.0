@@ -7,14 +7,16 @@ from webargs.flaskparser import parser
 
 from controller import UserController
 from controller.validations.company_validations import CREATE_COMPANY_ARGS
-from model.entities import Usuario
+from model.entities import Usuario, Empresa
+from model.repository import EmpresaRepository
+from model.schemas import EmpresaSchema
 from services import Manager, AuthService
 
 
 class CompanyController:
 
     def __init__(self):
-        pass
+        self.__schema = EmpresaSchema()
 
     @http_response
     def create(self):
@@ -27,8 +29,30 @@ class CompanyController:
 
         token = self.create_user_and_login(cnpj, args)
 
+        empresa = Empresa()
+        empresa.nome = data['razao_social']
+        empresa.fantasia = data['nome_fantasia']
+        empresa.cnpj = data['cnpj']
+        empresa.cnae = data['cnae']
+        empresa.uf = data['uf']
+        empresa.cep = data['cep']
+        empresa.logradouro = data['logradouro']
+        empresa.numero = data['numero']
+        empresa.complemento = data['complemento']
+        empresa.bairro = data['bairro']
+        empresa.fone = data['telefone']
+        empresa.email = data['email']
+
+        #TODO - Buscar cep e salvar ibge
+
+        repository = EmpresaRepository(cnpj)
+        repository.save(empresa)
+
+        company = self.__schema.dump(empresa)
+
         data = {
-            'token': token
+            'token': token,
+            'company': company
         }
 
         return data, 200
