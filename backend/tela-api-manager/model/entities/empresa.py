@@ -1,5 +1,5 @@
 from sqlalchemy import Column
-from sqlalchemy.sql.sqltypes import String, Date, BOOLEAN, CHAR
+from sqlalchemy.sql.sqltypes import String, Date, BOOLEAN, CHAR,Integer
 
 from .base_entity import BaseEntity
 
@@ -14,6 +14,7 @@ class Empresa(BaseEntity):
     data_situacao = Column(Date)
     abertura = Column(Date)
     situacao = Column(BOOLEAN, default=True)
+    ibge = Column(Integer)
     uf = Column(CHAR(2))
     telefone = Column(String(60))
     bairro = Column(String(255), default='')

@@ -1,7 +1,7 @@
 from flask import request
 from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
-from telacore.utils import date_util, cnpj_util
+from telacore.utils import date_util, cnpj_util, CEPUtil
 from webargs.flaskparser import parser
 
 from controller.validations import CNPJ
@@ -36,6 +36,10 @@ class CompanyController:
         if company['status'] == 'ERROR':
             raise EntityNotFound(company['message'])
         else:
+            cep = CEPUtil.find_cep(company['cep'])
+            if cep:
+                company['ibge'] = cep['ibge']
+
             self.__save(company)
             return self.__repository.find_by_cnpj(cnpj_with_mask)
 
@@ -52,6 +56,7 @@ class CompanyController:
         empresa.complemento = company['complemento']
         empresa.bairro = company['bairro']
         empresa.cep = company['cep']
+        empresa.ibge = company['ibge']
         empresa.municipio = company['municipio']
         empresa.uf = company['uf']
         empresa.telefone = company['telefone']

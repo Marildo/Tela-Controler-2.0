@@ -23,6 +23,7 @@ class EmpresaSchema(SQLAlchemySchema):
     logradouro = auto_field()
     numero = auto_field()
     cep = auto_field()
+    ibge = auto_field()
     municipio = auto_field()
     complemento = auto_field()
     email = auto_field()

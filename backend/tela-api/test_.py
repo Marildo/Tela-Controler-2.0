@@ -1,8 +1,8 @@
-from telacore.enuns.company_enuns import Perfil
+from telacore.utils import CEPUtil
 
 def test():
-    print('test')
-    print(Perfil.values())
+   data = CEPUtil.find_cep(37557466)
+   print(data)
 
 
 test()

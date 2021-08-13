@@ -1,5 +1,3 @@
-from abc import ABC
-
 import requests
 
 from settings import Settings

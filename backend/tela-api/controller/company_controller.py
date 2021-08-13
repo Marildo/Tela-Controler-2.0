@@ -34,6 +34,7 @@ class CompanyController:
         empresa.fantasia = data['nome_fantasia']
         empresa.cnpj = data['cnpj']
         empresa.cnae = data['cnae']
+        empresa.ibge = data['ibge']
         empresa.uf = data['uf']
         empresa.cep = data['cep']
         empresa.logradouro = data['logradouro']
@@ -42,8 +43,6 @@ class CompanyController:
         empresa.bairro = data['bairro']
         empresa.fone = data['telefone']
         empresa.email = data['email']
-
-        #TODO - Buscar cep e salvar ibge
 
         repository = EmpresaRepository(cnpj)
         repository.save(empresa)
