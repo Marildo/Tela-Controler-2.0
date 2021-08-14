@@ -3,6 +3,7 @@ from functools import wraps
 from flask import request
 from telacore.decorators import http_response
 from telacore.models.response import Response
+from telacore.utils import cnpj_util
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser
 
@@ -14,9 +15,10 @@ from services import AuthService
 @http_response
 def login():
     args = parser.parse(LOGIN_ARGS, request, location='json')
-    user = UserController().find_for_login(email=args['email'], password=args['password'])
+    cnpj = cnpj_util.decode(args['codigo'])
+    user = UserController().find_for_login(cnpj=cnpj, email=args['email'], password=args['password'])
 
-    token = AuthService().encode(user)
+    token = AuthService().encode(cnpj=cnpj, payload=user)
     return {'token': token}, 200
 
 

@@ -56,8 +56,12 @@ def encode(_cnpj) -> str:
 
 
 def decode(_encodec) -> str:
-    encoder = Encoder()
-    value = b64decode(_encodec)
-    decoded = encoder.decode(value)
-    assert validate(decoded), 'Código Inválido'
+    try:
+        encoder = Encoder()
+        value = b64decode(_encodec)
+        decoded = encoder.decode(value)
+        assert validate(decoded), ''
+    except Exception:
+        raise Exception('Código Inválido')
+
     return decoded

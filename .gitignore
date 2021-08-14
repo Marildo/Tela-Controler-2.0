@@ -13,3 +13,4 @@ helpers/tela.pem
 *.env
 *.db
 backend/tela-api-manager/tela_master.db
+
