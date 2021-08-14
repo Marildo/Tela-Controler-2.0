@@ -1,1 +1,1 @@
-from .cnpj import CNPJ
+from .company import CNPJ,SAVE_COMPANY

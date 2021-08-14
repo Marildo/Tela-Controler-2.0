@@ -8,8 +8,10 @@ class ClienteRepository(IRepository):
     def find(self, cnpj: str) -> Cliente:
         with self.connection as conn:
             try:
-                return conn.session.query(Cliente) \
+                client = conn.session.query(Cliente) \
                     .join(Empresa, Empresa.id == Cliente.empresa_id) \
                     .filter(Empresa.cnpj == cnpj).first()
+                client.contatos
+                return client
             finally:
                 conn.session.close()

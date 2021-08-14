@@ -21,7 +21,7 @@ class IDBConnection(ABC):
         self._session.close()
 
     def get_engine(self):
-        return create_engine(self._get_url(), echo=True)#self._config.debug)
+        return create_engine(self._get_url(), echo=True) # self._config.debug)
 
     @abstractmethod
     def _get_url(self) -> str:

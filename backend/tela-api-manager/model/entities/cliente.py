@@ -3,13 +3,13 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import INTEGER, String
 from sqlalchemy.types import DateTime
 
-from model.config import Base
+from .base_entity import BaseEntity
 
 
-class Cliente(Base):
+class Cliente(BaseEntity):
     __tablename__ = "clientes"
 
-    uuid = Column(String(255), primary_key=True)
-    created_at = Column(DateTime, nullable=False, default=func.now())
-    last_token = Column(DateTime, nullable=False, default=func.now())
+    uuid = Column(String(255), unique=True)
+    last_token = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
     empresa_id = Column(INTEGER, ForeignKey('empresas.id'), nullable=False)
+    contatos = relationship('Contato')

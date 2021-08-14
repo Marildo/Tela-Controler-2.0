@@ -12,4 +12,4 @@ class AppRouter:
     def load(self):
         api = self.__api
         api.add_resource(CompanyRouter, '/empresa/<cnpj>')
-        api.add_resource(ClientRouter, '/cliente/<cnpj>')
+        api.add_resource(ClientRouter, '/cliente/')

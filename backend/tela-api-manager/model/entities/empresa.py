@@ -1,10 +1,11 @@
 from sqlalchemy import Column
-from sqlalchemy.sql.sqltypes import String, Date, BOOLEAN, CHAR,Integer
+from sqlalchemy.sql.sqltypes import BOOLEAN, CHAR, Date, Integer, String
 
 from .base_entity import BaseEntity
 
 
 class Empresa(BaseEntity):
+
     __tablename__ = "empresas"
 
     cnpj = Column(String(15), unique=True, index=True)
