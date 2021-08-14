@@ -6,3 +6,7 @@ CREATE_COMPANY_ARGS = {
        'nome': fields.Str(required=True, validate=[validate.Length(min=3, max=120)]),
        'codigo': fields.Str(required=True)
 }
+
+UPDATE_COMPANY_ARGS = {
+       
+}

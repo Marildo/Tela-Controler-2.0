@@ -11,7 +11,8 @@ class ClienteRepository(IRepository):
                 client = conn.session.query(Cliente) \
                     .join(Empresa, Empresa.id == Cliente.empresa_id) \
                     .filter(Empresa.cnpj == cnpj).first()
-                client.contatos
+                if client:
+                    client.contatos
                 return client
             finally:
                 conn.session.close()

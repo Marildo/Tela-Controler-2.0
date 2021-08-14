@@ -35,6 +35,9 @@ class CompanyController:
         company = search_from_cnpj(cnpj)
         if company['status'] == 'ERROR':
             raise EntityNotFound(company['message'])
+        elif company['situacao'] == 'BAIXADA':
+            data = {'situacao': 'Empresa baixada', 'motivo': company['motivo_situacao']}
+            raise EntityNotFound(data)
         else:
             cep = CEPUtil.find_cep(company['cep'])
             if cep:

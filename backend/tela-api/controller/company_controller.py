@@ -1,16 +1,15 @@
 from flask import request
 from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
-from telacore.utils import SecurityUtil
 from telacore.utils import cnpj_util
 from webargs.flaskparser import parser
 
 from controller import UserController
-from controller.validations.company_validations import CREATE_COMPANY_ARGS
-from model.entities import Usuario, Empresa
+from controller.validations.company_validations import CREATE_COMPANY_ARGS, UPDATE_COMPANY_ARGS
+from model.entities import Empresa
 from model.repository import EmpresaRepository
 from model.schemas import EmpresaSchema
-from services import Manager, AuthService
+from services import Manager
 
 
 class CompanyController:
@@ -27,7 +26,7 @@ class CompanyController:
         if not data:
             raise EntityNotFound('Empresa não localizada')
 
-        token = self.create_user_and_login(cnpj, args)
+        token = UserController().create_user_and_login(cnpj, args)
 
         empresa = Empresa()
         empresa.nome = data['razao_social']
@@ -56,14 +55,15 @@ class CompanyController:
 
         return data, 200
 
-    @staticmethod
-    def create_user_and_login(cnpj, args) -> str:
-        email = args['email']
-        nome = args['nome']
-        password = SecurityUtil.hash(args['password'])
+    @http_response
+    def find(self):
+        cnpj = request.credential.cnpj
+        repository = EmpresaRepository(cnpj)
+        data = repository.find()
+        data = self.__schema.dump(data)
+        return data, 200
 
-        user = Usuario(email=email, nome=nome, password=password)
-        user_controller = UserController()
-        data = user_controller.save_user(cnpj, user)
-        token = AuthService().encode(data)
-        return token
+    @http_response
+    def update(self):
+        args = parser.parse(UPDATE_COMPANY_ARGS, request, location='json')
+        return 'ok'

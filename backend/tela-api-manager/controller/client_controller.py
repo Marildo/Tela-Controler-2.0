@@ -47,11 +47,9 @@ class ClientController:
             nome = arqs['contato']
             contato = Contato(email=email, nome=nome, client_id=cliente.id)
             self.__repository.save(contato)
-            cliente.contatos = [contato]
-
         return {
                    'codigo': cliente.uuid,
-                   'email': cliente.contatos[0].email
+                   'email': email
                }, 201
 
     def __find_client(self, cnpj) -> Cliente:
