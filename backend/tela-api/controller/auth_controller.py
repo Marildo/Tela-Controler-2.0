@@ -2,8 +2,8 @@ from functools import wraps
 
 from flask import request
 from telacore.decorators import http_response
-from telacore.models.response import Response
-from telacore.utils import cnpj_util
+from telacore.models import Response, Credential
+from telacore.utils import CNPJUtil
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser
 
@@ -15,14 +15,14 @@ from services import AuthService
 @http_response
 def login():
     args = parser.parse(LOGIN_ARGS, request, location='json')
-    cnpj = cnpj_util.decode(args['codigo'])
+    cnpj = CNPJUtil.decode(args['codigo'])
     user = UserController().find_for_login(cnpj=cnpj, email=args['email'], password=args['password'])
 
     token = AuthService().encode(cnpj=cnpj, payload=user)
     return {'token': token}, 200
 
 
-def check_token(token: str):
+def check_token(token: str) -> Credential:
     token = token.replace('Bearer ', '')
     assert len(token) > 5, 'Token Inválido'
     auth_service = AuthService()
@@ -36,8 +36,8 @@ def valide_token(func):
             headers = request.headers
             assert 'Authorization' in headers, 'Token not found'
             token = headers['Authorization']
-            payload = check_token(token)
-            request.credential = payload
+            controller = args[0]
+            controller.credential = check_token(token)
             return func(*args, **kwargs)
         except Exception as error:
             log_error(error)

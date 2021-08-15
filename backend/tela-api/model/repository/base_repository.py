@@ -1,5 +1,7 @@
 from abc import ABC
+from typing import Dict
 
+from sqlalchemy import update
 from telacore.exceptions import DataBaseException
 
 from model.config import DBConfig, Base
@@ -17,10 +19,23 @@ class IRepository(ABC):
     def save(self, entity: BaseEntity):
         with self.connection as conn:
             try:
-                conn.session.expire_on_commit = False
                 conn.session.add(entity)
                 conn.session.commit()
                 return entity
+            except Exception as e:
+                conn.session.rollback()
+                raise DataBaseException(e)
+            finally:
+                conn.session.close()
+
+    def update(self, entity: BaseEntity, _id: int, data: Dict) -> int:
+        with self.connection as conn:
+            try:
+                conn.session.execute(
+                    update(entity).where(entity.id == _id).values(data)
+                )
+                conn.session.commit()
+                return _id
             except Exception as e:
                 conn.session.rollback()
                 raise DataBaseException(e)

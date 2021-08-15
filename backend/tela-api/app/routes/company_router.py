@@ -1,20 +1,21 @@
-from flask_restful import Resource
+from flask import Blueprint
 
-from controller import valide_token, CompanyController
+from controller import CompanyController, valide_token
+
+name = 'CompanyRouter'
+company_router = Blueprint(name=name, import_name=name, url_prefix='/empresa')
 
 
-class CompanyRouter(Resource):
+@company_router.route('/', methods=['POST'])
+def post():
+    return CompanyController().create()
 
-    def __init__(self):
-        self.__controller = CompanyController()
 
-    def post(self):
-        return self.__controller.create()
+@company_router.route('/', methods=['GET'])
+def get():
+    return CompanyController().read()
 
-    @valide_token
-    def get(self):
-        return self.__controller.find()
 
-    @valide_token
-    def put(self):
-        return self.__controller.update()
+@company_router.route('/<int:_id>', methods=['PUT'])
+def put(_id: int):
+    return CompanyController().update(_id)

@@ -5,16 +5,10 @@ from typing import Dict
 import jwt
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
-from telacore.utils import cnpj_util
+from telacore.models import Credential
+from telacore.utils import CNPJUtil
 
 from services import IAuth
-
-
-class Credential:
-
-    def __init__(self, cnpj: str, user_id: int) -> None:
-        self.cnpj = cnpj
-        self.id = user_id
 
 
 class JWTService(IAuth):
@@ -26,18 +20,18 @@ class JWTService(IAuth):
         self.__expiration = datetime.now() + timedelta(minutes=60 * 24)
 
     def encode(self, cnpj: str, payload: Dict) -> str:
-        payload['codigo'] = cnpj_util.encode(cnpj)
+        payload['codigo'] = CNPJUtil.encode(cnpj)
         jwt_token = jwt.encode({'exp': self.__expiration, 'payload': payload},
                                key=self.__load_private_key(),
                                algorithm=self.__algorithm)
         return jwt_token
 
-    def decode(self, token):
+    def decode(self, token) -> Credential:
         private_key = self.__load_private_key()
         data = jwt.decode(token, private_key.public_key(), algorithms=self.__algorithm)
         payload = data['payload']
         id = payload['id']
-        cnpj = cnpj_util.decode(payload['codigo'])
+        cnpj = CNPJUtil.decode(payload['codigo'])
         return Credential(cnpj=cnpj, user_id=id)
 
     def __load_private_key(self):

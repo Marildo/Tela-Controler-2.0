@@ -41,6 +41,10 @@ class cpfUtilTest(TestCase):
         with self.assertRaises(ValidationError):
             CPFUtil.validate('79609442029', raise_exception=True)
 
+    def test_validade_nao_deve_validar_cpf_vazio_e_gerar_ValidationError(self):
+        with self.assertRaises(ValidationError):
+            CPFUtil.validate('', raise_exception=True)
+
     def test_mask(self):
         value = CPFUtil.mask('22896587071')
         expect = '228.965.870-71'

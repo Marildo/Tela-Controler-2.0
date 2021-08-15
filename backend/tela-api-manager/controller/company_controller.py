@@ -1,7 +1,7 @@
 from flask import request
 from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
-from telacore.utils import date_util, cnpj_util, CEPUtil
+from telacore.utils import date_util, CNPJUtil, CEPUtil
 from webargs.flaskparser import parser
 
 from controller.validations import CNPJ
@@ -27,7 +27,7 @@ class CompanyController:
         return self.__empresa_schema.dump(company), 200
 
     def find_and_save(self, cnpj) -> Empresa:
-        cnpj_with_mask = cnpj_util.mask(cnpj)
+        cnpj_with_mask = CNPJUtil.mask(cnpj)
         company = self.__repository.find_by_cnpj(cnpj_with_mask)
         if company:
             return company

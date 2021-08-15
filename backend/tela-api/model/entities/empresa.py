@@ -16,7 +16,7 @@ class Empresa(BaseEntity):
     im = Column(String(30), default='')
     cnae = Column(String(12), default='')
     suframa = Column(String(15), default='')
-    pefil = Column(CHAR(1), default='A')
+    perfil = Column(CHAR(1), default='A')
     ind_atividade = Column(SMALLINT, default=1)
 
     uf = Column(CHAR(2), nullable=False)

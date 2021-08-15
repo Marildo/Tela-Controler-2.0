@@ -46,8 +46,8 @@ class CNPJUtil:
         return value
 
     @staticmethod
-    def unmask(cnpj: str) -> int:
-        value = int(re.sub(r'\D', '', str(cnpj)))
+    def unmask(cnpj: str) -> str:
+        value = re.sub(r'\D', '', str(cnpj))
         value = str(value).rjust(14, '0')
         return value
 

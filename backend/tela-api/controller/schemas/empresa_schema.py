@@ -7,7 +7,8 @@ class EmpresaSchema(SQLAlchemySchema):
     class Meta:
         load_instance = True
         model = Empresa
-        
+
+    id = auto_field()
     nome = auto_field()
     fantasia = auto_field()
     cnpj = auto_field()
@@ -17,7 +18,7 @@ class EmpresaSchema(SQLAlchemySchema):
     im = auto_field()
     cnae = auto_field()
     suframa = auto_field()
-    pefil = auto_field()
+    perfil = auto_field()
     ind_atividade = auto_field()
     uf = auto_field()
     ibge = auto_field()

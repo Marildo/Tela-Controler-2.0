@@ -1,27 +1,29 @@
 from flask import request
 from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
-from telacore.utils import cnpj_util
+from telacore.utils import CNPJUtil
 from webargs.flaskparser import parser
 
-from controller import UserController
+from controller import BaseController, UserController, valide_token
+from controller.schemas import EmpresaSchema
 from controller.validations.company_validations import CREATE_COMPANY_ARGS, UPDATE_COMPANY_ARGS
 from model.entities import Empresa
 from model.repository import EmpresaRepository
-from model.schemas import EmpresaSchema
 from services import Manager
 
 
-class CompanyController:
+class CompanyController(BaseController):
 
     def __init__(self):
+        super().__init__()
         self.__schema = EmpresaSchema()
 
+    @valide_token
     @http_response
     def create(self):
         args = parser.parse(CREATE_COMPANY_ARGS, request, location='json')
 
-        cnpj = cnpj_util.decode(args['codigo'])
+        cnpj = CNPJUtil.decode(args['codigo'])
         data = Manager.find_company(cnpj)
         if not data:
             raise EntityNotFound('Empresa não localizada')
@@ -53,17 +55,21 @@ class CompanyController:
             'company': company
         }
 
-        return data, 200
+        return data, 201
 
+    @valide_token
     @http_response
-    def find(self):
-        cnpj = request.credential.cnpj
-        repository = EmpresaRepository(cnpj)
+    def read(self):
+        repository = EmpresaRepository(self.cnpj)
         data = repository.find()
         data = self.__schema.dump(data)
         return data, 200
 
+    @valide_token
     @http_response
-    def update(self):
+    def update(self, _id):
         args = parser.parse(UPDATE_COMPANY_ARGS, request, location='json')
-        return 'ok'
+        del args['id']
+        repository = EmpresaRepository(self.cnpj)
+        repository.update(Empresa, _id, args)
+        return {'id': _id}, 200

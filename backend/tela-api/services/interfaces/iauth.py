@@ -5,7 +5,7 @@ from typing import Dict
 class IAuth(ABC):
 
     @abstractmethod
-    def encode(self, payload: Dict) -> str:
+    def encode(self, cnpj: str, payload: Dict) -> str:
         pass
 
     @abstractmethod
