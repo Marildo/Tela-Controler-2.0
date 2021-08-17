@@ -16,6 +16,6 @@ def get():
     return CompanyController().read()
 
 
-@company_router.route('/<int:_id>', methods=['PUT'])
+@company_router.route('<int:_id>', methods=['PUT'])
 def put(_id: int):
     return CompanyController().update(_id)
