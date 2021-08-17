@@ -1,12 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_restful import Api
 
-from .routes import IndexRouter
-from .routes import LoginRouter
-from .routes import UserRouter
+from .routes import auth_router
 from .routes import company_router
+from .routes import index_router
 from .routes import unity_router
+from .routes import user_router
 
 
 class TelaAPP:
@@ -16,13 +15,10 @@ class TelaAPP:
         self.__config_routes(self.__app)
 
     def __config_routes(self, app: Flask):
-        api = Api(self.__app)
-        api.add_resource(IndexRouter, '/')
-        api.add_resource(LoginRouter, '/login')
-
-        api.add_resource(UserRouter, '/usuario')
-
+        app.register_blueprint(index_router)
+        app.register_blueprint(auth_router)
         app.register_blueprint(unity_router)
+        app.register_blueprint(user_router)
         app.register_blueprint(company_router)
 
     def __config_cors(self):

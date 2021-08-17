@@ -1,8 +1,11 @@
 from datetime import datetime
 
-from flask_restful import Resource
+from flask import Blueprint
+
+name = 'IndexRouter'
+index_router = Blueprint(name=name, import_name=name, url_prefix='/')
 
 
-class IndexRouter(Resource):
-    def get(self):
-        return {'Server is running': str(datetime.now())}
+@index_router.route('', methods=['GET'])
+def get():
+    return {'Server is running': str(datetime.now())}

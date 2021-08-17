@@ -6,12 +6,12 @@ name = 'CompanyRouter'
 company_router = Blueprint(name=name, import_name=name, url_prefix='/empresa')
 
 
-@company_router.route('/', methods=['POST'])
+@company_router.route('', methods=['POST'])
 def post():
     return CompanyController().create()
 
 
-@company_router.route('/', methods=['GET'])
+@company_router.route('', methods=['GET'])
 def get():
     return CompanyController().read()
 

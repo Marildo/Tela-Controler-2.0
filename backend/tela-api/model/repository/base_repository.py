@@ -21,6 +21,7 @@ class IRepository(ABC):
             try:
                 conn.session.add(entity)
                 conn.session.commit()
+                entity.id
                 return entity
             except Exception as e:
                 conn.session.rollback()

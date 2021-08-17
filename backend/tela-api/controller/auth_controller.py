@@ -1,14 +1,17 @@
 from functools import wraps
+from typing import Dict
 
 from flask import request
 from telacore.decorators import http_response
+from telacore.exceptions import EntityNotFound
 from telacore.models import Response, Credential
-from telacore.utils import CNPJUtil
+from telacore.utils import CNPJUtil, SecurityUtil
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser
 
-from controller.user_controller import UserController
+from controller.schemas import UsuarioSchema
 from controller.validations import LOGIN_ARGS
+from model.repository import UsuarioRepository
 from services import AuthService
 
 
@@ -16,10 +19,18 @@ from services import AuthService
 def login():
     args = parser.parse(LOGIN_ARGS, request, location='json')
     cnpj = CNPJUtil.decode(args['codigo'])
-    user = UserController().find_for_login(cnpj=cnpj, email=args['email'], password=args['password'])
+    user = find_for_login(cnpj=cnpj, email=args['email'], password=args['password'])
 
     token = AuthService().encode(cnpj=cnpj, payload=user)
     return {'token': token}, 200
+
+
+def find_for_login(cnpj, email, password) -> Dict:
+    repository = UsuarioRepository(cnpj)
+    user = repository.find_by_email(email)
+    if user and user.password == SecurityUtil.hash(password):
+        return UsuarioSchema().dump(user)
+    raise EntityNotFound('Senha ou email incorretos')
 
 
 def check_token(token: str) -> Credential:
