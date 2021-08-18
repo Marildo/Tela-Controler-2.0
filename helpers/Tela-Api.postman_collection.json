@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "46da1a85-5593-4d2c-9ad7-b67402252345",
+		"name": "Tela-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"maria2@paiva.com\",\r\n    \"password\": \"123456789\",\r\n    \"codigo\": \"MTM0OTAyMzk2MjAwNjAzOQ==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"maria2@paiva.com\",\r\n    \"password\": \"123456789\",\r\n    \"codigo\": \"MTM0OTAyMzk2MjAwNjAzOQ==\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "616"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.1 Python/3.8.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Aug 2021 23:02:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE2MjkwNTc3NTksInBheWxvYWQiOnsibm9tZSI6Im1hcmlhIiwiZW1haWwiOiJtYXJpYTJAcGFpdmEuY29tIiwiaWQiOjEsImNvZGlnbyI6Ik1UTTBPVEF5TXprMk1qQXdOakF6T1E9PSJ9fQ.sRp9LQLRoelhdA4knMVPHPgWEw6BDzxRigbhjWzPiQJxBvDUROJslimzIcnFWkVqwZyPHi5oVIbXBbRKYj9bIOAoBWBzk8XneB_Y25F_FMeCk6Yc4z71cuzAuIUQM4Rb0090FS0ni57jK_RpcOlIzblACkgGmvgZdtke3hOErIFnvE_dFBIQprIXhlTs6w_7eOeBPrKavfLr9lkv_jqRRp0TGeUgpDwluJ1SfPm2pM8_y9Wzb5S5nAUKoniLArfNABrL6kI5CEduqkhZyzcNTOlRz7Xc0gTIOpp0Xe6SR3mna559vEKZ20OYWR-EQi-Cw7P3U6dvdE6dEVNQizc9XQ\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Novo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"maria33@paiva.coymç\",\r\n    \"password\": \"123456789\",\r\n    \"nome\":\"Maria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/usuario",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresa",
+			"item": [
+				{
+					"name": "Get Empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/empresa",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"empresa"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_main}}/empresa",
+									"host": [
+										"{{api_main}}"
+									],
+									"path": [
+										"empresa"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "715"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.1 Python/3.8.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Aug 2021 23:07:20 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": {\n        \"nome\": \"UAITECH DESENVOLVIMENTO E ACESSORIA EM SISTEMAS LTDA\",\n        \"celular\": \"\",\n        \"email\": \"uaitechsistemas@gmail.com\",\n        \"fone\": \"(35) 9802-3939\",\n        \"fantasia\": \"UAITECH SISTEMAS\",\n        \"logradouro\": \"R HAROLDO ERIK MADISON\",\n        \"bairro\": \"RESIDENCIAL JARDIM YPE\",\n        \"suframa\": \"\",\n        \"im\": \"\",\n        \"cnae\": \"62.01-5-01\",\n        \"ind_atividade\": 1,\n        \"ibge\": 3152501,\n        \"uf\": \"MG\",\n        \"cep\": \"37.557-466\",\n        \"ie_st\": \"\",\n        \"cnpj\": \"40.879.514/0001-83\",\n        \"numero\": \"35\",\n        \"pefil\": \"A\",\n        \"cpf\": \"\",\n        \"ie\": \"\",\n        \"complemento\": \"APT 1\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create empresa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"maria2@paiva.com\",\r\n    \"password\": \"123456789\",\r\n    \"codigo\": \"MTM0OTAyMzk2MjAwNjAzOQ==\",\r\n    \"nome\": \"maria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/empresa",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"empresa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update empresa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"bairro\": \"RESIDENCIAL JARDIM YPE\",\r\n        \"celular\": \"\",\r\n        \"cep\": \"37.557-466\",\r\n        \"cnae\": \"62.01-5-01\",\r\n        \"cnpj\": \"40.879.514/0001-83\",\r\n        \"complemento\": \"APT 1\",\r\n        \"cpf\": \"\",\r\n        \"email\": \"uaitechsistemas@gmail.com\",\r\n        \"fantasia\": \"UAITECH SISTEMAS\",\r\n        \"fone\": \"(35) 9802-3939\",\r\n        \"ibge\": 3152501,\r\n        \"id\": 1,\r\n        \"ie\": \"1233\",\r\n        \"ie_st\": \"\",\r\n        \"im\": \"36589\",\r\n        \"ind_atividade\": 1,\r\n        \"logradouro\": \"R HAROLDO ERIK MADISON\",\r\n        \"nome\": \"UAITECH DESENVOLVIMENTO E ACESSORIA EM SISTEMAS LTDA\",\r\n        \"numero\": \"35\",\r\n        \"perfil\": \"A\",\r\n        \"suframa\": \"\",\r\n        \"uf\": \"MG\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/empresa/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"empresa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unidades",
+			"item": [
+				{
+					"name": "Get Unidades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/unidades",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"unidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unidade by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/unidades/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"unidades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Unidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/unidades/",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"unidades",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete unidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/unidades/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"unidades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Unidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/unidades/2",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"unidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_main}}",
+					"host": [
+						"{{api_main}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

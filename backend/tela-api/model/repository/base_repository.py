@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Dict
+from typing import Dict, List
 
 from sqlalchemy import update
 from telacore.exceptions import DataBaseException
@@ -15,6 +15,14 @@ class IRepository(ABC):
         config = DBConfig(cnpj)
         self.connection: DBConnection = DBConnection(config)
         Base.metadata.create_all(self.connection.get_engine())
+
+    def find_all(self, entity: BaseEntity) -> List[BaseEntity]:
+        with self.connection as conn:
+            try:
+                result = conn.session.query(entity).all()
+                return result
+            finally:
+                conn.session.close()
 
     def save(self, entity: BaseEntity):
         with self.connection as conn:

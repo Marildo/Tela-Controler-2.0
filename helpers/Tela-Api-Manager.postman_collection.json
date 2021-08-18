@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "fb527ff5-0fd2-44c9-b825-45e677b55cc1",
+		"name": "Tela-Api-Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Empresa by CNPJ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_manager}}/empresa/24794967000150",
+					"host": [
+						"{{api_manager}}"
+					],
+					"path": [
+						"empresa",
+						"24794967000150"
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "422",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_manager}}/empresa/33270972000195",
+							"host": [
+								"{{api_manager}}"
+							],
+							"path": [
+								"empresa",
+								"33270972000195"
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.6"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 06 Aug 2021 21:11:36 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 422,\n    \"success\": false,\n    \"data\": [\n        {\n            \"field\": \"cnpj\",\n            \"error\": \"CNPJ inválido\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_manager}}/empresa/40879514000183",
+							"host": [
+								"{{api_manager}}"
+							],
+							"path": [
+								"empresa",
+								"40879514000183"
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "578"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.6"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 06 Aug 2021 22:11:11 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": {\n        \"created_at\": \"2021-08-05T23:45:19\",\n        \"uf\": \"MG\",\n        \"abertura\": \"2021-02-17\",\n        \"telefone\": \"(35) 9802-3939\",\n        \"logradouro\": \"R HAROLDO ERIK MADISON\",\n        \"cnae\": \"62.01-5-01\",\n        \"nome_fantasia\": \"UAITECH SISTEMAS\",\n        \"bairro\": \"RESIDENCIAL JARDIM YPE\",\n        \"data_situacao\": \"2021-02-17\",\n        \"numero\": \"35\",\n        \"cep\": \"37.557-466\",\n        \"situacao\": true,\n        \"id\": \"1\",\n        \"municipio\": \"POUSO ALEGRE\",\n        \"email\": \"uaitechsistemas@gmail.com\",\n        \"updated_at\": \"2021-08-05T23:45:19\",\n        \"complemento\": \"APT 1\",\n        \"razao_social\": \"UAITECH DESENVOLVIMENTO E ACESSORIA EM SISTEMAS LTDA\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Cliente By CNPJ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cnpj\": \"040779730001801\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_manager}}/cliente",
+					"host": [
+						"{{api_manager}}"
+					],
+					"path": [
+						"cliente"
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"04077973000180\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_manager}}/cliente",
+							"host": [
+								"{{api_manager}}"
+							],
+							"path": [
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Aug 2021 18:57:04 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"data\": {\n        \"codigo\": \"MTM0NTczMTA5MDA1OTQw\"\n    }\n}"
+				},
+				{
+					"name": "422",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"040779730001801\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_manager}}/cliente",
+							"host": [
+								"{{api_manager}}"
+							],
+							"path": [
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "UNPROCESSABLE ENTITY",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Aug 2021 18:57:56 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 422,\n    \"success\": false,\n    \"data\": [\n        {\n            \"field\": \"cnpj\",\n            \"error\": \"CNPJ inválido\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Cadastro de Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contato\": \"Cesar\",\r\n    \"email\": \"cesar@email.com\",\r\n    \"cnpj\": \"40879514000183\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_manager}}/cliente/",
+					"host": [
+						"{{api_manager}}"
+					],
+					"path": [
+						"cliente",
+						""
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contato\": \"Cesar\",\r\n    \"email\": \"cesar@email.com\",\r\n    \"cnpj\": \"04077973000180\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_manager}}/cliente/",
+							"host": [
+								"{{api_manager}}"
+							],
+							"path": [
+								"cliente",
+								""
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Aug 2021 18:55:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"data\": {\n        \"codigo\": \"MTM0NTczMTA5MDA1OTQw\",\n        \"email\": \"cesar@email.com\"\n    }\n}"
+				}
+			]
+		}
+	]
+}

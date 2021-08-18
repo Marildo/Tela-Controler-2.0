@@ -1,19 +1,26 @@
+from collections import OrderedDict
+
+from flask import make_response, Response
+
 from telacore.utils.logger_util import log_error
 
 
-class Response:
+class TelaResponse:
 
-    def __init__(self, success: bool = True, data=[], code: int = 200):
+    def __init__(self, success: bool = True, data: any = [], code: int = 200):
         self.success = success
         self.data = data or []
         self.code = code if self.is_status_code(code) else 207
 
-    def get(self):
-        return {
-                   'code': self.code,
-                   'success': self.success,
-                   'data': self.data
-               }, self.code
+    def get(self) -> Response:
+        result = OrderedDict()
+        result['code'] = self.code
+        result['success'] = self.success
+        result['data'] = self.data
+
+        resp = make_response(result)
+        resp.status_code = self.code
+        return resp
 
     def is_status_code(self, code: int):
         result = code in self.status_code_list()

@@ -1,2 +1,2 @@
 from .credential import Credential
-from .response import Response
+from .response import TelaResponse

@@ -4,7 +4,7 @@ from typing import Dict
 from flask import request
 from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
-from telacore.models import Response, Credential
+from telacore.models import Credential, TelaResponse
 from telacore.utils import CNPJUtil, SecurityUtil
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser
@@ -53,7 +53,7 @@ def valide_token(func):
         except Exception as error:
             log_error(error)
             data = {'error': error.args[0]}
-            response = Response(success=False, data=data, code=401)
+            response = TelaResponse(success=False, data=data, code=401)
             return response.get()
 
     return decorator
