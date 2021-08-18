@@ -15,25 +15,20 @@ class UnityController(BaseController):
     def __init__(self) -> None:
         super().__init__()
         self.schema = UnitySchema()
+        self.ClassRepository = UnidadeRepository
+        self.ClassEntity = Unidade
 
     @valide_token
     @http_response
     def create(self):
         args = parser.parse(CREATE_UNITY_ARG, request, location='json')
         unity = Unidade(unid=args['unid'], descricao=args['descricao'], fracionavel=args['fracionavel'])
-        repository = UnidadeRepository(self.cnpj)
-        repository.save(unity)
-        data = self.schema.dump(unity)
-
-        return data, 201
+        return self.create_and_dump(unity)
 
     @valide_token
     @http_response
     def read_all(self):
-        repository = UnidadeRepository(self.cnpj)
-        unitys = repository.find_all(Unidade)
-        data = self.schema.dump(unitys, many=True)
-        return data, 200
+        return self.read_all_and_dump()
 
     @valide_token
     @http_response
