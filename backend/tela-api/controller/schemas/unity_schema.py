@@ -12,3 +12,4 @@ class UnitySchema(SQLAlchemySchema):
     unid = auto_field()
     descricao = auto_field()
     fracionavel = auto_field()
+    ativo = auto_field()

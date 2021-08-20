@@ -11,3 +11,4 @@ class Unidade(BaseEntity):
     unid = Column(String(4), unique=True, nullable=False, default='')
     descricao = Column(String(30), default='')
     fracionavel = Column(Boolean, default=False, nullable=False)
+    ativo = Column(Boolean, default=True, nullable=False)

@@ -33,14 +33,17 @@ class UnityController(BaseController):
     @valide_token
     @http_response
     def read_by_id(self, _id: int):
+        # TODO - Read unidade by id
         return {'msg:': f'Read By Id {_id}'}, 200
 
     @valide_token
     @http_response
     def update(self, _id: int):
+        # TODO - Update unidade
         return {'msg:': f'update {_id}'}, 200
 
     @valide_token
     @http_response
     def delete(self, _id: int):
+        # TODO - Delete unidade
         return {'msg:': f'delete {_id}'}, 200
