@@ -1,17 +1,21 @@
 from abc import ABC
 
+from marshmallow_sqlalchemy import SQLAlchemySchema
 from telacore.models import Credential
 
 from model.entities import BaseEntity
+from model.repository import IRepository
 
 
 class BaseController(ABC):
 
+    """ Must be implemented in child classes
     def __init__(self):
         self.credential: Credential = None
-        self.schema = None
-        self.ClassEntity = None
-        self.ClassRepository = None
+        self.schema: SQLAlchemySchema = None
+        self.ClassEntity: BaseEntity = None
+        self.ClassRepository: IRepository = None
+    """
 
     @property
     def cnpj(self) -> str:

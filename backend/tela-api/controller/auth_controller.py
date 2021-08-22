@@ -33,6 +33,7 @@ def find_for_login(cnpj, email, password) -> Dict:
     raise EntityNotFound('Senha ou email incorretos')
 
 
+# TODO - REMOVER
 def check_token(token: str) -> Credential:
     token = token.replace('Bearer ', '')
     assert len(token) > 5, 'Token Inválido'
@@ -40,6 +41,7 @@ def check_token(token: str) -> Credential:
     return auth_service.decode(token)
 
 
+# TODO - REMOVER
 def valide_token(func):
     @wraps(func)
     def decorator(*args, **kwargs):

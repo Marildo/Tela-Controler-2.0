@@ -6,6 +6,7 @@ from telacore.models.response import TelaResponse
 from telacore.exceptions import EntityNotFound, DataBaseException
 from telacore.utils.logger_util import log_error
 
+# TODO - Traduzir mensagem de erros
 
 def http_response(func) -> Response:
     @wraps(func)

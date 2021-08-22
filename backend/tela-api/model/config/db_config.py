@@ -22,3 +22,15 @@ class DBConfig:
     @property
     def debug(self) -> bool:
         return self.__settings.get_debug()
+
+    @property
+    def host(self) -> str:
+        return self.__settings.get_database_host()
+
+    @property
+    def port(self) -> int:
+        return self.__settings.get_database_port()
+
+    @property
+    def charset(self) -> str:
+        return self.__settings.get_database_charset()

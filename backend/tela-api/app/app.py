@@ -6,6 +6,7 @@ from .routes import company_router
 from .routes import index_router
 from .routes import unity_router
 from .routes import user_router
+from .routes import product_router
 
 
 class TelaAPP:
@@ -20,6 +21,8 @@ class TelaAPP:
         app.register_blueprint(unity_router)
         app.register_blueprint(user_router)
         app.register_blueprint(company_router)
+
+        app.register_blueprint(product_router)
 
     def __config_cors(self):
         CORS(self.__app,
