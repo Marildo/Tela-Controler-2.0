@@ -1,13 +1,15 @@
 from flask import Blueprint
+from telacore.decorators import http_response
 
 from app.proxy import RequestProxy
-from controller.validations import product_validations
 from controller import ProductController
-from telacore.decorators import http_response
+from controller.validations import product_validations
+
 product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')
 
 
 @product_router.route('', methods=['GET'])
+@http_response
 def __get():
     proxy = RequestProxy()
     proxy.validate_credential()

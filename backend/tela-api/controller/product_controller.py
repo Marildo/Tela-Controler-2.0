@@ -10,7 +10,7 @@ from .base_controller import BaseController
 
 class ProductController(BaseController):
 
-    def __init__(self, credential: Credential):
+    def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = ProductSchema()
         self.ClassRepository = ProdutoRepository

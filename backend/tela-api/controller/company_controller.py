@@ -1,12 +1,14 @@
+from typing import Dict
+
 from flask import request
-from telacore.decorators import http_response
 from telacore.exceptions import EntityNotFound
+from telacore.models import Credential
 from telacore.utils import CNPJUtil
 from webargs.flaskparser import parser
 
-from controller import BaseController, UserController, valide_token
+from controller import BaseController, UserController
 from controller.schemas import EmpresaSchema
-from controller.validations.company_validations import CREATE_COMPANY_ARGS, UPDATE_COMPANY_ARGS
+from controller.validations.company_validations import UPDATE_COMPANY_ARGS
 from model.entities import Empresa
 from model.repository import EmpresaRepository
 from services import Manager
@@ -14,15 +16,11 @@ from services import Manager
 
 class CompanyController(BaseController):
 
-    def __init__(self):
-        super().__init__()
-        self.__schema = EmpresaSchema()
+    def initialize(self, credential: Credential):
+        self.credential = credential
+        self.schema = EmpresaSchema()
 
-    @valide_token
-    @http_response
-    def create(self):
-        args = parser.parse(CREATE_COMPANY_ARGS, request, location='json')
-
+    def create(self, args: Dict):
         cnpj = CNPJUtil.decode(args['codigo'])
         data = Manager.find_company(cnpj)
         if not data:
@@ -48,7 +46,7 @@ class CompanyController(BaseController):
         repository = EmpresaRepository(cnpj)
         repository.save(empresa)
 
-        company = self.__schema.dump(empresa)
+        company = self.schema.dump(empresa)
 
         data = {
             'token': token,
@@ -57,16 +55,12 @@ class CompanyController(BaseController):
 
         return data, 201
 
-    @valide_token
-    @http_response
     def read(self):
         repository = EmpresaRepository(self.cnpj)
         data = repository.find()
-        data = self.__schema.dump(data)
+        data = self.schema.dump(data)
         return data, 200
 
-    @valide_token
-    @http_response
     def update(self, _id):
         args = parser.parse(UPDATE_COMPANY_ARGS, request, location='json')
         del args['id']

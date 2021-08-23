@@ -17,7 +17,7 @@ class JWTService(IAuth):
         logging.info('Carregando JWT Service')
         self.__file_key = "C:/Users/Cesar/developer/Tela-Controler-2.0/helpers/tela.pem"
         self.__algorithm = 'RS256'
-        self.__expiration = datetime.now() + timedelta(minutes=60 * 24)
+        self.__expiration = datetime.now() + timedelta(minutes=60 * 48)
 
     def encode(self, cnpj: str, payload: Dict) -> str:
         payload['codigo'] = CNPJUtil.encode(cnpj)

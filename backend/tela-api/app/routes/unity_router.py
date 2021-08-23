@@ -1,14 +1,21 @@
 from flask import Blueprint
+from telacore.decorators import http_response
 
+from app.proxy import RequestProxy
 from controller import UnityController
+from controller.validations.unity_validations import CREATE_UNITY_ARG
 
 name = 'UnityRouter'
 unity_router = Blueprint(name=name, import_name=name, url_prefix='/unidades')
 
 
 @unity_router.route('', methods=['GET'])
+@http_response
 def get():
-    return UnityController().read_all()
+    proxy = RequestProxy()
+    controller = UnityController()
+    controller.initilize(proxy.validate_credential())
+    return controller.read_all()
 
 
 @unity_router.route('<int:_id>', methods=['GET'])
@@ -17,8 +24,14 @@ def get_by_id(_id: int):
 
 
 @unity_router.route('/', methods=['POST'])
+@http_response
 def post():
-    return UnityController().create()
+    proxy = RequestProxy()
+    cred = proxy.validate_credential()
+    controller = UnityController()
+    args = proxy.validate_args(CREATE_UNITY_ARG)
+    controller.initilize(cred)
+    return controller.create(args)
 
 
 @unity_router.route('<int:_id>', methods=['PUT'])

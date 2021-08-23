@@ -10,6 +10,5 @@ class MysqlConnection(IDBConnection):
         port = settings.port
         host = settings.host
         database = settings.database
-        charset = settings.get_database_charset()
+        charset = settings.charset
         return f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}'
-        return url
