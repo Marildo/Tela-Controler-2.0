@@ -1,2 +1,3 @@
 from .database_exceptions import DataBaseException
 from .entity_not_found import EntityNotFound
+from .unauthorization_exceptions import UnauthorizationException

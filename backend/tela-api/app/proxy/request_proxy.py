@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Dict
 
 from flask import request
+from telacore.exceptions import UnauthorizationException
 from telacore.models import Credential
 from webargs.flaskparser import parser
 
@@ -23,10 +24,13 @@ class RequestProxy:
         pass
 
     def validate_credential(self) -> Credential:
-        headers = request.headers
-        assert 'Authorization' in headers, 'Token not found'
-        token = headers['Authorization']
-        return self.__check_token(token)
+        try:
+            headers = request.headers
+            assert 'Authorization' in headers, 'Token not found'
+            token = headers['Authorization']
+            return self.__check_token(token)
+        except Exception as error:
+            raise UnauthorizationException(error)
 
     def validate_args(self, validations: Dict, location: Location = Location.JSON) -> Dict:
         args = parser.parse(validations, request, location=location.value)
