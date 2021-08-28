@@ -3,7 +3,7 @@ from telacore.decorators import http_response
 
 from app.proxy import RequestProxy
 from controller import ProductController
-from controller.validations import product_validations
+from app.validations import product_validations
 
 product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')
 

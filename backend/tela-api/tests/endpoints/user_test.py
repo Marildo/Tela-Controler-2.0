@@ -3,12 +3,12 @@ from unittest import TestCase, main
 from tests.helper import helper
 
 
-class UnityTest(TestCase):
-    resource = '/unidades'
+class UserTest(TestCase):
+    resource = '/usuarios'
 
     entity = {
-        "descricao": "Unidade Teste",
-        "fracionavel": "True"
+        "password": "123456789",
+        "nome": "Maria"
     }
 
     def test_should_return_401(self):
@@ -23,23 +23,23 @@ class UnityTest(TestCase):
         helper.assert_200_and_entity(url)
 
     def test_should_return_201_and_entity_created(self):
-        unid_create = self.entity.copy()
-        unid_create.update({"unid": helper.generator_words(4)})
-        helper.assert_201_and_entity_created(self.resource, unid_create)
+        user = self.entity.copy()
+        user.update({"email": f'{helper.generator_words(12)}@tela.com.br'})
+        helper.assert_201_and_entity_created(self.resource, user)
 
-    def test_should_return_422_entity_without_a_field_not_created(self):
+    def test_should_return_422_entity_without_a_field(self):
         helper.assert_422_entity_without_a_field(self.resource, self.entity)
 
-    def test_should_return_422_entity_with_an_unknown_field_not_created(self):
+    def test_should_return_422_entity_with_an_unknown_field(self):
         helper.assert_422_entity_with_an_unknown_field(self.resource, self.entity)
 
     def test_should_return_200_and_entity_updated(self):
-        desc = helper.generator_words(12)
-        self.entity.update({"unid": helper.generator_words(4), 'descricao': desc})
+        nome = helper.generator_words(12)
+        self.entity.update({'nome': nome})
         url = f'{self.resource}/{1}'
         response = helper.assert_200_and_entity_updated(url, self.entity)
         data = response.json()
-        self.assertEqual(desc, data['data']['descricao'])
+        self.assertEqual(nome, data['data']['nome'])
 
     def test_should_return_422_entity_with_an_unknown_field_not_updated(self):
         url = f'{self.resource}/{1}'

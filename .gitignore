@@ -14,3 +14,4 @@ helpers/tela.pem
 *.db
 backend/tela-api-manager/tela_master.db
 
+*/htmlcov/*

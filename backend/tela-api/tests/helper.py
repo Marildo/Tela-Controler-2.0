@@ -60,8 +60,10 @@ class Helper(TestCase):
 
     def assert_200_and_entity_updated(self, url: str, entity: Dict) -> requests.Response:
         response = self.make_request(method='PUT', resource=url, json=entity)
-        self.assertEqual(200, response.status_code)
         data = response.json()
+        if response.status_code != 200:
+            print(data)
+        self.assertEqual(200, response.status_code)
         self.assertTrue(data['data']['id'])
         return response
 
@@ -79,6 +81,13 @@ class Helper(TestCase):
         del entity_copy[key[0]]
         response = helper.make_request(method=method, resource=url, json=entity_copy)
         self.assertEqual(422, response.status_code)
+        return response
+
+    def assert_200_entity_deleted(self, url) -> requests.Response:
+        response = helper.make_request('DELETE', url)
+        self.assertEqual(200, response.status_code)
+        data = response.json()
+        self.assertTrue(str(data['data']['rows_affected']).isnumeric())
         return response
 
     @staticmethod
