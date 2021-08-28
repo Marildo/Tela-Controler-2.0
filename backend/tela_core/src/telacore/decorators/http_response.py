@@ -3,7 +3,7 @@ from functools import wraps
 from werkzeug.exceptions import UnprocessableEntity
 from flask import Response
 from telacore.models.response import TelaResponse
-from telacore.exceptions import EntityNotFound, DataBaseException,UnauthorizationException
+from telacore.exceptions import EntityNotFound, DataBaseException,DuplicateErrorException,UnauthorizationException
 from telacore.utils.logger_util import log_error
 
 # TODO - Traduzir mensagem de erros
@@ -20,8 +20,11 @@ def http_response(func) -> Response:
             data = [{'field': key, 'error': value[0]} for key, value in args.items()]
             log_error(data)
             response = TelaResponse(success=False, data=data, code=code)
+        except DuplicateErrorException as error:
+            data = {'error': error.json()}
+            response = TelaResponse(success=False, data=data, code=422)
         except DataBaseException as error:
-            data = {'error': error.args[0].orig.args[0]}
+            data = { 'error': ','.join(error.args)          }
             response = TelaResponse(success=False, data=data, code=422)
         except EntityNotFound as error:
             data = {'error': error.args[0]}
