@@ -4,7 +4,7 @@ from flask import Blueprint
 from telacore.decorators import http_response
 
 from app.proxy import RequestProxy
-from app.proxy.validations.unity_validations import CREATE_UNITY_ARG, UPDATE_UNITY_ARG
+from app.validations.unity_validations import CREATE_UNITY_ARG, UPDATE_UNITY_ARG
 from controller import UnityController
 
 name = 'UnityRouter'
@@ -15,13 +15,14 @@ unity_router = Blueprint(name=name, import_name=name, url_prefix='/unidades')
 @http_response
 def get():
     controller, _ = __get_controller()
-    return controller.read_all()
+    return controller.read_all_and_dump()
 
 
 @unity_router.route('<int:_id>', methods=['GET'])
+@http_response
 def get_by_id(_id: int):
     controller, _ = __get_controller()
-    return controller.read_by_id(_id)
+    return controller.read_by_id_and_dump(_id)
 
 
 @unity_router.route('', methods=['POST'])

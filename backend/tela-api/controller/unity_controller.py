@@ -14,12 +14,6 @@ class UnityController(BaseController):
         self.ClassRepository = UnidadeRepository
         self.ClassEntity = Unidade
 
-    def read_all(self):
-        return self.read_all_and_dump()
-
-    def read_by_id(self, _id: int):
-        return self.read_by_id_and_dump(_id)
-
     def create(self, args):
         unity = Unidade(**args)
         return self.create_and_dump(unity)

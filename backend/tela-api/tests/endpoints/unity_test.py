@@ -1,74 +1,49 @@
-from typing import List
 from unittest import TestCase, main
 
-import requests
-
-from ..helper import helper
+from tests.helper import helper
 
 
 class UnityTest(TestCase):
-    url = f'{helper.host}/unidades'
     resource = '/unidades'
 
-    def test_deve_retorna_401(self):
-        response = requests.get(self.url)
-        self.assertEqual(401, response.status_code)
+    entity = {
+        "descricao": "Unidade Teste",
+        "fracionavel": "True"
+    }
 
-    def test_deve_retorna_200_e_lista(self):
-        response = helper.make_request('GET', self.resource)
-        self.assertEqual(200, response.status_code)
-        json = response.json()
-        self.assertIsInstance(json['data'], List, 'Not is a list')
+    def test_should_return_401(self):
+        url = helper.host + self.resource
+        helper.assert_401(url)
 
-    def test_deve_retorna_200_e_uma_unidade(self):
-        _id = 1
-        response = helper.make_request('GET', f'{self.resource}/{_id}')
-        self.assertEqual(200, response.status_code)
+    def test_should_return_200_and_list(self):
+        helper.assert_200_and_list(self.resource)
+
+    def test_should_return_200_and_one_entity(self):
+        url = f'{self.resource}/{1}'
+        helper.assert_200_and_entity(url)
+
+    def test_should_return_201_and_entity_created(self):
+        unid_create = self.entity.copy()
+        unid_create.update({"unid": helper.generator_words(4)})
+        helper.assert_201_and_entity_created(self.resource, unid_create)
+
+    def test_should_return_422_entity_without_a_field_not_created(self):
+        helper.assert_422_entity_without_a_field(self.resource, self.entity)
+
+    def test_should_return_422_entity_with_an_unknown_field_not_created(self):
+        helper.assert_422_entity_with_an_unknown_field(self.resource, self.entity)
+
+    def test_should_return_200_and_entity_updated(self):
+        desc = helper.generator_words(12)
+        self.entity.update({"unid": helper.generator_words(4), 'descricao': desc})
+        url = f'{self.resource}/{1}'
+        response = helper.assert_200_and_entity_updated(url, self.entity)
         data = response.json()
-        self.equal = self.assertEqual(_id, data['id'])
+        self.assertEqual(desc, data['data']['descricao'])
 
-    def test_deve_retorna_201_create_unidade(self):
-        unid = {
-            "unid": helper.generator_words(4),
-            "descricao": "Unidade Teste",
-            "fracionavel": "True"
-        }
-        response = helper.make_request(method='POST', resource=self.resource, json=unid)
-        data = response.json()
-        self.assertEqual(201, response.status_code)
-        self.assertTrue(str(data['data']['id']).isnumeric())
-
-    def test_deve_retorna_422_create_unidade_sem_unit(self):
-        unid = {
-            "descricao": "Unidade Teste",
-            "fracionavel": "True"
-        }
-        response = helper.make_request(method='POST', resource=self.resource, json=unid)
-        self.assertEqual(422, response.status_code)
-
-    def test_deve_retorna_422_create_unidade_com_campo_desconhecido(self):
-        unid = {
-            "unid": "UNIT",
-            "descricao": "Unidade Teste",
-            "fracionavel": "True",
-            "impostor": 'false'
-        }
-        response = helper.make_request(method='POST', resource=self.resource, json=unid)
-        self.assertEqual(422, response.status_code)
-
-    def test_deve_retorna_200_update_unidade(self):
-        unid = {
-            "unid": helper.generator_words(4),
-            "descricao": "Unidade Teste",
-            "fracionavel": "True",
-            "ativo": "False",
-        }
-        _id = 1
-        response = helper.make_request(method='PUT', resource=f'{self.resource}/{_id}', json=unid)
-        data = response.json()
-        self.assertEqual(200, response.status_code)
-        self.assertTrue(str(data['data']['id']).isnumeric())
-        self.assertFalse(data['data']['ativo'])
+    def test_should_return_422_entity_with_an_unknown_field_not_updated(self):
+        url = f'{self.resource}/{1}'
+        helper.assert_422_entity_with_an_unknown_field(url, self.entity, method='PUT')
 
     def test_deve_retorna_200_delete_unidade(self):
         _id = 15

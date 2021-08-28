@@ -2,12 +2,13 @@ from abc import ABC
 from typing import Dict, List, Union
 
 from sqlalchemy import update, delete
-from telacore.exceptions import DataBaseException
+from sqlalchemy.exc import IntegrityError
+from telacore.exceptions import DataBaseException, DuplicateErrorException
+from telacore.utils.logger_util import log_error
 
 from model.config import DBConfig, Base
 from model.config import DBConnection
 from model.entities import BaseEntity
-from telacore.utils.logger_util import log_error
 
 
 class IRepository(ABC):
@@ -37,14 +38,18 @@ class IRepository(ABC):
             finally:
                 conn.session.close()
 
-    def save(self, entity: BaseEntity)-> BaseEntity:
+    def save(self, entity: BaseEntity) -> BaseEntity:
         with self.connection as conn:
             try:
                 conn.session.add(entity)
                 conn.session.commit()
                 entity.id
                 return entity
-            except Exception as e:               
+            except IntegrityError as error:
+                conn.session.rollback()
+                log_error(error)
+                raise DuplicateErrorException(error)
+            except Exception as e:
                 conn.session.rollback()
                 log_error(e)
                 raise DataBaseException(e)
@@ -60,7 +65,7 @@ class IRepository(ABC):
                     update(entity).where(entity.id == _id).values(data)
                 )
                 conn.session.commit()
-                return self.find_by_id(entity,_id)
+                return self.find_by_id(entity, _id)
             except Exception as e:
                 conn.session.rollback()
                 log_error(e)
@@ -68,11 +73,10 @@ class IRepository(ABC):
             finally:
                 conn.session.close()
 
-
     def delete(self, entity: BaseEntity, _id: int) -> int:
         with self.connection as conn:
             try:
-                rs =  conn.session.execute(
+                rs = conn.session.execute(
                     delete(entity).where(entity.id == _id)
                 )
                 conn.session.commit()
