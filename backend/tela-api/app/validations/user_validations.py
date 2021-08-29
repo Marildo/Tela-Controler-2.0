@@ -21,3 +21,5 @@ UPDATE_USER_ARGS = {
     'password': fields.Str(validate=validate_password),
     'nome': fields.Str(validate=validate_nome)
 }
+
+CHANGE_PASSWORD_USER_ARGS = dict(password)

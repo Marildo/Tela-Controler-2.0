@@ -45,9 +45,15 @@ class UserTest(TestCase):
         url = f'{self.resource}/{1}'
         helper.assert_422_entity_with_an_unknown_field(url, self.entity, method='PUT')
 
-    def test_deve_retorna_200_delete(self):
+    def test_should_return_200_entity_deleted(self):
         url = f'{self.resource}/{15}'
         helper.assert_200_entity_deleted(url)
+
+    def test_should_return_200_and_password_updated(self):
+        data = {'password': 'ABCDEFGHIJ'}
+        url = f'{self.resource}/password/{5}'
+        response = helper.make_request(method='PATCH', resource=url, json=data)
+        self.assertEqual(200, response.status_code)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ from flask import Blueprint
 from telacore.decorators import http_response
 
 from app.proxy import RequestProxy
-from app.validations.user_validations import CREATE_USER_ARGS,UPDATE_USER_ARGS
+from app.validations.user_validations import CREATE_USER_ARGS, UPDATE_USER_ARGS, CHANGE_PASSWORD_USER_ARGS
 from controller import UserController
 
 name = 'UserRouter'
@@ -38,7 +38,7 @@ def post():
 def put(_id: int):
     controller, proxy = __get_controller()
     args = proxy.validate_args(UPDATE_USER_ARGS)
-    return controller.update_and_dump(_id,args)
+    return controller.update(_id, args)
 
 
 @user_router.route('<int:_id>', methods=['DELETE'])
@@ -48,10 +48,17 @@ def delete(_id: int):
     return controller.delete_and_dump(_id)
 
 
+@user_router.route('password/<int:_id>', methods=['PATCH'])
+@http_response
+def change_password(_id: int):
+    controller, proxy = __get_controller()
+    args = proxy.validate_args(CHANGE_PASSWORD_USER_ARGS)
+    return controller.change_password(_id, args)
+
+
 def __get_controller() -> Tuple[UserController, RequestProxy]:
     proxy = RequestProxy()
     cred = proxy.validate_credential()
     controller = UserController()
     controller.initialize(cred)
     return controller, proxy
-
