@@ -1,5 +1,5 @@
-from app import TelaAPP
-from settings import Settings
+from src.app import TelaAPP
+from src.settings import Settings
 
 if __name__ == '__main__':
     settings = Settings()

@@ -14,7 +14,7 @@ class Helper(TestCase):
         super().__init__()
         setting = Settings()
         self.__host = f'http://127.0.0.1:{setting.get_api_port()}'
-        self.__token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE2MzAzMjQwODgsInBheWxvYWQiOnsiaWQiOjEsIm5vbWUiOiJtYXJpYSIsImVtYWlsIjoibWFyaWEyQHBhaXZhLmNvbSIsImNvZGlnbyI6Ik1UTTBPVEF5TXprMk1qQXdOakF6T1E9PSJ9fQ.PHqQg8YkBNoCdCaABBjKuxnh8C9yafh2zknFuN21pt7ead7DV6hJEtkyYHvbSC76mdYV0kuD0IhKVZzueIWLjdxpG0uVw6QfD4yS3BszZrIylFRj8LwWWUITZPklACTtR5LIbJwIVL0YKRZTGmDrxFBgoXM-DRDi2f0d7KFi6v8GTLkB-WL8m7eyIIuy_D6TupMLpcn9KemTFFtiWNHEFfRaogRAuJivCPi2-48pwBC4JRMimAdq2mbQqTnB5JL3DDaP0JemvrnTcaTaQ4E1kUyaqAOvs1uEKCHyTtOy7p2Um7kbcVM2Dqy5Y8B2o1g_mW9_UeOh72srhyMv-q_G_A'
+        self.__token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE2MzA1MjA5NDIsInBheWxvYWQiOnsiaWQiOjEsIm5vbWUiOiJGVk5FWklNTFZOSE8iLCJlbWFpbCI6Im1hcmlhMkBwYWl2YS5jb20iLCJjb2RpZ28iOiJNVE0wT1RBeU16azJNakF3TmpBek9RPT0ifX0.BhJ9XC_cY4LcRwk_VrSwMkjDmrPnG95bCYCZ7ldSb5UX70PiJi--jsUMW_LxRXBxDPYidFSYTSJ9zdS7YEV4ns35UueJ5iM9OHeQ0_RxDfKbX7hnmoyeqr8JNK7w4m7byr73X6M9ilL88Iv9eUqaSQ_rYr_8WNVXM0wKSdQce3PmAr7WdBoBiwGiDsdUO30V9j5uPG1gljPad2BuJIoiKyWbpjt_xvmJuiyq8GL6T0X3NAwWyiGI-k1eVXk65sT571KcWt6WfIuE9K3Y0fps48V5FNxNYtHPiUxi4SVkzTdYAa7ENI7IPdE3khu3jGjNVh2CVPweCRS8r138wfUdmw'
 
     @property
     def host(self):
