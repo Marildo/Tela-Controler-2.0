@@ -38,14 +38,14 @@ def post():
 def put(_id: int):
     controller, proxy = __get_controller()
     args = proxy.validate_args(UPDATE_UNITY_ARGS)
-    return controller.update(args, _id)
+    return controller.update_and_dump(_id, args)
 
 
 @unity_router.route('<int:_id>', methods=['DELETE'])
 @http_response
 def delete(_id: int):
     controller, _ = __get_controller()
-    return controller.delete(_id)
+    return controller.delete_and_dump(_id)
 
 
 def __get_controller() -> Tuple[UnityController, RequestProxy]:

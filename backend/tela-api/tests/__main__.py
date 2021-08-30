@@ -6,8 +6,6 @@ try:
 
     current_dir = os.path.dirname(__file__)
     source_path = os.path.abspath(os.path.join(current_dir, '../src/'))
-    print(source_path)
-
     sys.path.append(source_path)
 except:
     raise
@@ -20,4 +18,5 @@ except:
 """
 
 if __name__ == "__main__":
+    from endpoints import *
     unittest.main(verbosity=2)

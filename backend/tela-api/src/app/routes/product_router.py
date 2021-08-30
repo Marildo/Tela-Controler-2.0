@@ -1,26 +1,55 @@
+from typing import Tuple
+
 from flask import Blueprint
 from telacore.decorators import http_response
 
 from src.app.proxy import RequestProxy
+from src.app.validations.product_validations import CREATE_PRODUCT_ARGS, UPDATE_PRODUCT_ARGS
 from src.controller import ProductController
-from src.app.validations import product_validations
 
 product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')
 
 
 @product_router.route('', methods=['GET'])
 @http_response
-def __get():
-    proxy = RequestProxy()
-    proxy.validate_credential()
+def get():
+    controller, _ = __get_controller()
+    return controller.read_all_and_dump()
 
-    return 'Lista de produtos'
+
+@product_router.route('<int:_id>', methods=['GET'])
+@http_response
+def get_by_id(_id: int):
+    controller, _ = __get_controller()
+    return controller.read_by_id_and_dump(_id)
 
 
 @product_router.route('', methods=['POST'])
 @http_response
 def __post():
+    controller, proxy = __get_controller()
+    args = proxy.validate_args(CREATE_PRODUCT_ARGS)
+    return controller.create(args)
+
+
+@product_router.route('<int:_id>', methods=['PUT'])
+@http_response
+def put(_id: int):
+    controller, proxy = __get_controller()
+    args = proxy.validate_args(UPDATE_PRODUCT_ARGS)
+    return controller.update_and_dump(_id, args)
+
+
+@product_router.route('<int:_id>', methods=['DELETE'])
+@http_response
+def delete(_id: int):
+    controller, _ = __get_controller()
+    return controller.delete_and_dump(_id)
+
+
+def __get_controller() -> Tuple[ProductController, RequestProxy]:
     proxy = RequestProxy()
     cred = proxy.validate_credential()
-    args = proxy.validate_args(product_validations.PRODUCT_CREATE_ARGS)
-    return ProductController(cred).create(args)
+    controller = ProductController()
+    controller.initialize(cred)
+    return controller, proxy

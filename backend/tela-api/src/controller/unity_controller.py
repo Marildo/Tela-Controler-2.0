@@ -18,8 +18,3 @@ class UnityController(BaseController):
         unity = Unidade(**args)
         return self.create_and_dump(unity)
 
-    def update(self, args, _id: int):
-        return self.update_and_dump(_id, args)
-
-    def delete(self, _id: int):
-        return self.delete_and_dump(_id)
