@@ -25,8 +25,6 @@ class IRepository(ABC):
                 return result
             except Exception as e:
                 log_error(e)
-            finally:
-                conn.session.close()
 
     def find_by_id(self, entity: BaseEntity, _id: int) -> Union[BaseEntity, None]:
         with self.connection as conn:
