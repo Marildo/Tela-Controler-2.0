@@ -6,8 +6,8 @@ from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
 from telacore.utils.logger_util import log_error
 
-from src.model.config import DBConfig, Base
-from src.model.config import DBConnection
+from src.model.config import DBConfig
+from src.model.connection import DBConnection
 from src.model.entities import BaseEntity
 
 
@@ -16,7 +16,12 @@ class IRepository(ABC):
     def __init__(self, cnpj: str):
         config = DBConfig(cnpj)
         self.connection: DBConnection = DBConnection(config)
-        Base.metadata.create_all(self.connection.get_engine())
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connection.close()
 
     def find_all(self, entity: BaseEntity) -> List[BaseEntity]:
         with self.connection as conn:
@@ -33,15 +38,12 @@ class IRepository(ABC):
                 return result
             except Exception as e:
                 log_error(e)
-            finally:
-                conn.session.close()
 
     def save(self, entity: BaseEntity) -> BaseEntity:
         with self.connection as conn:
             try:
                 conn.session.add(entity)
                 conn.session.commit()
-                entity.id
                 return entity
             except IntegrityError as error:
                 conn.session.rollback()
@@ -51,8 +53,6 @@ class IRepository(ABC):
                 conn.session.rollback()
                 log_error(e)
                 raise DataBaseException(e)
-            finally:
-                conn.session.close()
 
     def update(self, entity: BaseEntity, _id: int, data: Dict) -> BaseEntity:
         with self.connection as conn:
@@ -68,8 +68,6 @@ class IRepository(ABC):
                 conn.session.rollback()
                 log_error(e)
                 raise DataBaseException(e)
-            finally:
-                conn.session.close()
 
     def delete(self, entity: BaseEntity, _id: int) -> int:
         with self.connection as conn:
@@ -83,5 +81,3 @@ class IRepository(ABC):
                 conn.session.rollback()
                 log_error(e)
                 raise DataBaseException(e)
-            finally:
-                conn.session.close()

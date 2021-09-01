@@ -30,31 +30,36 @@ class BaseController(ABC):
         return self.ClassRepository(self.cnpj)
 
     def read_all_and_dump(self) -> Tuple[Dict, int]:
-        result = self.repository.find_all(self.ClassEntity)
-        data = self.schema.dump(result, many=True)
+        with self.repository as rep:
+            result = rep.find_all(self.ClassEntity)
+            data = self.schema.dump(result, many=True)
 
-        return data, 200
+            return data, 200
 
     def read_by_id_and_dump(self, _id: int) -> Tuple[Dict, int]:
-        result = self.repository.find_by_id(self.ClassEntity, _id)
-        data = self.schema.dump(result)
+        with self.repository as rep:
+            result = rep.find_by_id(self.ClassEntity, _id)
+            data = self.schema.dump(result)
 
-        return data, 200
+            return data, 200
 
     def create_and_dump(self, entity: BaseEntity) -> Tuple[Dict, int]:
-        self.repository.save(entity)
-        data = self.schema.dump(entity)
+        with self.repository as rep:
+            rep.save(entity)
+            data = self.schema.dump(entity)
 
-        return data, 201
+            return data, 201
 
     def update_and_dump(self, _id: int, args) -> Tuple[Dict, int]:
-        entity = self.repository.update(self.ClassEntity, _id, args)
-        data = self.schema.dump(entity)
+        with self.repository as rep:
+            entity = rep.update(self.ClassEntity, _id, args)
+            data = self.schema.dump(entity)
 
-        return data, 200
+            return data, 200
 
     def delete_and_dump(self, _id: int) -> Tuple[Dict, int]:
-        rows = self.repository.delete(self.ClassEntity, _id)
-        data = {'rows_affected': rows}
+        with self.repository as rep:
+            rows = rep.delete(self.ClassEntity, _id)
+            data = {'rows_affected': rows}
 
-        return data, 200
+            return data, 200
