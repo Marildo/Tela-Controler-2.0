@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-from .routes import auth_router
+from .routes.auth_router import auth_router
 from .routes import company_router
 from .routes import index_router
 from .routes import product_router

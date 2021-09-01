@@ -1,4 +1,3 @@
-from .auth_router import auth_router
 from .company_router import company_router
 from .index_router import index_router
 from .product_router import product_router

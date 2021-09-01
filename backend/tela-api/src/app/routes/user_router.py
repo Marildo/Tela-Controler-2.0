@@ -3,8 +3,8 @@ from typing import Tuple
 from flask import Blueprint
 from telacore.decorators import http_response
 
-from src.app.proxy import RequestProxy
-from src.app.validations.user_validations import CREATE_USER_ARGS, UPDATE_USER_ARGS, CHANGE_PASSWORD_USER_ARGS
+from app.routes.proxy import RequestProxy
+from app.routes.validators.user_validations import CREATE_USER_ARGS, UPDATE_USER_ARGS, CHANGE_PASSWORD_USER_ARGS
 from src.controller import UserController
 
 name = 'UserRouter'
