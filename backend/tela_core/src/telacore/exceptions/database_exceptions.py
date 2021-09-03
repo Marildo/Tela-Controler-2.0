@@ -1,11 +1,11 @@
-class DataBaseException(Exception):
-    pass
+from .base_exception import BaseException
 
 
-class DuplicateErrorException(Exception):
-    def json(self):
-        value = self.args[0].orig.args
-        return {
-            'code': value[0],
-            'description': value[1]
-        }
+class DataBaseException(BaseException):
+    def __init__(self, *args, **kwargs):
+        self.status_code = 503
+
+
+class DuplicateErrorException(BaseException):
+    def __init__(self, *args, **kwargs):
+        self.status_code = 422
