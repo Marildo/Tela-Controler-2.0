@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, Boolean, ForeignKey
-
+from sqlalchemy.orm import relationship
 from .base_entity import BaseEntity
 
 
@@ -12,3 +12,4 @@ class Permissao(BaseEntity):
     r = Column(Boolean, default=True, nullable=False)
     u = Column(Boolean, default=True, nullable=False)
     d = Column(Boolean, default=True, nullable=False)
+    recurso = relationship('Recurso')
