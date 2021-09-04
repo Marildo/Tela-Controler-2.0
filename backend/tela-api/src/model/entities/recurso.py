@@ -1,5 +1,4 @@
-from sqlalchemy import Column, String, Boolean
-
+from sqlalchemy import Column, String
 from .base_entity import BaseEntity
 
 

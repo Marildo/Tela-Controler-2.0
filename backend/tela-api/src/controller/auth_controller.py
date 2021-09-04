@@ -1,3 +1,4 @@
+from re import U
 from typing import Dict
 
 from flask import request
@@ -41,5 +42,8 @@ def find_for_login(cnpj, email, password) -> Dict:
     repository = UsuarioRepository(cnpj)
     user = repository.find_by_email(email)
     if user and user.password == SecurityUtil.hash(password):
-        return UsuarioSchema().dump(user)
+        data = UsuarioSchema().dump(user)
+        permissions = repository.load_permissions(user.id)
+        data.update({'permissoes': permissions})
+        return data
     raise EntityNotFound('Senha ou email incorretos')
