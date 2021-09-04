@@ -26,7 +26,7 @@ class LoginTest(TestCase):
                 "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
         response = requests.post(self.url, json=body)
         self.assertEqual(response.status_code, 200)
-        print(response.json()['token'])
+
 
 
 if __name__ == "__main__":

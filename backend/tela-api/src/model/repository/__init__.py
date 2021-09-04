@@ -4,3 +4,4 @@ from .produto_repository import ProdutoRepository
 from .unidade_repository import UnidadeRepository
 from .usuario_repository import UsuarioRepository
 from .setor_repository import SetorRepository
+from .recurso_repository import RecursoRepository

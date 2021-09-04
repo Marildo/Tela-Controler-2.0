@@ -1,2 +1,2 @@
 from .db_config import DBConfig
-from .base import Base
+from .database import Base

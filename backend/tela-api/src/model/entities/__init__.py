@@ -4,3 +4,4 @@ from .empresa import Empresa
 from .unidade import Unidade
 from .produto import Produto
 from .setor import Setor
+from .recurso import Recurso

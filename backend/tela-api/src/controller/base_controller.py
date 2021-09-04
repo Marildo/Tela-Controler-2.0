@@ -27,7 +27,8 @@ class BaseController(ABC):
 
     @property
     def repository(self):
-        return self.ClassRepository(self.cnpj)
+        repository = self.ClassRepository(self.cnpj)
+        return repository
 
     def read_all_and_dump(self) -> Tuple[Dict, int]:
         with self.repository as rep:

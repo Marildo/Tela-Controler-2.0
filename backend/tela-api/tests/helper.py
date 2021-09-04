@@ -3,7 +3,7 @@ import string
 from typing import Dict, List
 from unittest import TestCase
 
-from requests import Response, request, get
+from requests import Response, request, get, post
 
 from settings import Settings
 
@@ -14,7 +14,6 @@ class Helper(TestCase):
         super().__init__()
         setting = Settings()
         self.__host = f'http://127.0.0.1:{setting.get_api_port()}'
-        self.__token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE2MzA2OTcyNDgsInBheWxvYWQiOnsiaWQiOjEsImVtYWlsIjoibWFyaWEyQHBhaXZhLmNvbSIsIm5vbWUiOiJGSEVVQlVJTU9DWUwiLCJjb2RpZ28iOiJNVE0wT1RBeU16azJNakF3TmpBek9RPT0ifX0.iJ8bCgwCljYSjS2KLAdafxb4gDgaHsERV6VsyBdNqoRMNrKwukSZh0zw1V_kcNzzoG8wM2JVeFzZRDf2-T5q4jRWuDP_DFdJldA77CS1GfZrkvM4ifhg7swTr7szQ9PtOeTD1z5Ae05JFNIrXarXMRZoz0Kdzuw65LJ_rCMqdXk_NDZfB0CFY3fBSJqQ1SpqSSsfpJb53l30spTui96u8zZ3TyCz72jvnIT4GcLtQ_WYL5NrNL-GRW0GDyCZAhuoUMHGmPct6i7MzFJFUZ9620bP60Au-gh6zgr1YzqmGK6dubAGX0RRy_x8YNBFV5CU2GOEvtumCGzWpBFjMGirLw'
 
     @property
     def host(self):
@@ -23,6 +22,14 @@ class Helper(TestCase):
     @property
     def token(self):
         return self.__token
+
+    def login(self):
+        body = {"email": "maria2@paiva.com",
+                "password": "123456789",
+                "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
+        response = post(self.host+'/login', json=body)
+        self.assertEqual(response.status_code, 200)
+        self.__token = response.json()['token']
 
     def make_request(self, method: str, resource: str, json: Dict = {}) ->  Response:
         url = f'{self.__host}/{resource}'

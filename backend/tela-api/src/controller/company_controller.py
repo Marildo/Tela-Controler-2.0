@@ -11,7 +11,6 @@ from src.model.entities import Empresa
 from src.model.repository import EmpresaRepository
 from src.services import Manager
 
-
 class CompanyController(BaseController):
 
     def initialize(self, credential: Credential):
