@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from model.config.base import Base
+from src.model.config.init_database import init_database
 from model.config.db_config import DBConfig
 
 
@@ -11,12 +11,11 @@ class IDBConnection(ABC):
 
     def __init__(self, config: DBConfig):
         self._config: DBConfig = config
-        self._session = None
-        self._engine = None
+        self._engine = create_engine(self._get_url(), echo=True)  # self._config.debug)
+        self._session = sessionmaker()(bind=self._engine)
+        init_database(self._engine)
 
     def __enter__(self):
-        self._engine = create_engine(self._get_url(), echo=self._config.debug)
-        self._session = sessionmaker()(bind=self._engine)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -25,9 +24,6 @@ class IDBConnection(ABC):
     def close(self):
         self.session.close()
         self.engine.dispose()
-
-    def init_db(self):
-        Base.metadata.create_all(self.engine)
 
     @abstractmethod
     def _get_url(self) -> str:

@@ -30,6 +30,7 @@ class IRepository(ABC):
                 return result
             except Exception as e:
                 log_error(e)
+                raise DataBaseException(e)
 
     def find_by_id(self, entity: BaseEntity, _id: int) -> Union[BaseEntity, None]:
         with self.connection as conn:
@@ -38,6 +39,7 @@ class IRepository(ABC):
                 return result
             except Exception as e:
                 log_error(e)
+                raise DataBaseException(e)
 
     def save(self, entity: BaseEntity) -> BaseEntity:
         with self.connection as conn:
