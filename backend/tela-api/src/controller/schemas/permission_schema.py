@@ -1,8 +1,8 @@
-from marshmallow_sqlalchemy import SQLAlchemySchema, fields, load_instance_mixin
+from marshmallow_sqlalchemy import SQLAlchemySchema
 from marshmallow_sqlalchemy.schema import auto_field
 from marshmallow_sqlalchemy.fields import Nested
 from src.model.entities import Permissao
-from .resource_schema import ResourceSchema
+#from .resource_schema import ResourceSchema
 
 class PermissionShcema(SQLAlchemySchema):
     class Meta:
@@ -14,4 +14,4 @@ class PermissionShcema(SQLAlchemySchema):
     r = auto_field()
     u = auto_field()
     d = auto_field()
-    recurso  = Nested(ResourceSchema)
+    #recurso  = Nested(ResourceSchema)

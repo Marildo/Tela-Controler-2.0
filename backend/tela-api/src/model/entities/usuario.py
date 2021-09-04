@@ -10,4 +10,4 @@ class Usuario(BaseEntity):
     email = Column(String(255), nullable=False, unique=True)
     nome = Column(String(255))
     password = Column(String(255), nullable=False)
-    #permissoes = relationship('Permissao', backref='usuarios')
+    permissoes = relationship('Permissao', backref='usuarios')
