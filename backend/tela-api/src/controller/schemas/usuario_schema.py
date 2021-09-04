@@ -1,7 +1,9 @@
 from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
-
+#from marshmallow_sqlalchemy.fields import Nested
+#from model.entities import permissoes
 from src.model.entities import Usuario
 
+#from .permission_schema import PermissionShcema
 
 class UsuarioSchema(SQLAlchemySchema):
     class Meta:
@@ -11,3 +13,4 @@ class UsuarioSchema(SQLAlchemySchema):
     id = auto_field()
     email = auto_field()
     nome = auto_field()
+    #permissoes = Nested(PermissionShcema)

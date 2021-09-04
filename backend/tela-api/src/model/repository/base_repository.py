@@ -14,6 +14,7 @@ from src.model.entities import BaseEntity
 class IRepository(ABC):
 
     def __init__(self, cnpj: str):
+        self.cnpj = cnpj
         config = DBConfig(cnpj)
         self.connection: DBConnection = DBConnection(config)
 

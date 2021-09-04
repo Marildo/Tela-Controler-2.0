@@ -27,41 +27,41 @@ class Helper(TestCase):
         body = {"email": "maria2@paiva.com",
                 "password": "123456789",
                 "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
-        response = post(self.host+'/login', json=body)
+        response = post(self.host + '/login', json=body)
         self.assertEqual(response.status_code, 200)
         self.__token = response.json()['token']
 
-    def make_request(self, method: str, resource: str, json: Dict = {}) ->  Response:
+    def make_request(self, method: str, resource: str, json: Dict = {}) -> Response:
         url = f'{self.__host}/{resource}'
         headers = {'Authorization': self.token}
-        return  request(method=method, url=url, headers=headers, json=json)
+        return request(method=method, url=url, headers=headers, json=json)
 
-    def assert_401(self, url: str) ->  Response:
-        response =  get(url)
-        self.__is405(response,401)
+    def assert_401(self, url: str) -> Response:
+        response = get(url)
+        self.__is405(response, 401)
         self.assertEqual(401, response.status_code)
         return response
 
-    def assert_200_and_list(self, url: str) ->  Response:
+    def assert_200_and_list(self, url: str) -> Response:
         response = self.make_request('GET', url)
-        self.__is405(response,200)
+        self.__is405(response, 200)
         self.assertEqual(200, response.status_code)
         json = response.json()
         self.assertIsInstance(json['data'], List, 'Not is a list')
         return response
 
-    def assert_200_and_entity(self, url: str) ->  Response:
+    def assert_200_and_entity(self, url: str) -> Response:
         _id = 1
         response = self.make_request('GET', url)
-        self.__is405(response,200)
+        self.__is405(response, 200)
         self.assertEqual(200, response.status_code)
         data = response.json()
         self.assertEqual(_id, data['data']['id'])
         return response
 
-    def assert_201_and_entity_created(self, url: str, entity: Dict) ->  Response:
+    def assert_201_and_entity_created(self, url: str, entity: Dict) -> Response:
         response = self.make_request(method='POST', resource=url, json=entity)
-        self.__is405(response,201)
+        self.__is405(response, 201)
         data = response.json()
         if response.status_code != 201:
             print(data)
@@ -69,9 +69,9 @@ class Helper(TestCase):
         self.assertTrue(data['data']['id'])
         return response
 
-    def assert_200_and_entity_updated(self, url: str, entity: Dict) ->  Response:
+    def assert_200_and_entity_updated(self, url: str, entity: Dict) -> Response:
         response = self.make_request(method='PUT', resource=url, json=entity)
-        self.__is405(response,200)
+        self.__is405(response, 200)
 
         data = response.json()
         if response.status_code != 200:
@@ -81,32 +81,32 @@ class Helper(TestCase):
         return response
 
     def assert_422_entity_with_an_unknown_field(self, url: str, entity: Dict,
-                                                method: str = 'POST') ->  Response:
+                                                method: str = 'POST') -> Response:
         entity_copy = entity.copy()
         entity_copy.update({"unknown": "false"})
         response = helper.make_request(method=method, resource=url, json=entity_copy)
-        self.__is405(response,200)
+        self.__is405(response, 200)
         self.assertEqual(422, response.status_code)
         return response
 
-    def assert_422_entity_without_a_field(self, url: str, entity: Dict, method: str = 'POST') ->  Response:
+    def assert_422_entity_without_a_field(self, url: str, entity: Dict, method: str = 'POST') -> Response:
         key = list(entity.keys())
         entity_copy = entity.copy()
         del entity_copy[key[0]]
         response = helper.make_request(method=method, resource=url, json=entity_copy)
-        self.__is405(response,200)
+        self.__is405(response, 200)
         self.assertEqual(422, response.status_code)
         return response
 
-    def assert_200_entity_deleted(self, url) ->  Response:
+    def assert_200_entity_deleted(self, url) -> Response:
         response = helper.make_request('DELETE', url)
-        self.__is405(response,200)
+        self.__is405(response, 200)
         self.assertEqual(200, response.status_code)
         data = response.json()
         self.assertTrue(str(data['data']['rows_affected']).isnumeric())
         return response
 
-    def __is405(self, response:  Response, expect):
+    def __is405(self, response: Response, expect):
         if response.status_code == 405:
             self.assertEqual(expect, response.status_code)
 

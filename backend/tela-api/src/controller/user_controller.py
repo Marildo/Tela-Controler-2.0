@@ -26,6 +26,7 @@ class UserController(BaseController):
     def __save_user(self, cnpj: str, user: Usuario) -> Dict:
         repository = UsuarioRepository(cnpj)
         repository.save(user)
+
         data = self.schema.dump(user)
         return data
 
