@@ -31,8 +31,9 @@ class JWTService(IAuth):
         data = jwt.decode(token, private_key.public_key(), algorithms=self.__algorithm)
         payload = data['payload']
         id = payload['id']
+        permissoes = payload['permissoes']
         cnpj = CNPJUtil.decode(payload['codigo'])
-        return Credential(cnpj=cnpj, user_id=id)
+        return Credential(cnpj=cnpj, user_id=id, permissoes=permissoes)
 
     def __load_private_key(self):
         with open(self.__file_key, "rb") as key_file:

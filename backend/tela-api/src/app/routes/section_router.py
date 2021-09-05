@@ -8,7 +8,8 @@ from app.routes.validators.section_validations import CREATE_SECTION_ARGS, UPDAT
 from src.controller import SectionController
 
 name = 'SectionRouter'
-section_router = Blueprint(name=name, import_name=name, url_prefix='/setores')
+resource  = '/setores'
+section_router = Blueprint(name=name, import_name=name, url_prefix= resource)
 
 
 @section_router.route('', methods=['GET'])

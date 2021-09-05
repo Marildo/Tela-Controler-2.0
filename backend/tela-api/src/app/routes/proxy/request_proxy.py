@@ -25,13 +25,38 @@ class RequestProxy:
             headers = request.headers
             assert 'Authorization' in headers, 'Token not found'
             token = headers['Authorization']
-            return self.__check_token(token)
+            credential = self.__check_token(token)
         except Exception as error:
-            raise UnauthorizationException(error)
+            raise UnauthorizationException(401, error.args[0])
+
+        self.check_resource(credential.permissoes)
+        return credential
 
     def validate_args(self, validations: Dict, location: Location = Location.JSON) -> Dict:
         args = parser.parse(validations, request, location=location.value)
         return args
+
+    def check_resource(self, permissoes):
+        error = UnauthorizationException(403, 'Operation not allowed for this user')
+
+        resource = str(request.url_rule).replace('/', '').title()
+        permissions = list(filter(lambda x: x.get('recurso') == resource, permissoes))
+
+        if not permissions:
+            raise error
+
+        map_method = {
+            'POST': 'c',
+            'GET': 'r',
+            'PUT': 'u',
+            'PATCH': 'u',
+            'DELETE': 'd'
+        }
+        permissions = permissions[0]
+        method = map_method.get(request.method)
+        allowed = permissions.get(method)
+        if not allowed:
+            raise error
 
     @staticmethod
     def __check_token(token: str) -> Credential:

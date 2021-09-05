@@ -21,11 +21,9 @@ def http_response(func) -> Response:
             data = [{'field': key, 'error': value[0]} for key, value in args.items()]
             log_error(data)
             response = TelaResponse(success=False, data=data, code=code)
-        except (DuplicateErrorException, DataBaseException, EntityNotFound) as error:
+        except (DuplicateErrorException, DataBaseException, EntityNotFound,
+                UnauthorizationException) as error:
             response = TelaResponse(error=error)
-        except UnauthorizationException as error:
-            data = {'error': str(error.args[0])}
-            response = TelaResponse(success=False, data=data, code=401)
         except Exception as error:
             log_error(error)
             data = {'error': error.args[0]}
