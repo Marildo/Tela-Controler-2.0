@@ -15,6 +15,10 @@ class UnityTest(TestCase):
         url = helper.host + self.resource
         helper.assert_401(url)
 
+    def test_should_return_403(self):
+        url = helper.host + self.resource
+        helper.assert_403(url)             
+
     def test_should_return_200_and_list(self):
         helper.assert_200_and_list(self.resource)
 

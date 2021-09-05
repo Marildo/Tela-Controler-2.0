@@ -31,6 +31,10 @@ class CompanyTest(TestCase):
         "uf": "MG"
     }
 
+    def test_should_return_403(self):
+        url = helper.host + self.resource
+        helper.assert_403(url)       
+
     def test_should_return_200_and_one_entity(self):
         url = f'{self.resource}/{1}'
         helper.assert_200_and_entity(url)

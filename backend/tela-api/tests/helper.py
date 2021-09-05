@@ -23,14 +23,6 @@ class Helper(TestCase):
     def token(self):
         return self.__token
 
-    def login(self):
-        body = {"email": "maria2@paiva.com",
-                "password": "123456789",
-                "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
-        response = post(self.host + '/login', json=body)
-        self.assertEqual(response.status_code, 200)
-        self.__token = response.json()['token']
-
     def make_request(self, method: str, resource: str, json: Dict = {}) -> Response:
         url = f'{self.__host}/{resource}'
         headers = {'Authorization': self.token}
@@ -40,6 +32,15 @@ class Helper(TestCase):
         response = get(url)
         self.__is405(response, 401)
         self.assertEqual(401, response.status_code)
+        return response
+
+    def assert_403(self, url: str) -> Response:
+        headers = {'Authorization': self.token_forbidden()}
+        response = get(url=url, headers=headers)
+        self.__is405(response, 403)
+        self.assertEqual(403, response.status_code)
+        data = response.json()
+        self.assertEqual('Operation not allowed for this user', data['data']['error']['description'])
         return response
 
     def assert_200_and_list(self, url: str) -> Response:
@@ -109,6 +110,21 @@ class Helper(TestCase):
     def __is405(self, response: Response, expect):
         if response.status_code == 405:
             self.assertEqual(expect, response.status_code)
+
+    def login(self):
+        body = {"email": "maria2@paiva.com",
+                "password": "123456789",
+                "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
+        response = post(self.host + '/login', json=body)
+        self.assertEqual(response.status_code, 200)
+        self.__token = response.json()['token']
+
+    def token_forbidden(self):
+        body = {"email": "maria393@paiva.coymç",
+                "password": "123456789",
+                "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
+        response = post(self.host + '/login', json=body)
+        return response.json()['token']
 
     @staticmethod
     def generator_words(size: int, chars: str = string.ascii_uppercase) -> str:
