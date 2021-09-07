@@ -13,7 +13,7 @@ class IDBConnection(ABC):
         self._config: DBConfig = config
         self._engine = create_engine(self._get_url(), echo=True)  # self._config.debug)
         self._session = sessionmaker()(bind=self._engine)
-        init_database(self._engine)
+        #init_database(self._engine)
 
     def __enter__(self):
         return self

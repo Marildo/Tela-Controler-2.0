@@ -9,6 +9,6 @@ class MysqlConnection(IDBConnection):
         password = settings.password
         port = settings.port
         host = settings.host
-        database = settings.database
+        database = settings.database if settings.database != 'emp_None' else 'mysql'
         charset = settings.charset
         return f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}'
