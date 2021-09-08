@@ -1,6 +1,6 @@
 import sys
 
-from migrate_config import MigrateConfig
+from .migrate_config import MigrateConfig
 
 
 #TODO - Controle de transações ao executar scripts

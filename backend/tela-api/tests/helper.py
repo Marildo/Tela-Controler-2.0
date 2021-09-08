@@ -131,6 +131,14 @@ class Helper(TestCase):
         return ''.join(random.choice(chars) for _ in range(size))
 
     @staticmethod
+    def generator_cpf() -> str:
+        return ''.join(random.choice(string.ascii_uppercase) for _ in range(12))
+
+    @staticmethod
+    def generator_cnpj() -> str:
+        return ''.join(random.choice(string.ascii_uppercase) for _ in range(14))
+
+    @staticmethod
     def generator_number(size: int, chars: str = string.digits) -> str:
         return ''.join(random.choice(chars) for _ in range(size))
 

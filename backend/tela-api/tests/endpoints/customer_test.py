@@ -3,12 +3,14 @@ from unittest import TestCase, main
 from tests.helper import helper
 
 
-class UnityTest(TestCase):
-    resource = '/unidades'
+class CustomerTest(TestCase):
+    resource = '/participantes'
 
     entity = {
-        "descricao": "Unidade Teste",
-        "fracionavel": "True"
+        "nome": helper.generator_words(30),
+        "fantasia": helper.generator_words(30),
+        "cpf" : helper.generator_cpf(),
+        "cnpj": helper.generator_cnpj()
     }
 
     def setUp(self) -> None:
@@ -30,9 +32,7 @@ class UnityTest(TestCase):
         helper.assert_200_and_entity(url)
 
     def test_should_return_201_and_entity_created(self):
-        unid_create = self.entity.copy()
-        unid_create.update({"unid": helper.generator_words(4)})
-        helper.assert_201_and_entity_created(self.resource, unid_create)
+        helper.assert_201_and_entity_created(self.resource, self.entity)
 
     def test_should_return_422_entity_without_a_field_not_created(self):
         helper.assert_422_entity_without_a_field(self.resource, self.entity)
@@ -41,12 +41,12 @@ class UnityTest(TestCase):
         helper.assert_422_entity_with_an_unknown_field(self.resource, self.entity)
 
     def test_should_return_200_and_entity_updated(self):
-        desc = helper.generator_words(12)
-        self.entity.update({"unid": helper.generator_words(4), 'descricao': desc})
+        fantasia = helper.generator_words(12)
+        self.entity.update({"fantasia": fantasia})
         url = f'{self.resource}/{1}'
         response = helper.assert_200_and_entity_updated(url, self.entity)
         data = response.json()
-        self.assertEqual(desc, data['data']['descricao'])
+        self.assertEqual(fantasia, data['data']['fantasia'])
 
     def test_should_return_422_entity_with_an_unknown_field_not_updated(self):
         url = f'{self.resource}/{1}'

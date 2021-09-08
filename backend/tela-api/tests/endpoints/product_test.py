@@ -11,6 +11,9 @@ class ProcuctTest(TestCase):
         "codigo": helper.generator_number(13)
     }
 
+    def setUp(self) -> None:
+        helper.login()
+
     def test_should_return_401(self):
         url = helper.host + self.resource
         helper.assert_401(url)

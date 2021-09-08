@@ -10,6 +10,9 @@ class SectionTest(TestCase):
         "nome": helper.generator_words(10)
     }
 
+    def setUp(self) -> None:
+        helper.login()
+
     def test_should_return_401(self):
         url = helper.host + self.resource
         helper.assert_401(url)

@@ -11,6 +11,9 @@ class UserTest(TestCase):
         "nome": "Maria"
     }
 
+    def setUp(self) -> None:
+        helper.login()
+
     def test_should_return_401(self):
         url = helper.host + self.resource
         helper.assert_401(url)
