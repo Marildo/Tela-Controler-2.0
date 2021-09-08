@@ -11,4 +11,6 @@ class MysqlConnection(IDBConnection):
         host = settings.host
         database = settings.database if settings.database != 'emp_None' else 'mysql'
         charset = settings.charset
-        return f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}'
+        autocommit = settings.autocommit
+        url = f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset={charset}&autocommit={autocommit}'
+        return url

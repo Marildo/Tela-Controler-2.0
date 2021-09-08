@@ -1,0 +1,1 @@
+CREATE DATABASE `emp_$data_base_name$` /*!40100 COLLATE 'latin1_swedish_ci' */

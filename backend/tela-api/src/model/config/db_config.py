@@ -3,9 +3,14 @@ from src.settings import Settings
 
 class DBConfig:
 
-    def __init__(self, cnpj: str):
+    def __init__(self, cnpj: str, autocommit: bool = True):
         self.__data_base = f'emp_{cnpj}'
+        self.__autocommit = autocommit
         self.__settings: Settings = Settings()
+
+    @property
+    def autocommit(self) -> bool:
+        return self.__autocommit;
 
     @property
     def user(self) -> str:

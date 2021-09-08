@@ -4,7 +4,7 @@ import os
 import re
 from datetime import datetime
 from enum import Enum
-from typing import Dict
+from typing import Dict, List, Tuple
 
 from sqlalchemy import text
 
@@ -36,27 +36,40 @@ class MigrateConfig:
         data['companies'].append(company)
         return self.__save_data(data)
 
-    def run(self, cnpj):
+    def upgrade(self, cnpj):
+        company, data = self.__find_company(cnpj)
+        version = company['version']
+        while version < data['master_version']:
+            version += 1
+            self.__run_migrate(cnpj=cnpj, version=version, action=Action.UP)
+            company.update({'version': version})
+            company.update(self.__updated_now())
+            self.__save_data(data)
+
+    def downgrade(self, cnpj):
+        company, data = self.__find_company(cnpj)
+        version = company['version']
+        if version == 0:
+            return
+        self.__run_migrate(cnpj=cnpj, version=version, action=Action.DOWN)
+        version -= 1
+        company.update({'version': version})
+        company.update(self.__updated_now())
+        self.__save_data(data)
+
+    def __find_company(self, cnpj) -> Tuple:
         data = self.__load_data()
         company = list(filter(lambda i: i['cnpj'] == cnpj, data['companies']))
         if not company:
             raise Exception('Company not found')
-        company = company[0]
-
-        version = company['version']
-        while version < data['master_version']:
-            version += 1
-            self.__run_migrate(cnpj=cnpj, version=version)
-            company.update({'version': version})
-            company.update(self.__updated_now())
-            self.__save_data(data)
+        return company[0], data
 
     def __load_data(self) -> Dict:
         if not os.path.isfile(self.filename):
             data = {'master_version': 0}
             data.update(self.__updated_now())
             data.update({'companies': []})
-            # self.__save_data(data)
+            self.__save_data(data)
 
         with open(file=self.filename, mode='r') as file:
             return json.load(file)
@@ -70,11 +83,11 @@ class MigrateConfig:
     def __updated_now() -> Dict:
         return {'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
-    def __run_migrate(self, cnpj: str, version: int):
+    def __run_migrate(self, cnpj: str, version: int, action: Action):
         logging.info('updating to ', version)
-        script = self.__load_script(version=version, action=Action.UP)
-        script = self.__prepare_script(script, cnpj)
-        self.__execute_script(sql=script, cnpj=cnpj, version=version)
+        script = self.__load_script(version=version, action=action)
+        scripts = self.__prepare_script(script, cnpj)
+        self.__execute_script(scripts=scripts, cnpj=cnpj, version=version)
         logging.info('updated to ', version)
 
     def __load_script(self, version: int, action: Action) -> str:
@@ -90,12 +103,29 @@ class MigrateConfig:
         with open(file, 'r') as sql_file:
             return sql_file.read()
 
-    def __prepare_script(self, script: str, cnp: str) -> str:
-        return script.replace('$data_base_name$', str(cnp))
+    @staticmethod
+    def __prepare_script(script: str, cnp: str) -> List[str]:
+        return script \
+            .replace('$data_base_name$', str(cnp)) \
+            .split(';')
+        # .replace('\t', '') \
+        # .replace('\n', '')
 
     @staticmethod
-    def __execute_script(sql: str, cnpj: int, version:int) -> int:
-        config = DBConfig(None if version == 1 else cnpj )
+    def __execute_script(scripts: List[str], cnpj: str, version: int) -> int:
+        result = 0
+        config = DBConfig(cnpj=None if version == 1 else cnpj, autocommit=False)
         connection = DBConnection(config)
-        with connection.engine.begin() as conn:
-            conn.execute(text(sql))
+        with connection.engine.connect() as conn:
+            with conn.begin() as transition:
+                try:
+                    for sql in scripts:
+                        if sql:
+                            r = conn.execute(text(sql))
+                            result += r.rowcount
+                    transition.commit()
+                except Exception as error:
+                    transition.rollback()
+                    raise error
+
+        return result

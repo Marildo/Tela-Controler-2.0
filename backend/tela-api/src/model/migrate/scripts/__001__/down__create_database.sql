@@ -1,0 +1,1 @@
+DROP DATABASE `emp_$data_base_name$`;

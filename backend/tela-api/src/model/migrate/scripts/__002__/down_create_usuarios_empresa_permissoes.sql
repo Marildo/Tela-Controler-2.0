@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS permissoes;
+DROP TABLE IF EXISTS recursos;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS empresas;

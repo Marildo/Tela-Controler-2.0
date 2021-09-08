@@ -3,6 +3,9 @@ import sys
 from migrate_config import MigrateConfig
 
 
+#TODO - Controle de transações ao executar scripts
+#TODO - Rodar migrate para todas as base de dados
+
 def add_company(cnpj: str):
     migrate = MigrateConfig()
     migrate.add_company(cnpj)

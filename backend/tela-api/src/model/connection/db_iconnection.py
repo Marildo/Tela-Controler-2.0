@@ -12,7 +12,8 @@ class IDBConnection(ABC):
     def __init__(self, config: DBConfig):
         self._config: DBConfig = config
         self._engine = create_engine(self._get_url(), echo=True)  # self._config.debug)
-        self._session = sessionmaker()(bind=self._engine)
+        maker = sessionmaker()
+        self._session = maker(bind=self._engine)
         #init_database(self._engine)
 
     def __enter__(self):
