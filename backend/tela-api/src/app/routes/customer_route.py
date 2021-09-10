@@ -4,52 +4,53 @@ from flask import Blueprint
 from telacore.decorators import http_response
 
 from app.routes.proxy import RequestProxy
-from app.routes.validators.product_validations import CREATE_PRODUCT_ARGS, UPDATE_PRODUCT_ARGS
-from src.controller import ProductController
+from app.routes.validators.customer_validations import CREATE_CUSTOMER_ARGS, UPDATE_CUSTOMER_ARGS
+from src.controller import CustomerController
 
-product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')
+name = 'CustomerRouter'
+customer_router = Blueprint(name=name, import_name=name, url_prefix='/participantes')
 
 
-@product_router.route('', methods=['GET'])
+@customer_router.route('', methods=['GET'])
 @http_response
 def get():
     controller, _ = __get_controller()
     return controller.read_all_and_dump()
 
 
-@product_router.route('<int:_id>', methods=['GET'])
+@customer_router.route('<int:_id>', methods=['GET'])
 @http_response
 def get_by_id(_id: int):
     controller, _ = __get_controller()
     return controller.read_by_id_and_dump(_id)
 
 
-@product_router.route('', methods=['POST'])
+@customer_router.route('', methods=['POST'])
 @http_response
-def __post():
+def post():
     controller, proxy = __get_controller()
-    args = proxy.validate_args(CREATE_PRODUCT_ARGS)
-    return controller.create(args)
+    args = proxy.validate_args(CREATE_CUSTOMER_ARGS)
+    return controller.create_and_dump(args)
 
 
-@product_router.route('<int:_id>', methods=['PUT'])
+@customer_router.route('<int:_id>', methods=['PUT'])
 @http_response
 def put(_id: int):
     controller, proxy = __get_controller()
-    args = proxy.validate_args(UPDATE_PRODUCT_ARGS)
+    args = proxy.validate_args(UPDATE_CUSTOMER_ARGS)
     return controller.update_and_dump(_id, args)
 
 
-@product_router.route('<int:_id>', methods=['DELETE'])
+@customer_router.route('<int:_id>', methods=['DELETE'])
 @http_response
 def delete(_id: int):
     controller, _ = __get_controller()
     return controller.soft_delete_and_dump(_id)
 
 
-def __get_controller() -> Tuple[ProductController, RequestProxy]:
+def __get_controller() -> Tuple[CustomerController, RequestProxy]:
     proxy = RequestProxy()
     cred = proxy.validate_credential()
-    controller = ProductController()
+    controller = CustomerController()
     controller.initialize(cred)
     return controller, proxy

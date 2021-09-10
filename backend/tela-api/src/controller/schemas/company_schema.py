@@ -3,7 +3,7 @@ from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
 from src.model.entities import Empresa
 
 
-class EmpresaSchema(SQLAlchemySchema):
+class CompanySchema(SQLAlchemySchema):
     class Meta:
         load_instance = True
         model = Empresa

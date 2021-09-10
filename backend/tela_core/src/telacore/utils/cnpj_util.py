@@ -73,3 +73,7 @@ class CNPJUtil:
             raise Exception('Código Inválido')
 
         return decoded
+
+    @staticmethod
+    def generate() -> str:
+        return CNPJUtil.mask(cnpj_lib.generate())

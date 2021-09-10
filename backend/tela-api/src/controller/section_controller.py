@@ -14,7 +14,3 @@ class SectionController(BaseController):
         self.ClassRepository = SetorRepository
         self.ClassEntity = Setor
 
-    def create(self, args):
-        section = Setor(**args)
-        return self.create_and_dump(section)
-

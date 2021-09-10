@@ -11,7 +11,7 @@ class CPFUtil:
         value = CPFUtil.unmask(cnpj)
         result = cpf_lib.validate(value)
         if raise_exception and not result:
-            raise ValidationError('CNPJ Inválido')
+            raise ValidationError('CPF Inválido')
         return result
 
     @staticmethod
@@ -25,3 +25,7 @@ class CPFUtil:
         value = re.sub(r'\D', '', str(cnpj))
         value = str(value).rjust(11, '0')
         return value
+
+    @staticmethod
+    def generate() -> str:
+        return CPFUtil.mask(cpf_lib.generate())

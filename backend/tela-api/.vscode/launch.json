@@ -25,7 +25,7 @@
       "name": "Python: Arquivo Atual",
       "type": "python",
       "request": "launch",
-      "program": "main.py",
+      "program": "src//main.py",
       "console": "integratedTerminal"
     }
   ]

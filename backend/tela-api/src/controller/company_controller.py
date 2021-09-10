@@ -7,7 +7,7 @@ from model.migrate.migrate import add_company
 
 from src.controller import BaseController
 from src.controller import auth_controller
-from src.controller.schemas import EmpresaSchema
+from src.controller.schemas import CompanySchema
 from src.model.entities import Empresa
 from src.model.repository import EmpresaRepository
 from src.services import Manager
@@ -16,7 +16,7 @@ class CompanyController(BaseController):
 
     def initialize(self, credential: Credential):
         self.credential = credential
-        self.schema = EmpresaSchema()
+        self.schema = CompanySchema()
         self.ClassRepository = EmpresaRepository
         self.ClassEntity = Empresa
 

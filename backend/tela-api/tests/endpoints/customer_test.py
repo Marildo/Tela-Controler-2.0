@@ -9,9 +9,13 @@ class CustomerTest(TestCase):
     entity = {
         "nome": helper.generator_words(30),
         "fantasia": helper.generator_words(30),
-        "cpf" : helper.generator_cpf(),
-        "cnpj": helper.generator_cnpj()
     }
+
+    def set_docs(self):
+        self.entity.update({
+            "cpf": helper.generator_cpf(),
+            "cnpj": helper.generator_cnpj()
+        })
 
     def setUp(self) -> None:
         helper.login()
@@ -22,7 +26,7 @@ class CustomerTest(TestCase):
 
     def test_should_return_403(self):
         url = helper.host + self.resource
-        helper.assert_403(url)             
+        helper.assert_403(url)
 
     def test_should_return_200_and_list(self):
         helper.assert_200_and_list(self.resource)
@@ -32,10 +36,25 @@ class CustomerTest(TestCase):
         helper.assert_200_and_entity(url)
 
     def test_should_return_201_and_entity_created(self):
+        self.set_docs()
         helper.assert_201_and_entity_created(self.resource, self.entity)
 
     def test_should_return_422_entity_without_a_field_not_created(self):
         helper.assert_422_entity_without_a_field(self.resource, self.entity)
+
+    def test_should_return_422_entity_invalid_cnpj_not_created(self):
+        copy = self.entity.copy()
+        copy.update({'cnpj': '830000000196'})
+        response = helper.assert_422_entity_with_ivalid_field(self.resource, copy)
+        data = response.json()
+        self.assertEqual('CNPJ Inválido', data['data'][0]['error'])
+
+    def test_should_return_422_entity_invalid_cpf_not_created(self):
+        copy = self.entity.copy()
+        copy.update({'cpf': '830000000196'})
+        response = helper.assert_422_entity_with_ivalid_field(self.resource, copy)
+        data = response.json()
+        self.assertEqual('CPF Inválido', data['data'][0]['error'])
 
     def test_should_return_422_entity_with_an_unknown_field_not_created(self):
         helper.assert_422_entity_with_an_unknown_field(self.resource, self.entity)

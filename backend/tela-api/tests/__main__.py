@@ -7,8 +7,8 @@ try:
     current_dir = os.path.dirname(__file__)
     source_path = os.path.abspath(os.path.join(current_dir, '../src/'))
     sys.path.append(source_path)
-except:
-    raise
+except Exception as e:
+    raise e
 
 """
     python -m unittest -v

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DECIMAL, INTEGER, ForeignKey
+from sqlalchemy import Column, String, DECIMAL, INTEGER,Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base_entity import BaseEntity
@@ -17,3 +17,4 @@ class Produto(BaseEntity):
 
     setor_id = Column(INTEGER, ForeignKey('setores.id'), nullable=False)
     setor = relationship('Setor')
+    ativo = Column(Boolean, default=True, nullable=False)

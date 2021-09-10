@@ -6,3 +6,4 @@ from .unity_controller import UnityController
 from .user_controller import UserController
 from .section_controller import SectionController
 from .resource_controller import ResourceController
+from .customer_controller import CustomerController

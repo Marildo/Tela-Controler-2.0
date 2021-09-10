@@ -4,6 +4,7 @@ from typing import Dict, List
 from unittest import TestCase
 
 from requests import Response, request, get, post
+from telacore.utils import CNPJUtil, CPFUtil
 
 from settings import Settings
 
@@ -99,6 +100,12 @@ class Helper(TestCase):
         self.assertEqual(422, response.status_code)
         return response
 
+    def assert_422_entity_with_ivalid_field(self, url: str, entity: Dict, method: str = 'POST') -> Response:
+        response = helper.make_request(method=method, resource=url, json=entity)
+        self.__is405(response, 200)
+        self.assertEqual(422, response.status_code)
+        return response
+
     def assert_200_entity_deleted(self, url) -> Response:
         response = helper.make_request('DELETE', url)
         self.__is405(response, 200)
@@ -132,11 +139,11 @@ class Helper(TestCase):
 
     @staticmethod
     def generator_cpf() -> str:
-        return ''.join(random.choice(string.ascii_uppercase) for _ in range(12))
+        return CPFUtil.generate()
 
     @staticmethod
     def generator_cnpj() -> str:
-        return ''.join(random.choice(string.ascii_uppercase) for _ in range(14))
+        return CNPJUtil.generate()
 
     @staticmethod
     def generator_number(size: int, chars: str = string.digits) -> str:

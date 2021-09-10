@@ -31,7 +31,7 @@ def get_by_id(_id: int):
 def post():
     controller, proxy = __get_controller()
     args = proxy.validate_args(CREATE_SECTION_ARGS)
-    return controller.create(args)
+    return controller.self.create_and_dump(args)
 
 
 @section_router.route('<int:_id>', methods=['PUT'])

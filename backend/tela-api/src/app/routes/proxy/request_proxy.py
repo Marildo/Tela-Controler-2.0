@@ -6,7 +6,7 @@ from telacore.exceptions import UnauthorizationException
 from telacore.models import Credential
 from webargs.flaskparser import parser
 
-from src.services import AuthService
+from services import AuthService
 
 
 class Location(Enum):
@@ -39,7 +39,7 @@ class RequestProxy:
     def check_resource(self, permissoes):
         error = UnauthorizationException(403, 'Operation not allowed for this user')
 
-        resource = str(request.url_rule).replace('/', '').title()
+        resource = request.url_rule.rule.split('/')[1].title()
         permissions = list(filter(lambda x: x.get('recurso') == resource, permissoes))
 
         if not permissions:

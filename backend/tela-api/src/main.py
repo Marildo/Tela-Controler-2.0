@@ -1,3 +1,13 @@
+try:
+    import sys
+    import os
+    current_dir = os.path.dirname(__file__)
+    source_path = os.path.abspath(os.path.join(current_dir, '../'))
+    sys.path.append(source_path)
+except:
+    raise
+
+
 from app import TelaAPP
 from settings import Settings
 
