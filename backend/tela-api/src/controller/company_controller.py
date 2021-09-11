@@ -3,14 +3,15 @@ from typing import Dict
 from telacore.exceptions import EntityNotFound
 from telacore.models import Credential
 from telacore.utils import CNPJUtil
-from model.migrate.migrate import add_company
 
 from src.controller import BaseController
 from src.controller import auth_controller
 from src.controller.schemas import CompanySchema
 from src.model.entities import Empresa
+from src.model.migrate.migrate import add_company
 from src.model.repository import EmpresaRepository
 from src.services import Manager
+
 
 class CompanyController(BaseController):
 
@@ -26,7 +27,7 @@ class CompanyController(BaseController):
         if not data:
             raise EntityNotFound('Empresa não localizada')
 
-        add_company(cnpj)            
+        add_company(cnpj)
 
         token = auth_controller.create_user_and_login(cnpj, args)
 

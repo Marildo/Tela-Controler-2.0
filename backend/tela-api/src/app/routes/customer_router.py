@@ -3,8 +3,8 @@ from typing import Tuple
 from flask import Blueprint
 from telacore.decorators import http_response
 
-from app.routes.proxy import RequestProxy
-from app.routes.validators.customer_validations import CREATE_CUSTOMER_ARGS, UPDATE_CUSTOMER_ARGS
+from src.app.routes.proxy import RequestProxy
+from src.app.routes.validators.customer_validations import CREATE_CUSTOMER_ARGS, UPDATE_CUSTOMER_ARGS
 from src.controller import CustomerController
 
 name = 'CustomerRouter'
@@ -46,7 +46,6 @@ def put(_id: int):
 def delete(_id: int):
     controller, _ = __get_controller()
     return controller.soft_delete_and_dump(_id)
-
 
 def __get_controller() -> Tuple[CustomerController, RequestProxy]:
     proxy = RequestProxy()

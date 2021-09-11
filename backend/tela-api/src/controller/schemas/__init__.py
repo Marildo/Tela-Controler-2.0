@@ -5,3 +5,4 @@ from .product_schema import ProductSchema
 from .section_schema import SectionSchema
 from .resource_schema import ResourceSchema
 from .customer_schema import CustomerSchema
+from .address_schema import AddressSchema

@@ -10,11 +10,13 @@ from .routes import unity_router
 from .routes import user_router
 from .routes import resource_router
 from .routes import customer_router
+from .routes import address_router
+
 
 
 class TelaAPP:
     def __init__(self):
-        self.__app = Flask('Tela-API')
+        self.__app = Flask(__name__)
         self.__config_cors()
         self.__config_routes(self.__app)
 
@@ -29,6 +31,7 @@ class TelaAPP:
         app.register_blueprint(section_router)
         app.register_blueprint(unity_router)
         app.register_blueprint(user_router)
+        app.register_blueprint(address_router)
 
     def __config_cors(self):
         CORS(self.__app,

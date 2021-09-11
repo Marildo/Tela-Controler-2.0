@@ -7,3 +7,4 @@ from .setor import Setor
 from .recurso import Recurso
 from .permissoes import Permissao
 from .participante import Participante
+from .endereco import Endereco

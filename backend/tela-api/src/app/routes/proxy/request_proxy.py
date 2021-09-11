@@ -6,7 +6,7 @@ from telacore.exceptions import UnauthorizationException
 from telacore.models import Credential
 from webargs.flaskparser import parser
 
-from services import AuthService
+from src.services import AuthService
 
 
 class Location(Enum):

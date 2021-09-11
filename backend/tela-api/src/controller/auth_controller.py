@@ -7,7 +7,7 @@ from telacore.utils import CNPJUtil, SecurityUtil
 from telacore.utils.logger_util import log_error
 from webargs.flaskparser import parser
 
-from app.routes.validators import LOGIN_ARGS
+from src.app.routes.validators import LOGIN_ARGS
 from src.controller.schemas import UsuarioSchema
 from src.model.entities import Usuario
 from src.model.repository import UsuarioRepository

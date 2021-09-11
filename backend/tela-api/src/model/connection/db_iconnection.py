@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from src.model.config.init_database import init_database
-from model.config.db_config import DBConfig
+from src.model.config.db_config import DBConfig
 
 
 class IDBConnection(ABC):

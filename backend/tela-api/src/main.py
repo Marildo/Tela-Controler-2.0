@@ -4,12 +4,12 @@ try:
     current_dir = os.path.dirname(__file__)
     source_path = os.path.abspath(os.path.join(current_dir, '../'))
     sys.path.append(source_path)
-except:
-    raise
+except Exception as e:
+    raise e
 
 
-from app import TelaAPP
-from settings import Settings
+from src.app import TelaAPP
+from src.settings import Settings
 
 if __name__ == '__main__':
     settings = Settings()

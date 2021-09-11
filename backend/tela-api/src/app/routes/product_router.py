@@ -3,8 +3,8 @@ from typing import Tuple
 from flask import Blueprint
 from telacore.decorators import http_response
 
-from app.routes.proxy import RequestProxy
-from app.routes.validators.product_validations import CREATE_PRODUCT_ARGS, UPDATE_PRODUCT_ARGS
+from src.app.routes.proxy import RequestProxy
+from src.app.routes.validators.product_validations import CREATE_PRODUCT_ARGS, UPDATE_PRODUCT_ARGS
 from src.controller import ProductController
 
 product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')

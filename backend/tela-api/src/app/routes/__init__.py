@@ -6,4 +6,5 @@ from .section_router import section_router
 from .unity_router import unity_router
 from .user_router import user_router
 from .resource_router import resource_router
-from .customer_route import customer_router
+from .customer_router import customer_router
+from .address_router import address_router

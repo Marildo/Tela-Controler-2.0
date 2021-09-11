@@ -3,8 +3,8 @@ from typing import Tuple
 from flask import Blueprint
 from telacore.decorators import http_response
 
-from app.routes.proxy import RequestProxy
-from app.routes.validators.company_validations import CREATE_COMPANY_ARGS, UPDATE_COMPANY_ARGS
+from src.app.routes.proxy import RequestProxy
+from src.app.routes.validators.company_validations import CREATE_COMPANY_ARGS, UPDATE_COMPANY_ARGS
 from src.controller import CompanyController
 
 name = 'CompanyRouter'

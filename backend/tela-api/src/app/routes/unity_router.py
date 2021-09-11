@@ -3,8 +3,8 @@ from typing import Tuple
 from flask import Blueprint
 from telacore.decorators import http_response
 
-from app.routes.proxy import RequestProxy
-from app.routes.validators.unity_validations import CREATE_UNITY_ARGS, UPDATE_UNITY_ARGS
+from src.app.routes.proxy import RequestProxy
+from src.app.routes.validators.unity_validations import CREATE_UNITY_ARGS, UPDATE_UNITY_ARGS
 from src.controller import UnityController
 
 name = 'UnityRouter'

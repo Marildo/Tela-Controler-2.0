@@ -8,8 +8,8 @@ from typing import Dict, List, Tuple
 
 from sqlalchemy import text
 
-from model.config import DBConfig
-from model.connection import DBConnection
+from src.model.config import DBConfig
+from src.model.connection import DBConnection
 
 
 class Action(Enum):
