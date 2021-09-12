@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.types import SMALLINT, Boolean
+from sqlalchemy.orm import relationship
 
 from .base_entity import BaseEntity
 
@@ -12,3 +13,4 @@ class Participante(BaseEntity):
     cnpj = Column(String(20),default='', unique=True)
     cpf = Column(String(15), default='', unique=True)
     ativo = Column(Boolean, default=True, nullable=False)
+    enderecos = relationship('Endereco')

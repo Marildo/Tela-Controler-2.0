@@ -25,7 +25,7 @@
 							"script": {
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);\r",
-									"pm.environment.set(\"token\", jsonData.data.token);"
+									"pm.environment.set(\"token\", jsonData.token);"
 								],
 								"type": "text/javascript"
 							}
@@ -44,15 +44,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/login",
-							"protocol": "http",
+							"raw": "{{api_main}}/login",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{api_main}}"
 							],
-							"port": "5000",
 							"path": [
 								"login"
 							]
@@ -160,7 +155,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"maria33@paiva.coymç\",\r\n    \"password\": \"123456789\",\r\n    \"nome\":\"Maria\"\r\n}",
+							"raw": "{\r\n    \"email\": \"maria3903@paiva.coymç\",\r\n    \"password\": \"123456789\",\r\n    \"nome\":\"Maria\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -168,7 +163,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuario",
+							"raw": "http://127.0.0.1:5000/usuarios",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -178,7 +173,140 @@
 							],
 							"port": "5000",
 							"path": [
-								"usuario"
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/usuarios/password/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"usuarios",
+								"password",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/usuarios",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuario by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/usuarios/47",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"usuarios",
+								"47"
 							]
 						}
 					},
@@ -210,12 +338,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api_main}}/empresa",
+							"raw": "{{api_main}}/empresa/1",
 							"host": [
 								"{{api_main}}"
 							],
 							"path": [
-								"empresa"
+								"empresa",
+								"1"
 							]
 						}
 					},
@@ -435,14 +564,22 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unid\":\"ASDD\",\r\n    \"descricao\": \"SDDddfdsfds\",\r\n    \"fracionavel\": \"True\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{api_main}}/unidades/",
+							"raw": "{{api_main}}/unidades",
 							"host": [
 								"{{api_main}}"
 							],
 							"path": [
-								"unidades",
-								""
+								"unidades"
 							]
 						}
 					},
@@ -469,13 +606,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{api_main}}/unidades/1",
+							"raw": "{{api_main}}/unidades/24",
 							"host": [
 								"{{api_main}}"
 							],
 							"path": [
 								"unidades",
-								"1"
+								"24"
 							]
 						}
 					},
@@ -501,6 +638,15 @@
 						},
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n   \"ativo\": true,\r\n        \"descricao\": \"Metros Cubicos\",\r\n        \"fracionavel\": true,\r\n        \"id\": 5,\r\n        \"unid\": \"MT3\"\r\n  }   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{api_main}}/unidades/2",
 							"host": [
@@ -508,6 +654,861 @@
 							],
 							"path": [
 								"unidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setores",
+			"item": [
+				{
+					"name": "Get Setores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/setores",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Setor by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/setores/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Setor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Geral\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/setores",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Setor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/setores/24",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Setor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Geral\",\r\n   \"ativo\":\"True\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/setor/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enderecos",
+			"item": [
+				{
+					"name": "Get Enderecos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/setores",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Endereco by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/setores/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"setores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Endereco",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n        \"uf\": \"MG\",\r\n        \"logradouro\": \"Rua Romeu Creto Faria\",\r\n        \"cep\": \"37.585-000\",\r\n        \"ibge\": 3152501,\r\n        \"bairro\": \"Saude\",\r\n        \"numero\": \"15\",\r\n        \"participante_id\": 1\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/enderecos",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"enderecos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Endereco",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/enderecos/24",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"enderecos",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Endereco",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n        \"uf\": \"MG\",\r\n        \"logradouro\": \"Rua Romeu Creto Faria\",\r\n        \"cep\": \"37.585-000\",\r\n        \"ibge\": 312554,\r\n        \"bairro\": \"Saude\",\r\n        \"numero\": \"15\",\r\n        \"participante_id\": 1\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/enderecos/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"enderecos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recursos",
+			"item": [
+				{
+					"name": "Get Recursos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/recursos",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"recursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recurso by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/recursos/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"recursos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recurso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Produtos 9r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/recursos",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"recursos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Get Produtos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/produtos",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Produto by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/produtos/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Produto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"12121\",\r\n    \"descricao\": \"gf4ddfdfdfgff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/produtos",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete unidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/produtos/3",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"produtos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Unidade",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo\": \"12121\",\r\n    \"descricao\": \"Produto 01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/produtos/2",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes/Fornecedores",
+			"item": [
+				{
+					"name": "Get Participantes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/participantes",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"participantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Participante by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/participantes/1",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"participantes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Participante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria Ko\",\r\n    \"fantasia\": \"Maria da forca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/participantes",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"participantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Participante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_main}}/participantes/3",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"participantes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Participante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{ClientApplicationKey}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"fantasia\": \"Maria da forca\",\r\n        \"nome\": \"Maria de Fatima\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_main}}/participantes/2",
+							"host": [
+								"{{api_main}}"
+							],
+							"path": [
+								"participantes",
 								"2"
 							]
 						}
