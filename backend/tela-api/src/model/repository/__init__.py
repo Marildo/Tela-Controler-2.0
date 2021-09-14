@@ -8,3 +8,4 @@ from .recurso_repository import RecursoRepository
 from .permissao_repository import PermissaoRespository
 from .participante_repository import ParticipanteRepository
 from .endereco_repository import EnderecoRepository
+from .pedido_repository import PedidoRepository
