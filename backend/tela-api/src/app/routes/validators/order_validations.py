@@ -1,10 +1,10 @@
-from webargs import fields
+from webargs import fields, validate
 
 data = {'data': fields.DateTime(required=True)}
 total_produtos = {'total_produtos': fields.Decimal(required=True)}
 descontos = {'descontos': fields.Decimal(required=True)}
 outros = {'outros': fields.Decimal(required=True)}
-total = {'total': fields.Decimal(required=True)}
+total = {'total': fields.Decimal(required=True ,validate=[validate.Length(min=0.01)])}
 participante_id = {'participante_id': fields.Int(required=True)}
 endereco_id = {'endereco_id': fields.Int(required=True)}
 

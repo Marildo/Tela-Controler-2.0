@@ -12,7 +12,7 @@ from .routes import resource_router
 from .routes import section_router
 from .routes import unity_router
 from .routes import user_router
-
+from .routes import item_order_router
 
 class TelaAPP:
     def __init__(self):
@@ -33,6 +33,7 @@ class TelaAPP:
         app.register_blueprint(user_router)
         app.register_blueprint(address_router)
         app.register_blueprint(order_router)
+        app.register_blueprint(item_order_router)
 
     def __config_cors(self):
         CORS(self.__app,

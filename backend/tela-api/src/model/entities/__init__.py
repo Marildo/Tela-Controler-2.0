@@ -1,6 +1,7 @@
 from .base_entity import BaseEntity
 from .empresa import Empresa
 from .endereco import Endereco
+from .itens_pedido import ItensPedido
 from .participante import Participante
 from .pedido import Pedido
 from .permissoes import Permissao

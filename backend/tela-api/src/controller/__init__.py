@@ -9,3 +9,4 @@ from .resource_controller import ResourceController
 from .customer_controller import CustomerController
 from .address_controller import AddressController
 from .order_controller import OrderController
+from .item_order_controller import ItemOrderController
