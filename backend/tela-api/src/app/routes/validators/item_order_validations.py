@@ -1,9 +1,9 @@
 from webargs import fields, validate
 
-qtd = {'qtd': fields.DateTime(required=True, validate=[validate.Length(min=0.01)])}
+qtd = {'qtd': fields.Decimal(required=True, validate=[validate.Range(min=0.01)])}
 descontos = {'descontos': fields.Decimal(required=True)}
 outros = {'outros': fields.Decimal(required=True)}
-total = {'total': fields.Decimal(required=True, validate=[validate.Length(min=0.01)])}
+total = {'total': fields.Decimal(required=True, validate=[validate.Range(min=0.01)])}
 produto_id = {'produto_id': fields.Int(required=True)}
 pedido_id = {'pedido_id': fields.Int(required=True)}
 

@@ -6,3 +6,4 @@ from .section_test import SectionTest
 from .resource_test import ResourceTest
 from .customer_test import CustomerTest
 from .order_test import OrderTest
+from .item_order_test import ItemOrderTest
