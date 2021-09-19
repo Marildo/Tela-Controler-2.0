@@ -2,11 +2,11 @@ from .base_exception import BaseException
 
 
 class EntityNotFound(BaseException):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.status_code = 503
 
+    @property
     def json(self):
-        value = self.args[0]
         return {
-            'description': value[0]
+            'description':  self.args[0]
         }

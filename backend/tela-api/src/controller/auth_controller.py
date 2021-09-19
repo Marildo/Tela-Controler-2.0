@@ -1,4 +1,3 @@
-from re import U
 from typing import Dict
 
 from flask import request
@@ -27,13 +26,15 @@ def login():
         return data, 401
 
 
-def create_user_and_login(self, cnpj, args) -> str:
+def create_user_and_login(cnpj, args) -> str:
     email = args['email']
     nome = args['nome']
     password = SecurityUtil.hash(args['password'])
 
     user = Usuario(email=email, nome=nome, password=password)
-    data = self.__save_user(cnpj, user)
+    repository = UsuarioRepository(cnpj)
+    repository.save(user)
+    data = find_for_login(cnpj=cnpj, email=user.email, password=args['password'])
     token = AuthService().encode(cnpj, data)
     return token
 

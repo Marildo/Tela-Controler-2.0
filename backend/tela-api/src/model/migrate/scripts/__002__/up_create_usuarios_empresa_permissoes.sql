@@ -4,7 +4,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-CREATE TABLE `empresas` (
+CREATE TABLE IF NOT EXISTS `empresas` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`nome` VARCHAR(120) NOT NULL,
 	`fantasia` VARCHAR(120) NOT NULL,
@@ -36,7 +36,7 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
 
-CREATE TABLE `usuarios` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`email` VARCHAR(255) NOT NULL,
 	`nome` VARCHAR(255) NULL DEFAULT NULL,
@@ -77,23 +77,21 @@ INSERT INTO `recursos` (`nome`) VALUES
 
 
 CREATE TABLE `permissoes` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`usuario_id` INT NULL DEFAULT NULL,
-	`recurso_id` INT NULL DEFAULT NULL,
-	`c` TINYINT(1) NULL DEFAULT NULL,
-	`r` TINYINT(1) NULL DEFAULT NULL,
-	`u` TINYINT(1) NULL DEFAULT NULL,
-	`d` TINYINT(1) NULL DEFAULT NULL,
-	`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`) USING BTREE,
-	INDEX `usuario_id` (`usuario_id`) USING BTREE,
-	INDEX `recurso_id` (`recurso_id`) USING BTREE,
-	CONSTRAINT `usuario_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
-	CONSTRAINT `recurso_fk` FOREIGN KEY (`recurso_id`) REFERENCES `recursos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=InnoDB;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_id` int DEFAULT NULL,
+  `recurso_id` int DEFAULT NULL,
+  `c` tinyint(1) DEFAULT NULL,
+  `r` tinyint(1) DEFAULT NULL,
+  `u` tinyint(1) DEFAULT NULL,
+  `d` tinyint(1) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `recurso_id` (`recurso_id`),
+  KEY `permissoes_ibfk_1` (`usuario_id`),
+  CONSTRAINT `permissoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `permissoes_ibfk_2` FOREIGN KEY (`recurso_id`) REFERENCES `recursos` (`id`)
+) ENGINE=InnoDB;
 
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

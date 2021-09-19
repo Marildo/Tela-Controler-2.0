@@ -39,7 +39,7 @@ class RequestProxy:
     def check_resource(self, permissoes):
         error = UnauthorizationException(403, 'Operation not allowed for this user')
 
-        resource = request.url_rule.rule.split('/')[1].split('_')[0].title()
+        resource = request.url_rule.rule.split('/')[1].split('_')[0]
         permissions = list(filter(lambda x: x.get('recurso') == resource, permissoes))
 
         if not permissions:

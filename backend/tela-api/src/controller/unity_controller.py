@@ -5,6 +5,7 @@ from src.controller.schemas import UnitySchema
 from src.model.entities import Unidade
 from src.model.repository import UnidadeRepository
 
+#TODO - Mudar em produto de UN para Id
 
 class UnityController(BaseController):
 
@@ -13,8 +14,4 @@ class UnityController(BaseController):
         self.schema = UnitySchema()
         self.ClassRepository = UnidadeRepository
         self.ClassEntity = Unidade
-
-    def create(self, args):
-        unity = Unidade(**args)
-        return self.create_and_dump(unity)
 

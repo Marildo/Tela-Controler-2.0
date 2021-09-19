@@ -13,8 +13,3 @@ class ResourceController(BaseController):
         self.schema = ResourceSchema()
         self.ClassRepository = RecursoRepository
         self.ClassEntity = Recurso
-
-    def create(self, args):
-        resource = Recurso(**args)
-        return self.create_and_dump(resource)
-

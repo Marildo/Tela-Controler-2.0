@@ -3,6 +3,7 @@ from typing import List
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
+from telacore.utils import StrUtil
 from telacore.utils.logger_util import log_error
 
 from src.model.entities import Usuario, Permissao, Recurso
@@ -64,7 +65,7 @@ class UsuarioRepository(IRepository):
                 rec = item[1]
                 resource = {
                     'id': rec.id,
-                    'recurso': rec.nome,
+                    'recurso': StrUtil.normalize(rec.nome).lower(),
                     'c': int(perm.c),
                     'r': int(perm.r),
                     'u': int(perm.u),

@@ -8,8 +8,8 @@ from src.app.routes.validators.section_validations import CREATE_SECTION_ARGS, U
 from src.controller import SectionController
 
 name = 'SectionRouter'
-resource  = '/setores'
-section_router = Blueprint(name=name, import_name=name, url_prefix= resource)
+resource = '/setores'
+section_router = Blueprint(name=name, import_name=name, url_prefix=resource)
 
 
 @section_router.route('', methods=['GET'])
@@ -31,7 +31,7 @@ def get_by_id(_id: int):
 def post():
     controller, proxy = __get_controller()
     args = proxy.validate_args(CREATE_SECTION_ARGS)
-    return controller.self.create_and_dump(args)
+    return controller.create_and_dump(args)
 
 
 @section_router.route('<int:_id>', methods=['PUT'])

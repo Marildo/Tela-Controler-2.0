@@ -1,8 +1,5 @@
-from telacore.utils import CEPUtil
+from unicodedata import normalize
 
-def test():
-   data = CEPUtil.find_cep(37557466)
-   print(data)
-
-
-test()
+source = 'Usuários'
+target = normalize('NFKD', source).encode('ASCII','ignore').decode('ASCII')
+print(target)

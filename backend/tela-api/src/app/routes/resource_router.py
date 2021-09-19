@@ -30,7 +30,7 @@ def get_by_id(_id: int):
 def post():
     controller, proxy = __get_controller()
     args = proxy.validate_args(CREATE_RESOURCE_ARGS)
-    return controller.create(args)
+    return controller.create_and_dump(args)
 
 
 def __get_controller() -> Tuple[ResourceController, RequestProxy]:

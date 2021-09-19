@@ -34,6 +34,7 @@ class MigrateConfig:
         }
         company.update(self.__updated_now())
         data['companies'].append(company)
+        data.update({'master_version': 2})
         return self.__save_data(data)
 
     def upgrade(self, cnpj):
@@ -59,7 +60,7 @@ class MigrateConfig:
 
     def __find_company(self, cnpj) -> Tuple:
         data = self.__load_data()
-        company = list(filter(lambda i: i['cnpj'] == cnpj, data['companies']))
+        company = list(filter(lambda i: i['cnpj'] == int(cnpj), data['companies']))
         if not company:
             raise Exception('Company not found')
         return company[0], data
@@ -71,11 +72,11 @@ class MigrateConfig:
             data.update({'companies': []})
             self.__save_data(data)
 
-        with open(file=self.filename, mode='r') as file:
+        with open(file=self.filename, mode='r', encoding='utf-8') as file:
             return json.load(file)
 
     def __save_data(self, data: Dict) -> bool:
-        with open(file=self.filename, mode='w') as file:
+        with open(file=self.filename, mode='w', encoding='utf-8') as file:
             json.dump(data, file)
             return True
 
@@ -84,11 +85,11 @@ class MigrateConfig:
         return {'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
     def __run_migrate(self, cnpj: str, version: int, action: Action):
-        logging.info('updating to ', version)
+        logging.info(f'updating to {version}')
         script = self.__load_script(version=version, action=action)
         scripts = self.__prepare_script(script, cnpj)
         self.__execute_script(scripts=scripts, cnpj=cnpj, version=version)
-        logging.info('updated to ', version)
+        logging.info(f'updated to {version}')
 
     def __load_script(self, version: int, action: Action) -> str:
         dirname = f'__{version:03d}__'
