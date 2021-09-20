@@ -12,8 +12,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   onAuthenticate(user: User):void{
-    this.http.post<any>(`${environment.apiUrl}/login`,user)
-      .subscribe(data => console.log(data));
+    let data = {
+      email : "maria2@paiva.com",
+      password: "123456789",
+      codigo:'MTM0OTAyMzk2MjAwNjAzOQ=='
+    }
+    console.log(data);
+    this.http.post<any>(`${environment.apiUrl}/login`,data)
+      .subscribe(resp => console.log(resp));
     
   }
 }
