@@ -17,7 +17,6 @@ export class AuthService {
       password: "123456789",
       codigo:'MTM0OTAyMzk2MjAwNjAzOQ=='
     }
-    console.log(data);
     this.http.post<any>(`${environment.apiUrl}/login`,data)
       .subscribe(resp => console.log(resp));
     
