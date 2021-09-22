@@ -7,15 +7,17 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  
+  public expandMenu:Boolean
 
-  constructor() { }
+  constructor() { 
+    this.expandMenu = true
+  }
 
   ngOnInit(): void {
   }
 
   onToogleMenu() {
-    console.log('testsss')
+    this.expandMenu = !this.expandMenu
   }
 
 }

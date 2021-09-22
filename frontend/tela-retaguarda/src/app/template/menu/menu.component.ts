@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'ut-menu',
@@ -7,18 +7,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-
-  @Output() toogleMenu = new EventEmitter<void>();
-
   constructor() {
 
   }
 
   ngOnInit(): void {
-  }
-
-  onToogleMenu() {
-    this.toogleMenu.emit()
   }
 
 }

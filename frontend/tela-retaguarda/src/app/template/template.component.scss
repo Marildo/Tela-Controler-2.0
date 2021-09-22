@@ -1,11 +1,11 @@
 #container{
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 15vh 80vh 5vh;
     grid-template-areas: 
-        "a h h h h h"
-        "a m m m m m"
-        "a f f f f f";
+        "h h"
+        "a m"
+        "a f";
 }
 
 // TODO - Esconde o menu
@@ -21,12 +21,12 @@
     }
   }
 
-header{
+#t-header{
     grid-area: h;
     background-color: aqua; 
 }
 
-aside{
+#t-aside{
     grid-area: a;
     background-color: cadetblue;
 }
@@ -39,4 +39,12 @@ main{
 footer{
     grid-area: f;
     background-color: orangered;
+}
+
+.large-menu{
+    width: 280px;
+}
+
+.small-menu{
+    width: 60px;
 }
