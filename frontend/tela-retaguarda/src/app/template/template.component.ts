@@ -21,3 +21,5 @@ export class TemplateComponent implements OnInit {
   }
 
 }
+
+// TODO - Alterar comunicacao entre componentes para service

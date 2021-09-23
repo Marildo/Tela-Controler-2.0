@@ -1,10 +1,8 @@
-<aside [@toggle]="toggleMenu">
-        <ul >
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Produtos</a></li>
-            <li><a href="#">Pedidos</a></li>
-            <li><a href="#">Cientes</a></li>
-       </ul>
-
-       {{ expandMenu  }}  {{toggleMenu}}
+<aside [@toggle]="{value: toggleMenu, params:{smWidth: smWidth, lgWidth:lgWidth }}">
+    <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Produtos</a></li>
+        <li><a href="#">Pedidos</a></li>
+        <li><a href="#">Cientes</a></li>
+    </ul>
 </aside>
