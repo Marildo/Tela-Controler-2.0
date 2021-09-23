@@ -1,11 +1,6 @@
 <div id="container">
-    <ut-header id="t-header" (toogleMenu)="onToogleMenu()"></ut-header>
-    <ut-menu id="t-menu" 
-     [ngClass]="{
-            'large-menu': expandMenu,
-            'small-menu': !expandMenu
-      }">
-    </ut-menu>
-    <main>Content</main>
-    <footer>Footer</footer>
+  <ut-header (toogleMenu)="onToogleMenu()"></ut-header>
+  <ut-menu [expandMenu]='expandMenu'> </ut-menu>
+  <main>Content</main>
+  <footer>Footer</footer>
 </div>
