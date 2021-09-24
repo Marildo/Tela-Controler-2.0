@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 //import { MatSliderModule } from '@angular/material/slider';
 //import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,9 +19,10 @@ import { IndexComponent } from './index/index.component';
 import { TemplateComponent } from './template/template.component';
 import { MenuComponent } from './template/menu/menu.component';
 import { HeaderComponent } from './template/header/header.component';
-import { DasboardComponent } from './dasboard/dasboard.component';
+import { DashboardComponent } from './dashboard/dasboard.component';
 import { ContentComponent } from './template/content/content.component';
 import { FooterComponent } from './template/footer/footer.component';
+import { ProdutosComponent } from './produtos/produtos.component';
 
 
 
@@ -34,9 +35,10 @@ import { FooterComponent } from './template/footer/footer.component';
     TemplateComponent,
     MenuComponent,
     HeaderComponent,
-    DasboardComponent,
+    DashboardComponent,
     ContentComponent,
-    FooterComponent
+    FooterComponent,
+    ProdutosComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +47,11 @@ import { FooterComponent } from './template/footer/footer.component';
     FormsModule,
     HttpClientModule,
 
-   // MatSliderModule,
-   MatIconModule,
+    // MatSliderModule,
+    MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-   // MatToolbarModule,
+    // MatToolbarModule,
     MatButtonModule
   ],
   providers: [],

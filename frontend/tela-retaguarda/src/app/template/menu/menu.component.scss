@@ -40,8 +40,10 @@ mat-icon {
   padding-right: 0.5em;
 }
 
-active-link {
-  color: aquamarine;
+.active-link {
+  background-color:#E7ECEE;
+  color: #005b9f;
+
 }
 
 @media only screen and (max-width: 576px) {

@@ -1,38 +1,12 @@
 <aside [@toggle]="{value: toggleMenu, params:{smWidth: smWidth, lgWidth:lgWidth }}">
     <nav>
         <ul>
-            <li>
-                <a routerLink="/dashboard"  routerLinkActive="active-link">
-                    <mat-icon aria-hidden="false" aria-label="Menu"> dashboard </mat-icon>
-                    Dashboard
-                </a>
-            </li>
-            <li>
-                <a routerLink="/pedidos"  routerLinkActive="active-link">
-                    <mat-icon aria-hidden="false" aria-label="Menu"> receipt_long </mat-icon>
-                    Pedidos
-                </a>
-            </li>
-            <li>
-                <a routerLink="/produtos">
-                    <mat-icon aria-hidden="false" aria-label="Menu"> inventory </mat-icon>
-                    Produtos
-                </a>
-            </li>
-            <li>
-                <a routerLink="/clientes">
-                    <mat-icon aria-hidden="false" aria-label="Menu"> supervisor_account </mat-icon>
-                    Clientes
-                </a>
-            </li>
-            <li>
-                <a routerLink="/financeiro" acn>
-                  <mat-icon aria-hidden="false" aria-label="Menu"> request_page </mat-icon>
-                     Financeiro
+            <li *ngFor="let item of itemsMenu">
+                <a [routerLink]="item.path" routerLinkActive="active-link">
+                    <mat-icon> {{item.icon}} </mat-icon>
+                    {{ item.title }}
                 </a>
             </li>
         </ul>
     </nav>
-
-    {{ smWidth }}
 </aside>

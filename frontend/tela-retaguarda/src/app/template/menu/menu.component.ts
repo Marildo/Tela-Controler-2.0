@@ -3,6 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, SimpleChange } from '@angular/core'
 import { ScreenService } from '../screen.service'
 import { delay } from 'rxjs/operators';
+import { Menu } from './menu.model';
 
 
 @Component({
@@ -32,6 +33,14 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
   public toggleMenu: string = 'large'
   public smWidth = '35px';
   public lgWidth = '160px';
+
+  public itemsMenu:Array<Menu> = [
+    { title: 'Dashboard', icon: 'dashboard', path: '/dashboard'},
+    { title: 'Pedidos', icon: 'receipt_long', path: '/pedidos'},
+    { title: 'Produtos', icon: 'inventory', path: '/produtos'},
+    { title: 'Clientes', icon: 'supervisor_account', path: '/clientes'},
+    { title: 'Financeiro', icon: 'request_page', path: '/financeiro'}
+  ]
 
 
   constructor(private screenService: ScreenService) {
