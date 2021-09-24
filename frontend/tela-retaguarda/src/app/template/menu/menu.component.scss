@@ -1,23 +1,51 @@
-aside{
-    background-color: cadetblue;
+aside {
+  margin: 0;
+  padding: 0.3em;
+  background-color: white;
+  height: 100%;
 }
 
+nav {
+  font-weight: 500;
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  width: 100%;
+
+}
+
+li {
+  margin: 0.2em;
+}
+
+a {
+  padding: 0.3em;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  color: #212121;
+}
+
+a:hover{
+  background-color:#cfd8dc;
+  color: #455a64;
+}
+
+mat-icon {
+  padding-right: 0.5em;
+}
+
+active-link {
+  color: aquamarine;
+}
 
 @media only screen and (max-width: 576px) {
-    aside{
-        background-color: crimson;
-    }
-}
-
-
-ul{
-    
-}
-
-.large-menu{
-    width: 280px;
-}
-
-.small-menu{
-    width: 60px;
+  aside {
+    background-color: crimson;
+  }
 }

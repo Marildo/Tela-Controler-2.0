@@ -14,14 +14,14 @@ import { delay } from 'rxjs/operators';
       state('small',
         style({
           width: '{{smWidth}}'
-        }), { params: { smWidth: 60 } }),
+        }), { params: { smWidth: 35 } }),
 
       state('large',
         style({
           width: '{{lgWidth}}'
         }), { params: { lgWidth: 160 } }),
 
-      transition('large <=> small', animate('.6s ease-in-out'))
+      transition('large <=> small', animate('.8s ease-in-out'))
     ])
   ]
 })
@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() public expandMenu: Boolean;
   public toggleMenu: string = 'large'
-  public smWidth = '60px';
+  public smWidth = '35px';
   public lgWidth = '160px';
 
 
@@ -46,7 +46,7 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(delay(1000))
       .subscribe((isBelowSm: BreakpointState) => {
       let isBSm = isBelowSm.matches;
-      this.smWidth = isBSm ? '0px' : '100px'
+      this.smWidth = isBSm ? '0px' : '35px'
     });
 
   }
