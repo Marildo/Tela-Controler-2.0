@@ -43,10 +43,10 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.screenService.isBelowSm()
-      .pipe(delay(1000))
+      .pipe(delay(200))
       .subscribe((isBelowSm: BreakpointState) => {
       let isBSm = isBelowSm.matches;
-      this.smWidth = isBSm ? '0px' : '35px'
+      this.smWidth = isBSm ? '0' : '35px'
     });
 
   }

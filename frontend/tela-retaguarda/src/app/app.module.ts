@@ -19,6 +19,9 @@ import { IndexComponent } from './index/index.component';
 import { TemplateComponent } from './template/template.component';
 import { MenuComponent } from './template/menu/menu.component';
 import { HeaderComponent } from './template/header/header.component';
+import { DasboardComponent } from './dasboard/dasboard.component';
+import { ContentComponent } from './template/content/content.component';
+import { FooterComponent } from './template/footer/footer.component';
 
 
 
@@ -30,7 +33,10 @@ import { HeaderComponent } from './template/header/header.component';
     IndexComponent,
     TemplateComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    DasboardComponent,
+    ContentComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

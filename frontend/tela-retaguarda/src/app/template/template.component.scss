@@ -8,6 +8,27 @@
         "a f";
 }
 
+
+ut-header{
+    grid-area: h;
+    background-color: aqua; 
+}
+
+ut-menu{
+    grid-area: a;
+}
+
+ut-content{
+    grid-area: m;
+    background-color: cornflowerblue;
+}
+
+ut-footer{
+    grid-area: f;
+    background-color: orangered;
+}
+
+
 /*
 @media only screen and (max-width: 576px) {
     #container {
@@ -20,22 +41,3 @@
     }
   }
   */
-
-ut-header{
-    grid-area: h;
-    background-color: aqua; 
-}
-
-ut-menu{
-    grid-area: a;
-}
-
-main{
-    grid-area: m;
-    background-color: cornflowerblue;
-}
-
-footer{
-    grid-area: f;
-    background-color: orangered;
-}
