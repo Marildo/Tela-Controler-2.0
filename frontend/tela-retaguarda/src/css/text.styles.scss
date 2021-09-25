@@ -1,7 +1,18 @@
-$title-color:#455a64;
+$color-gray:#455a64;
+$color-light:#F3F5F7;
 
-.ut-title-3{
-    font-size: 3rem;
-    color:    $title-color;
-    margin: .6em;
-  }
+.ut-fc-gray {
+  color:    $color-gray;
+}
+
+.ut-fc-light {
+  color:    $color-light;
+}
+
+.ut-title-1{
+    font-size: 1rem;
+}
+
+.ut-title-2{
+  font-size: .8rem;
+}
