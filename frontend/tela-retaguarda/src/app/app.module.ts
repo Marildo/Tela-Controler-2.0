@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,8 +53,9 @@ import { ProdutosComponent } from './produtos/produtos.component';
     MatFormFieldModule,
     MatInputModule,
     // MatToolbarModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    MatBadgeModule
+ ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,41 @@
+@import "../../../css/variables";
+
+header{
+    background-color: $ut-dark;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: $ut-color-light;
+}
+
+.card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: .5em .3em;
+}
+
+button {
+    background-color:transparent;
+    border: 0px;
+}
+
+button:hover{
+    background-color:$ut-hover-color
+}
+
+.user-panel{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: .5em;
+}
+
+.user-panel mat-icon {
+    margin-right: 0.2em;
+    margin-left: 1em;
+}

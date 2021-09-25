@@ -1,7 +1,8 @@
+@import "../../../css/variables";
+
 aside {
   margin: 0;
   padding: 0.3em;
-  background-color: white;
   height: 100%;
 }
 
@@ -16,7 +17,6 @@ ul {
   list-style: none;
   text-align: left;
   width: 100%;
-
 }
 
 li {
@@ -28,12 +28,12 @@ a {
   display: flex;
   align-items: flex-end;
   text-decoration: none;
-  color: #212121;
+  color: $ut-dark
 }
 
 a:hover{
-  background-color:#cfd8dc;
-  color: #455a64;
+  background-color: $ut-hover-bg;
+  color: $ut-hover-color;
 }
 
 mat-icon {
@@ -41,9 +41,7 @@ mat-icon {
 }
 
 .active-link {
-  background-color:#E7ECEE;
-  color: #005b9f;
-
+  color: $ut-active;
 }
 
 @media only screen and (max-width: 576px) {

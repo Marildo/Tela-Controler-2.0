@@ -1,8 +1,26 @@
 <header>
-    <div>
-        <img src="" alt="">
-        <button mat-raised-button color="primary" (click)="onToogleMenu()">
-            <mat-icon aria-hidden="false" aria-label="Menu"> {{iconMenu}}</mat-icon>
+    <a class="card" routerLink="dashboard">
+        <img src="../../../assets/img/TelaLogoGroud.jpg" alt="logo">
+        <span class="ut-title-1 ut-fc-light">
+            Tela Controler
+        </span>
+        <button (click)="onToogleMenu()">
+            <mat-icon class="ut-fc-light" aria-hidden="false" aria-label="Menu"> {{iconMenu}}</mat-icon>
         </button>
+    </a>
+
+    <div class="user-panel ut-fc-light">
+        <a class="card" routerLink="dashboard">
+            <mat-icon matBadge="4" matBadgeColor="accent"  aria-hidden="false" aria-label="Notifications"> notifications </mat-icon>
+        </a>
+        <a class="card" routerLink="dashboard">
+            <mat-icon aria-hidden="false" aria-label="User"> account_circle </mat-icon>
+            <span class="ut-title-2">
+                Administrador
+            </span>
+        </a>
+        <a class="card" routerLink="dashboard">
+            <mat-icon aria-hidden="false" aria-label="Logout"> logout </mat-icon>
+        </a>
     </div>
 </header>
