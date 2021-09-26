@@ -8,17 +8,16 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  
-  constructor(private http: HttpClient) { }
 
-  onAuthenticate(user: User):void{
-    let data = {
-      email : "maria2@paiva.com",
-      password: "123456789",
-      codigo:'MTM0OTAyMzk2MjAwNjAzOQ=='
-    }
+  private user: User
+  
+  constructor(private http: HttpClient) {
+    this.user = new User()
+   }
+
+  onAuthenticate(data: any):void{
+    console.log(data)
     this.http.post<any>(`${environment.apiUrl}/login`,data)
       .subscribe(resp => console.log(resp));
-    
   }
 }

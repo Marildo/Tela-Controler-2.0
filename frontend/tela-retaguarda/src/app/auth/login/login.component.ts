@@ -1,8 +1,7 @@
-import { User } from './../../core/class/user';
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './../auth.service';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { FormGroup , FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'ut-login',
@@ -10,18 +9,23 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+ 
+  public formLogin: FormGroup;
 
-  public user: User
-
-  constructor(private auth: AuthService) {
-    this.user = new User
+  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+    this.formLogin = this.formBuilder.group({
+      email:['maria2@paiva.com'],
+      password:['123456789'],
+      codigo:['MTM0OTAyMzk2MjAwNjAzOQ==']
+    })
   }
 
   ngOnInit(): void {
+
   }
 
   onLogin() {
-    this.auth.onAuthenticate(this.user);
+    this.auth.onAuthenticate(this.formLogin.value);
   }
 
 }

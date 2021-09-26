@@ -1,14 +1,21 @@
 <main>
     <div class="signin">
-        <span class="ut-title-3">Login</span>
-        <mat-form-field class="input">
-            <input matInput [(ngModel)]="user.email" type="email" placeholder="E-mail" required>
-        </mat-form-field>
+        <h1 class="ut-title-1">Login</h1>
+        <form [formGroup]="formLogin">
+            <mat-form-field class="input">
+                <input formControlName="email" matInput type="email" placeholder="E-mail" required>
+            </mat-form-field>
 
-        <mat-form-field class="input">
-            <input matInput [(ngModel)]="user.password" type="password" placeholder="Senha" required>
-        </mat-form-field>
+            <mat-form-field class="input">
+                <input formControlName="password" matInput  type="password" placeholder="Senha" required>
+            </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="onLogin()">Logar</button>
+            <button mat-raised-button color="primary" (click)="onLogin()">Logar</button>
+        </form>
     </div>
+    <!--
+    <pre>
+        {{ formLogin.value | json }}
+    </pre>
+    -->
 </main>
