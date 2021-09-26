@@ -1,10 +1,9 @@
 export class User {
-    name: string
-    email:string
-
-    constructor() {
-        this.name = ''
-        this.email = ''
+    constructor(
+        public id?:number,
+        public name?:string, 
+        public email?: string, 
+        public permissions?: Array<any>) {
     }
 }
 
