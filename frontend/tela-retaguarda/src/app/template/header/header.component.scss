@@ -9,7 +9,7 @@ header{
 
 a{
     text-decoration: none;
-    color: $ut-color-light;
+    color: $ut-light;
 }
 
 .card {
@@ -19,13 +19,17 @@ a{
     margin: .5em .3em;
 }
 
+.card:hover{
+    color: $ut-yellow;
+}
+
 button {
     background-color:transparent;
     border: 0px;
 }
 
-button:hover{
-    background-color:$ut-hover-color
+.item-h :hover{
+    color: $ut-yellow;
 }
 
 .user-panel{
@@ -39,3 +43,4 @@ button:hover{
     margin-right: 0.2em;
     margin-left: 1em;
 }
+

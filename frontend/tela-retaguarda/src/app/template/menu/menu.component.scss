@@ -28,12 +28,14 @@ a {
   display: flex;
   align-items: flex-end;
   text-decoration: none;
-  color: $ut-dark
+  color: $ut-dark;
+  transition: 0.7s;
 }
 
 a:hover{
   background-color: $ut-hover-bg;
   color: $ut-hover-color;
+  transition: 0.7s;
 }
 
 mat-icon {
