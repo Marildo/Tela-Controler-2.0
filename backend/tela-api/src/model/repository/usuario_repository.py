@@ -63,13 +63,13 @@ class UsuarioRepository(IRepository):
             for item in query.all():
                 perm = item[0]
                 rec = item[1]
+                recurso = StrUtil.normalize(rec.nome).lower()
+                auth = (int(perm.c) * 2) + (int(perm.r) * 4) + (int(perm.u) * 6) + (int(perm.d) * 8) * (
+                        rec.id * len(recurso))
                 resource = {
                     'id': rec.id,
-                    'recurso': StrUtil.normalize(rec.nome).lower(),
-                    'c': int(perm.c),
-                    'r': int(perm.r),
-                    'u': int(perm.u),
-                    'd': int(perm.d),
+                    'recurso': recurso,
+                    'auth': auth
                 }
                 permissions.append(resource)
 
