@@ -1,4 +1,6 @@
+import json
 import logging
+from base64 import b64encode
 from datetime import datetime, timedelta
 from typing import Dict
 
@@ -21,6 +23,9 @@ class JWTService(IAuth):
 
     def encode(self, cnpj: str, payload: Dict) -> str:
         payload['codigo'] = CNPJUtil.encode(cnpj)
+        payload = json.dumps(payload)
+        payload = bytes(payload, 'utf-8')
+        payload = b64encode(payload).decode('utf-8')
         jwt_token = jwt.encode({'exp': self.__expiration, 'payload': payload},
                                key=self.__load_private_key(),
                                algorithm=self.__algorithm)
