@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './../auth.service';
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
  
   public formLogin: FormGroup;
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private auth: AuthService, private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       email:['maria2@paiva.com'],
       password:['123456789'],
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+        
   }
 
   onLogin() {

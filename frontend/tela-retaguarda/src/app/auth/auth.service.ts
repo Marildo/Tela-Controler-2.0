@@ -15,26 +15,33 @@ interface TokenData {
 
 // TODO - separar metodos, class e interfaces
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
-
 
   private TOKEN_NAME = 'usertokenuttc'
   private user: User
+  public previousUrl: string
 
   constructor(private http: HttpClient, private router: Router) {
     this.user = new User
+    this.previousUrl = ''
   }
 
-  onAuthenticate(data: any): void {
+  public onAuthenticate(data: any): void {
     this.http.post<any>(`${environment.apiUrl}/login`, data)
       .subscribe(resp => {
         this.saveToke(resp.token)
         this.validToken()
+
       });
+  }
+
+  public isLogged(): boolean {
+    return this.user?.nome != undefined
+  }
+
+  public getUserName(): any {
+    return this.user?.nome
   }
 
   private saveToke(token: string): void {
@@ -48,9 +55,9 @@ export class AuthService {
     const data: TokenData = jwtDecode(token)
     if (this.validate_expire(data.exp)) {
       this.user = this.validate_payload(data.payload)
-      console.log(this.user)
       this.router.navigate(['/'])
     }
+    this.router.navigate([this.previousUrl])
   }
 
   private validate_expire(exp: any) {
@@ -63,7 +70,7 @@ export class AuthService {
     const data = atob(payload)
     const user: User = JSON.parse(data)
 
-    user.permissoes?.forEach(item => {      
+    user.permissoes?.forEach(item => {
       let auth = item.auth + ''
       const verify = auth.substring(auth.length - 5)
       auth = parseInt(auth.replace(verify, '')) / 3 + ''
@@ -72,15 +79,10 @@ export class AuthService {
         .map(i => parseInt(i))
         .reduce((c, n) => c + n)
 
-      item.auth = total === parseInt(verify) ? parseInt(auth) : -1      
+      item.auth = total === parseInt(verify) ? parseInt(auth) : -1
     })
 
     const valid_permissions = user.permissoes?.filter(item => item.auth < 0).length === 0
     return valid_permissions ? user : new User
   }
-
-  public getUserName(): any {
-    return this.user?.nome
-  }
-
 }
