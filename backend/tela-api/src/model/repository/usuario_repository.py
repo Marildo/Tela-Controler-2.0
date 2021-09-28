@@ -64,12 +64,14 @@ class UsuarioRepository(IRepository):
                 perm = item[0]
                 rec = item[1]
                 recurso = StrUtil.normalize(rec.nome).lower()
-                auth = (int(perm.c) * 2) + (int(perm.r) * 4) + (int(perm.u) * 6) + (int(perm.d) * 8) * (
-                        rec.id * len(recurso))
+                digit = str(rec.id * len(recurso))
+                auth = str(int(perm.c) + 2) + str(int(perm.r) + 4) + str(int(perm.u) + 6) + str(int(perm.d) + 8) + digit
+                verify = str(sum([int(i) for i in auth])).zfill(5)
+
                 resource = {
                     'id': rec.id,
                     'recurso': recurso,
-                    'auth': auth
+                    'auth': str(int(auth) * 3) + verify
                 }
                 permissions.append(resource)
 

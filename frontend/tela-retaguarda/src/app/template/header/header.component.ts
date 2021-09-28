@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public expanded:Boolean 
   public iconMenu:string 
 
-  constructor() {
+  constructor(private auth: AuthService) {
     this.expanded =  true;
     this.iconMenu = 'menu'
   }
@@ -25,4 +26,7 @@ export class HeaderComponent implements OnInit {
     this.iconMenu = this.expanded ? 'menu_open' : 'menu'
   }
 
+  public getUserName(){
+    return this.auth.getUserName()
+  }
 }
