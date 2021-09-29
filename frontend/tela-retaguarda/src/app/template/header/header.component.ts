@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onToogleMenu() {
+  public onToogleMenu() {
     this.toogleMenu.emit()
     this.expanded = !this.expanded
     this.iconMenu = this.expanded ? 'menu_open' : 'menu'
@@ -28,5 +28,9 @@ export class HeaderComponent implements OnInit {
 
   public getUserName(){
     return this.auth.getUserName()
+  }
+
+  public onLogout() {
+    this.auth.onLogout()    
   }
 }

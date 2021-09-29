@@ -20,24 +20,34 @@ export class AuthService {
 
   private TOKEN_NAME = 'usertokenuttc'
   private user: User
-  public previousUrl: string
+  private previousUrl: string
 
   constructor(private http: HttpClient, private router: Router) {
     this.user = new User
-    this.previousUrl = ''
+    this.previousUrl = '/'
   }
 
   public onAuthenticate(data: any): void {
     this.http.post<any>(`${environment.apiUrl}/login`, data)
       .subscribe(resp => {
         this.saveToke(resp.token)
-        this.validToken()
-
+        if (this.validToken()){
+          this.router.navigate([this.previousUrl])
+        }
       });
   }
 
-  public isLogged(): boolean {
-    return this.user?.nome != undefined
+  public onLogout(): void {
+    this.user = new User()
+    const storage: Storage = window.localStorage;
+    storage.removeItem(this.TOKEN_NAME) 
+    this.router.navigate(['/login'])
+  }
+
+  public isLogged(previousUrl:string): boolean {
+    this.previousUrl = previousUrl
+    const logged =  this.user?.id != undefined
+    return logged || this.validToken() 
   }
 
   public getUserName(): any {
@@ -49,15 +59,16 @@ export class AuthService {
     storage.setItem(this.TOKEN_NAME, token)
   }
 
-  private validToken() {
+  private validToken(): boolean {
     const storage: Storage = window.localStorage;
-    const token = storage.getItem(this.TOKEN_NAME) || ''
-    const data: TokenData = jwtDecode(token)
-    if (this.validate_expire(data.exp)) {
-      this.user = this.validate_payload(data.payload)
-      this.router.navigate(['/'])
+    const token = storage.getItem(this.TOKEN_NAME) || undefined
+    if (token != undefined){
+      const data: TokenData = jwtDecode(token)
+      if (this.validate_expire(data.exp)) {
+        this.user = this.validate_payload(data.payload)
+      }
     }
-    this.router.navigate([this.previousUrl])
+    return  this.user?.id != undefined
   }
 
   private validate_expire(exp: any) {
