@@ -1,8 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup , FormBuilder} from '@angular/forms';
 
 import { AuthService } from './../auth.service';
-import { FormGroup , FormBuilder} from '@angular/forms';
+
 
 @Component({
   selector: 'ut-login',
@@ -11,12 +11,14 @@ import { FormGroup , FormBuilder} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
  
-  public formLogin: FormGroup;
+  public formLogin: FormGroup
+  public erroLogin: string
 
-  constructor(private route: ActivatedRoute, private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+    this.erroLogin = ''
     this.formLogin = this.formBuilder.group({
       email:['maria2@paiva.com'],
-      password:['123456789'],
+      password:['tela@123456789'],
       codigo:['MTM0OTAyMzk2MjAwNjAzOQ==']
     })
   }
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.auth.onAuthenticate(this.formLogin.value);
+    this.auth.onAuthenticate(this.formLogin.value)
+    .catch(erro => this.erroLogin = erro)
   }
 
 }

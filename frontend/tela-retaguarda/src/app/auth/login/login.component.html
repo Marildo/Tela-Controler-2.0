@@ -10,8 +10,13 @@
                 <input formControlName="password" matInput  type="password" placeholder="Senha" required>
             </mat-form-field>
 
+            <div>
+                <span>{{ erroLogin }}</span>
+            </div>
+
             <button mat-raised-button color="primary" (click)="onLogin()">Logar</button>
         </form>
+
     </div>
     <!--
     <pre>
