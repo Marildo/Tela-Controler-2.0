@@ -1,6 +1,6 @@
 import json
 import logging
-from base64 import b64encode
+from base64 import b64encode, b64decode
 from datetime import datetime, timedelta
 from typing import Dict
 
@@ -34,11 +34,10 @@ class JWTService(IAuth):
     def decode(self, token) -> Credential:
         private_key = self.__load_private_key()
         data = jwt.decode(token, private_key.public_key(), algorithms=self.__algorithm)
-        payload = data['payload']
+        payload = json.loads(b64decode(data['payload']).decode('utf-8'))
         user_id = payload['id']
-        permissoes = payload['permissoes']
         cnpj = CNPJUtil.decode(payload['codigo'])
-        return Credential(cnpj=cnpj, user_id=user_id, permissoes=permissoes)
+        return Credential(cnpj=cnpj, user_id=user_id)
 
     def __load_private_key(self):
         with open(self.__file_key, "rb") as key_file:

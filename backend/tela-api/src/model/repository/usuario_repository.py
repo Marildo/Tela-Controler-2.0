@@ -1,9 +1,8 @@
 from typing import List
 
-from sqlalchemy import text
+from sqlalchemy import text, and_
 from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
-from telacore.utils import StrUtil
 from telacore.utils.logger_util import log_error
 
 from src.model.entities import Usuario, Permissao, Recurso
@@ -53,26 +52,14 @@ class UsuarioRepository(IRepository):
         with self.connection.engine.begin() as conn:
             conn.execute(sql, params)
 
-    def load_permissions(self, user_id: int) -> List:
+    def load_permissions(self, user_id: int, resource: str = None) -> List:
         with self.connection as conn:
+            filters = [Permissao.usuario_id == user_id]
+            if resource is not None:
+                filters.append(Recurso.nome == resource)
+
             query = conn.session.query(Permissao, Recurso) \
                 .join(Recurso, Permissao.recurso_id == Recurso.id) \
-                .filter(Permissao.usuario_id == user_id)
+                .filter(and_(*filters))
 
-            permissions = []
-            for item in query.all():
-                perm = item[0]
-                rec = item[1]
-                recurso = StrUtil.normalize(rec.nome).lower()
-                digit = str(rec.id * len(recurso))
-                auth = str(int(perm.c) + 2) + str(int(perm.r) + 4) + str(int(perm.u) + 6) + str(int(perm.d) + 8) + digit
-                verify = str(sum([int(i) for i in auth])).zfill(5)
-
-                resource = {
-                    'id': rec.id,
-                    'recurso': recurso,
-                    'auth': str(int(auth) * 3) + verify
-                }
-                permissions.append(resource)
-
-            return permissions
+            return query.all()

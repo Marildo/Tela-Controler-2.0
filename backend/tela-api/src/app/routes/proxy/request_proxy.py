@@ -6,6 +6,7 @@ from telacore.exceptions import UnauthorizationException
 from telacore.models import Credential
 from webargs.flaskparser import parser
 
+from src.model.repository import UsuarioRepository
 from src.services import AuthService
 
 
@@ -29,21 +30,20 @@ class RequestProxy:
         except Exception as error:
             raise UnauthorizationException(401, error.args[0])
 
-        self.check_resource(credential.permissoes)
+        self.check_resource(credential)
         return credential
 
     def validate_args(self, validations: Dict, location: Location = Location.JSON) -> Dict:
         args = parser.parse(validations, request, location=location.value)
         return args
 
-    def check_resource(self, permissoes):
+    @staticmethod
+    def check_resource(credential: Credential):
         error = UnauthorizationException(403, 'Operation not allowed for this user')
-
         resource = request.url_rule.rule.split('/')[1].split('_')[0]
-        permissions = list(filter(lambda x: x.get('recurso') == resource, permissoes))
 
-        if not permissions:
-            raise error
+        repository = UsuarioRepository(credential.cnpj)
+        permissions = repository.load_permissions(credential.id, resource=resource)
 
         map_method = {
             'POST': 'c',
@@ -52,9 +52,12 @@ class RequestProxy:
             'PATCH': 'u',
             'DELETE': 'd'
         }
-        permissions = permissions[0]
         method = map_method.get(request.method)
-        allowed = permissions.get(method)
+        allowed = False
+        for item in permissions:
+            perm = item[0]
+            allowed = getattr(perm, method)
+
         if not allowed:
             raise error
 
