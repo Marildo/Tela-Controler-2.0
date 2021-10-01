@@ -1,6 +1,6 @@
 <main>
     <div class="signin">
-        <h1 class="ut-title-1">Login</h1>
+        <h1 class="ut-fc-gray">Login</h1>
         <form [formGroup]="formLogin">
             <mat-form-field class="input">
                 <input formControlName="email" matInput type="email" placeholder="E-mail" required>
@@ -9,14 +9,11 @@
             <mat-form-field class="input">
                 <input formControlName="password" matInput  type="password" placeholder="Senha" required>
             </mat-form-field>
-
-            <div>
-                <span>{{ erroLogin }}</span>
-            </div>
+       
 
             <button mat-raised-button color="primary" (click)="onLogin()">Logar</button>
         </form>
-
+        <span class="ut-error" *ngIf="erroLogin != ''">  {{ erroLogin }} </span>
     </div>
     <!--
     <pre>

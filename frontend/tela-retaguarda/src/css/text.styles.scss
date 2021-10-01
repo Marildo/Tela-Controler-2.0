@@ -1,18 +1,21 @@
-$color-gray:#455a64;
-$color-light:#F3F5F7;
+@import 'variables';
+
 
 .ut-fc-gray {
-  color:    $color-gray;
+  color:    $ut-gray;
 }
 
 .ut-fc-light {
-  color:    $color-light;
+  color:    $ut-light;
 }
 
-.ut-title-1{
-    font-size: 1rem;
-}
 
-.ut-title-2{
-  font-size: .8rem;
+.ut-error {
+  color:$ut-orange;
+  background-color: #ffebee;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 500;
+  display: block;
+  width: 100%;
 }
