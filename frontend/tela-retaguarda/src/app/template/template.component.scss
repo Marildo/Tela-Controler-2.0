@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 8vh auto 3vh;
-    grid-template-areas: 
+    grid-template-areas:
         "h h"
         "a m"
         "f f";
@@ -29,7 +29,7 @@ ut-footer{
     #container {
         grid-template-columns: 1fr;
         grid-template-rows: 10vh 85vh 5vh;
-        grid-template-areas: 
+        grid-template-areas:
             "h"
             "m"
             "f";

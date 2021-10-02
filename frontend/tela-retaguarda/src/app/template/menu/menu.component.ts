@@ -39,7 +39,8 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
     { title: 'Pedidos', icon: 'receipt_long', path: '/pedidos'},
     { title: 'Produtos', icon: 'inventory', path: '/produtos'},
     { title: 'Clientes', icon: 'supervisor_account', path: '/clientes'},
-    { title: 'Financeiro', icon: 'request_page', path: '/financeiro'}
+    { title: 'Financeiro', icon: 'request_page', path: '/financeiro'},
+    { title: 'Unidades', icon: 'straighten', path: '/unidades'}
   ]
 
 

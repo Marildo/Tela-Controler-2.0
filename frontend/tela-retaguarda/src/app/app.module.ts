@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { DashboardComponent } from './dashboard/dasboard.component';
 import { ContentComponent } from './template/content/content.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { ProdutosComponent } from './produtos/produtos.component';
+import { UnidadesComponent } from './unidades/unidades.component';
 
 
 
@@ -39,7 +41,8 @@ import { ProdutosComponent } from './produtos/produtos.component';
     DashboardComponent,
     ContentComponent,
     FooterComponent,
-    ProdutosComponent
+    ProdutosComponent,
+    UnidadesComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { ProdutosComponent } from './produtos/produtos.component';
     MatInputModule,
     // MatToolbarModule,
     MatButtonModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule
  ],
   providers: [],
   bootstrap: [AppComponent]

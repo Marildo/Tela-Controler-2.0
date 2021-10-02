@@ -1,47 +1,51 @@
 @import "../../../css/variables";
 
-header{
-    background-color: $ut-dark;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
+  background-color: $ut-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-a{
-    text-decoration: none;
-    color: $ut-light;
+.logo {
+  height: auto;
+}
+
+
+a {
+  text-decoration: none;
+  color: $ut-light;
 }
 
 .card {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: .5em .3em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: .5em .3em;
 }
 
-.card:hover{
-    color: $ut-yellow;
-    cursor: pointer;
+.card:hover {
+  color: $ut-yellow;
+  cursor: pointer;
 }
 
 button {
-    background-color:transparent;
-    border: 0px;
+  background-color: transparent;
+  border: 0px;
 }
 
-.item-h :hover{
-    color: $ut-yellow;
+.item-h :hover {
+  color: $ut-yellow;
 }
 
-.user-panel{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-right: .5em;
+.panel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: .5em;
 }
 
-.user-panel mat-icon {
-    margin-right: 0.2em;
-    margin-left: 1em;
+.panel a mat-icon {
+  margin-right: 0.2em;
+  margin-left: 1em;
 }
-

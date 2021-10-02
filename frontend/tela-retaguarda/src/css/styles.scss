@@ -9,17 +9,20 @@ $ut-accent: mat.define-palette($ut-yellow-palette, 500);
 $ut-warn: mat.define-palette($ut-red-palette, 500);
 
 
-
 $ut-theme: mat.define-light-theme((
   color: (
       primary: $ut-primary,
       accent: $ut-accent,
-      warn: $ut-warn,
+      warn: $ut-warn
     )
   ));
 
-
 @include mat.all-component-themes($ut-theme);
+
+.mat-secondary {
+  color:  #005b9f;
+}
+
 
 
 html,
@@ -30,4 +33,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ut-table {
+  width: 100%;
 }

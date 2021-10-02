@@ -1,3 +1,4 @@
+import { UnidadesComponent } from './unidades/unidades.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
     children: [
       { path: '' , redirectTo: 'dashboard', pathMatch:'full'},
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'produtos', component: ProdutosComponent }
+      { path: 'produtos', component: ProdutosComponent },
+      { path: 'unidades', component: UnidadesComponent }
 
     ]
   },

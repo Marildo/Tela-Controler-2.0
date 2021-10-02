@@ -1,15 +1,18 @@
 <header>
+  <div class="panel">
     <a class="card" routerLink="dashboard">
-        <img src="../../../assets/img/TelaLogoGroud.jpg" alt="logo">
+        <img class="logo" src="../../../assets/img/TelaLogoGroud.jpg" alt="logo">
         <span class="ut-title-1 ut-fc-light card ">
             Tela Controler
         </span>
-        <button (click)="onToogleMenu()">
-            <mat-icon class="ut-fc-light card" aria-hidden="false" aria-label="Menu"> {{iconMenu}}</mat-icon>
-        </button>
     </a>
 
-    <div class="user-panel ut-fc-light">
+    <button mat-icon-button  (click)="onToogleMenu()">
+      <mat-icon class="ut-fc-light card" aria-hidden="false" aria-label="Menu"> {{iconMenu}}</mat-icon>
+    </button>
+  </div>
+
+    <div class="panel ut-fc-light">
         <a class="card" routerLink="dashboard">
             <mat-icon matBadge="4" matBadgeColor="accent" aria-hidden="false" aria-label="Notifications"> notifications
             </mat-icon>
@@ -20,8 +23,11 @@
                 {{getUserName()}}
             </span>
         </a>
-        <a class="card" (click)='onLogout()'>
+        <a class="card"  (click)='onLogout()'>
             <mat-icon aria-hidden="false" aria-label="Logout"> logout </mat-icon>
+            <span class="ut-title-2">
+               Sair
+            </span>
         </a>
     </div>
 </header>
