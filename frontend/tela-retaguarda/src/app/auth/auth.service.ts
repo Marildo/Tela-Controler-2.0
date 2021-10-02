@@ -57,6 +57,12 @@ export class AuthService {
     return logged || this.validToken()
   }
 
+  public redirectIfLogged(): void{
+    if (this.isLogged('/')){
+      this.router.navigate([this.previousUrl])
+    }
+  }
+
   public getUserName(): any {
     return this.user?.nome
   }
