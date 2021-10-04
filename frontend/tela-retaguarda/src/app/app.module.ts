@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,7 +60,8 @@ import { UnidadesComponent } from './unidades/unidades.component';
     // MatToolbarModule,
     MatButtonModule,
     MatBadgeModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
  ],
   providers: [],
   bootstrap: [AppComponent]

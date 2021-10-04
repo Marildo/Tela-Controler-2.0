@@ -1,43 +1,61 @@
-<button  (click) = "onload()">Load</button>
-
-<table mat-table [dataSource]="unidades" class="mat-elevation-z5 ut-table">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let uni"> {{ uni.id }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="unid">
-    <th mat-header-cell *matHeaderCellDef> Unidade </th>
-    <td mat-cell *matCellDef="let uni"> {{ uni.unid }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="descricao">
-    <th mat-header-cell *matHeaderCellDef> Descrição </th>
-    <td mat-cell *matCellDef="let uni"> {{ uni.descricao }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="fracionavel">
-    <th mat-header-cell *matHeaderCellDef> Fracionável </th>
-    <td mat-cell *matCellDef="let uni"> {{ uni.fracionavel }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef> Ação </th>
-    <td mat-cell *matCellDef="let uni">
+<div class="bd-b-primary-light">
+  <h2>Cadastro de Unidades</h2>
+  <div class="panel-header">
+    <button mat-flat-button color="primary">
+      <mat-icon>add</mat-icon>
+      Nova unidade
+    </button>
+    <div>
+      <input matInput type="text" placeholder="Pesquisar">
       <button mat-icon-button color="secondary">
-        <mat-icon>edit</mat-icon>
+        <mat-icon>search</mat-icon>
       </button>
-      <button mat-icon-button color="warn">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="panel-content">
+  <table *ngIf="unidades.length > 0;else onLoading" mat-table [dataSource]="unidades" class="mat-elevation-z5 ut-table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let uni"> {{ uni.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unid">
+      <th mat-header-cell *matHeaderCellDef> Unidade </th>
+      <td mat-cell *matCellDef="let uni"> {{ uni.unid }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let uni"> {{ uni.descricao }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fracionavel">
+      <th mat-header-cell *matHeaderCellDef> Fracionável </th>
+      <td mat-cell *matCellDef="let uni"> {{ uni.fracionavel }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Ação </th>
+      <td mat-cell *matCellDef="let uni">
+        <button mat-icon-button color="secondary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 
+  </table>
 
-
+  <ng-template #onLoading>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</div>

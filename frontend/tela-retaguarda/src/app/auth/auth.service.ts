@@ -86,6 +86,7 @@ export class AuthService {
   private validate_expire(exp: any) {
     const today = new Date();
     const expDate = new Date().setUTCSeconds(exp);
+    console.log(expDate.valueOf(), today.valueOf())
     return expDate.valueOf() > today.valueOf();
   }
 

@@ -3,11 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Unidade } from './model';
 import { UnidadeService } from './unidade.service';
 
-
-interface Resp {
-  data: Array<any>
-}
-
 @Component({
   selector: 'ut-unidades',
   templateUrl: './unidades.component.html',
@@ -16,14 +11,10 @@ interface Resp {
 export class UnidadesComponent implements OnInit {
 
 
-
   public unidades: Array<Unidade> = []
   public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
 
-
-
   constructor(private unidadeService: UnidadeService) { }
-
 
 
   ngOnInit(): void {
@@ -31,8 +22,9 @@ export class UnidadesComponent implements OnInit {
   }
 
   public onload() {
-    this.unidadeService.load().subscribe(resp => {
-      this.unidades = resp.data
+    this.unidades = []
+    this.unidadeService.load().subscribe(data => {
+      this.unidades = data
     })
   }
 

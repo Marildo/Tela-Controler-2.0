@@ -19,11 +19,6 @@ $ut-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($ut-theme);
 
-.mat-secondary {
-  color:  #005b9f;
-}
-
-
 
 html,
 body {
@@ -37,4 +32,16 @@ body {
 
 .ut-table {
   width: 100%;
+}
+
+.mat-secondary {
+  color:  $secondary-color;
+}
+
+.bg-primary {
+  background-color: $primary-color;
+}
+
+.bd-b-primary-light {
+  border-bottom: 1px solid $primary-color-100;
 }
