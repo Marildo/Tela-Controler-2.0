@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public formLogin: FormGroup
   public erroLogin: String
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService) {
     this.erroLogin = ''
     this.formLogin = this.formBuilder.group({
       email: ['maria2@paiva.com', [Validators.email]],

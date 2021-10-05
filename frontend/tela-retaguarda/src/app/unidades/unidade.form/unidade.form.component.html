@@ -1,0 +1,29 @@
+<main>
+  <h1>Nova unidade</h1>
+  <div>
+    <form [formGroup]="formCadastro">
+      <mat-form-field class="unid">
+        <input formControlName="unid" matInput maxlength="6" type="text" placeholder="Unidade" required>
+      </mat-form-field>
+
+      <mat-form-field class="descricao">
+        <input formControlName="descricao" matInput type="text" placeholder="Descrição" required>
+      </mat-form-field>
+
+      <section>
+        <mat-checkbox color="primary">Facionável</mat-checkbox>
+        <mat-checkbox color="primary">Ativo</mat-checkbox>
+      </section>
+    </form>
+  </div>
+  <section class="flex-end mg-t-3">
+    <button mat-raised-button color="warn" (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" (click)="onSave()">
+      <mat-icon>save</mat-icon>
+      Salvar
+    </button>
+  </section>
+</main>

@@ -45,3 +45,15 @@ body {
 .bd-b-primary-light {
   border-bottom: 1px solid $primary-color-100;
 }
+
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+
+.mg-t-3{
+  margin-top: 3em;
+}
