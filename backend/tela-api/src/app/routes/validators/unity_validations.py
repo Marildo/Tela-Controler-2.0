@@ -9,13 +9,13 @@ CREATE_UNITY_ARGS = {}
 CREATE_UNITY_ARGS.update(unid)
 CREATE_UNITY_ARGS.update(fracionavel)
 CREATE_UNITY_ARGS.update(descricao)
+CREATE_UNITY_ARGS.update(ativo)
 
+
+UPDATE_UNITY_ARGS = CREATE_UNITY_ARGS.copy()
 UPDATE_UNITY_ARGS = {
     'id': fields.Int()
 }
-UPDATE_UNITY_ARGS.update(unid)
-UPDATE_UNITY_ARGS.update(fracionavel)
-UPDATE_UNITY_ARGS.update(descricao)
-UPDATE_UNITY_ARGS.update(ativo)
+
 
 

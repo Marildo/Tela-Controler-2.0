@@ -4,16 +4,16 @@
 @import 'palette.scss';
 
 
-$ut-primary: mat.define-palette($ut-blue-gray-palette, 500);
-$ut-accent: mat.define-palette($ut-yellow-palette, 500);
-$ut-warn: mat.define-palette($ut-red-palette, 500);
+$primary: mat.define-palette($ut-blue-gray-palette, 500);
+$accent: mat.define-palette($ut-yellow-palette, 500);
+$warn: mat.define-palette($ut-red-palette, 500);
 
 
 $ut-theme: mat.define-light-theme((
   color: (
-      primary: $ut-primary,
-      accent: $ut-accent,
-      warn: $ut-warn
+      primary: $primary,
+      accent: $accent,
+      warn: $warn
     )
   ));
 
@@ -35,15 +35,15 @@ body {
 }
 
 .mat-secondary {
-  color:  $secondary-color;
+  color:  $ut-secondary;
 }
 
 .bg-primary {
-  background-color: $primary-color;
+  background-color: $ut-primary;
 }
 
 .bd-b-primary-light {
-  border-bottom: 1px solid $primary-color-100;
+  border-bottom: 1px solid $ut-primary-100;
 }
 
 
@@ -56,4 +56,14 @@ body {
 
 .mg-t-3{
   margin-top: 3em;
+}
+
+
+.notify-success {
+  color: $ut-green !important;
+  background-color: $ut-green-50 !important;
+  border-color: $ut-green-50 !important;
+  .mat-simple-snackbar-action {
+      color:$ut-green !important;
+  }
 }

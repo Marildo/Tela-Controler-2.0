@@ -3,20 +3,23 @@
   <div>
     <form [formGroup]="formCadastro">
       <mat-form-field class="unid">
-        <input formControlName="unid" matInput maxlength="6" type="text" placeholder="Unidade" required>
+        <input formControlName="unid" matInput maxlength="6" type="text" placeholder="Unidade" >
+        <mat-error >{{getErrorMessage("unid")}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="descricao">
-        <input formControlName="descricao" matInput type="text" placeholder="Descrição" required>
+        <input formControlName="descricao" matInput type="text" placeholder="Descrição">
+        <mat-error >{{getErrorMessage("descricao")}}</mat-error>
       </mat-form-field>
 
       <section>
-        <mat-checkbox color="primary">Facionável</mat-checkbox>
-        <mat-checkbox color="primary">Ativo</mat-checkbox>
+        <mat-checkbox formControlName="fracionavel" color="primary">Fracionável</mat-checkbox>
+        <mat-checkbox formControlName="ativo" color="primary">Ativo</mat-checkbox>
       </section>
     </form>
   </div>
-  <section class="flex-end mg-t-3">
+  <mat-error class="mg-t-3" >{{ error }}</mat-error>
+  <footer class="flex-end mg-t-3">
     <button mat-raised-button color="warn" (click)="onCancel()">
       <mat-icon>cancel</mat-icon>
       Cancelar
@@ -25,5 +28,5 @@
       <mat-icon>save</mat-icon>
       Salvar
     </button>
-  </section>
+  </footer>
 </main>

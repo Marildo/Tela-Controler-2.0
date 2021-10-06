@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import {MatSnackBar} from '@angular/material/snack-bar'
 
 @Component({
   selector: 'ut-produtos',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
+  onTest(){
+    this._snackBar.open('Cannonball!!', 'X', {
+      duration: 38 * 1000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['notify-success']
+    });
+  }
 }

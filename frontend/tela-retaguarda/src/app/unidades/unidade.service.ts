@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from './../../environments/environment';
 import { Unidade } from './model';
-import { map, tap, delay } from 'rxjs/operators';
+import { map, tap, delay, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +28,27 @@ export class UnidadeService {
         'Authorization': `Bearer ${this.authService.token}`
       })
     })
-    return this.http.get<Array<Unidade>>(this.API, httpOptions)
+    return this.http.get<any>(this.API, httpOptions)
     .pipe(
-      tap(console.log),
-      delay(1000),
       map(i => i.data),
-      tap(console.log),
+      //tap(console.log),
     )
+  }
+
+  public save(unidade:Unidade) :Observable<any>{
+    const httpOptions = ({
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${this.authService.token}`
+      })
+    })
+
+    return this.http.post<any>(this.API,unidade, httpOptions)
+    .pipe(
+      take(1), // TODO - tentar uma vez e desincreve
+      delay(1000),
+      map(i => i.data)
+    )
+
   }
 }

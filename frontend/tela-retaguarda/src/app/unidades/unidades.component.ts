@@ -31,10 +31,18 @@ export class UnidadesComponent implements OnInit {
   }
 
   public showForm(){
-    const dialogRef = this.dialog.open(UnidadeFormComponent);
+    const dialogRef = this.dialog.open(UnidadeFormComponent,{
+      width: '400px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(result, this.unidades.length)
+      if (result != undefined){
+
+        this.unidades.push(result)
+        console.log(this.unidades.length)
+      }
+
     });
   }
 

@@ -85,9 +85,8 @@ export class AuthService {
 
   private validate_expire(exp: any) {
     const today = new Date();
-    const expDate = new Date().setUTCSeconds(exp);
-    console.log(expDate.valueOf(), today.valueOf())
-    return expDate.valueOf() > today.valueOf();
+    const expDate = new Date(exp * 1000);
+    return expDate > today;
   }
 
   private validate_payload(payload: any): User {
