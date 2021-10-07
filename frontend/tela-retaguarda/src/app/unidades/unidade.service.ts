@@ -30,6 +30,7 @@ export class UnidadeService {
     })
     return this.http.get<any>(this.API, httpOptions)
       .pipe(
+        take(1),
         map(i => i.data),
         //tap(console.log),
       )
@@ -53,6 +54,20 @@ export class UnidadeService {
         delay(1000),
         map(i => i.data)
       )
+  }
 
+  public delete(_id:number): Observable<Array<Unidade>> {
+    const httpOptions = ({
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.token}`
+      })
+    })
+    const url = `${this.API}/${_id}`
+    return this.http.delete<any>(url, httpOptions)
+      .pipe(
+        take(1),
+        map(i => i.data),
+      )
   }
 }

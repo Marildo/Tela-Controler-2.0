@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { Unidade } from './model';
 import { UnidadeService } from './unidade.service';
 import { UnidadeFormComponent } from './unidade.form/unidade.form.component'
+import { NotifyService } from '../shared/notify.service';
 
 @Component({
   selector: 'ut-unidades',
@@ -16,7 +17,10 @@ export class UnidadesComponent implements OnInit {
   public unidades: Array<Unidade> = []
   public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
 
-  constructor(private dialog: MatDialog, private unidadeService: UnidadeService) { }
+  constructor(
+    private dialog: MatDialog,
+    private notify: NotifyService,
+    private unidadeService: UnidadeService) { }
 
 
   ngOnInit(): void {
@@ -27,6 +31,7 @@ export class UnidadesComponent implements OnInit {
     this.unidades = []
     this.unidadeService.load().subscribe(data => {
       this.unidades = data
+      console.log('Length: ', data.length)
     })
   }
 
@@ -36,6 +41,13 @@ export class UnidadesComponent implements OnInit {
 
   public editUnidade(unidade:Unidade){
     this.openForm(unidade)
+  }
+
+  public deleteUnidade(_id:number){
+    this.unidadeService.delete(_id).subscribe(() => {
+      this.notify.success('Unidade removida com sucesso!')
+      this.unidades = this.unidades.filter( item => item.id != _id)
+    })
   }
 
   private openForm(unidade: Unidade) {
@@ -49,6 +61,8 @@ export class UnidadesComponent implements OnInit {
       if (result != undefined) {
         // TODO - Validar antes de inserir
         this.unidades.push(result)
+
+        this.unidades.forEach(console.log)
       }
 
     });
