@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
 
 import { Unidade } from './model';
 import { UnidadeService } from './unidade.service';
@@ -30,17 +30,25 @@ export class UnidadesComponent implements OnInit {
     })
   }
 
-  public showForm(){
-    const dialogRef = this.dialog.open(UnidadeFormComponent,{
+  public addUnidade() {
+    this.openForm({ id: 0, descricao: '', unid: '', fracionavel: false, ativo: true })
+  }
+
+  public editUnidade(unidade:Unidade){
+    this.openForm(unidade)
+  }
+
+  private openForm(unidade: Unidade) {
+    const dialogRef = this.dialog.open(UnidadeFormComponent, {
+      data: unidade,
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result, this.unidades.length)
-      if (result != undefined){
-
+      if (result != undefined) {
+        // TODO - Validar antes de inserir
         this.unidades.push(result)
-        console.log(this.unidades.length)
       }
 
     });

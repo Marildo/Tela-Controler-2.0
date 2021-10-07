@@ -45,7 +45,9 @@ class BaseController(ABC):
             return data, 200
 
     def create_and_dump(self, data: Dict) -> Tuple[Dict, int]:
+        data['id'] = None
         with self.repository as rep:
+            print(data)
             entity = self.ClassEntity(**data)
             rep.save(entity)
             data = self.schema.dump(entity)

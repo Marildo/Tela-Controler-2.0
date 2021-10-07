@@ -9,5 +9,6 @@ export interface Unidade {
   id: number
   unid: string
   descricao:string
-  fracionalvel:boolean
+  fracionavel:boolean
+  ativo:boolean
 }

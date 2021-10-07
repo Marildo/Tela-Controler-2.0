@@ -8,6 +8,7 @@ from werkzeug.exceptions import UnprocessableEntity
 
 
 # TODO - Traduzir mensagem de erros
+# TODO - Retornar erro sempre dentro de um array
 
 def http_response(func) -> Response:
     @wraps(func)

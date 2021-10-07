@@ -1,7 +1,7 @@
 <div class="bd-b-primary-light">
   <h2 class="ut-fc-gray">Cadastro de Unidades</h2>
   <div class="panel-header">
-    <button mat-flat-button color="primary" (click)="showForm()">
+    <button mat-flat-button color="primary" (click)="addUnidade()">
       <mat-icon>add</mat-icon>
       Nova unidade
     </button>
@@ -39,7 +39,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Ação </th>
       <td mat-cell *matCellDef="let uni">
-        <button mat-icon-button color="secondary">
+        <button mat-icon-button color="secondary" (click)='editUnidade(uni)'>
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn">
