@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, Tuple
 
 from marshmallow_sqlalchemy import SQLAlchemySchema
-from telacore.models import Credential
+from telacore.models import Credential, QueryPage
 
 from src.model.entities import BaseEntity
 from src.model.repository import IRepository
@@ -30,9 +30,9 @@ class BaseController(ABC):
         repository = self.ClassRepository(self.cnpj)
         return repository
 
-    def read_all_and_dump(self) -> Tuple[Dict, int]:
+    def read_all_and_dump(self, query: QueryPage) -> Tuple[Dict, int]:
         with self.repository as rep:
-            result = rep.find_all(self.ClassEntity)
+            result = rep.find_all(self.ClassEntity, query)
             data = self.schema.dump(result, many=True)
 
             return data, 200

@@ -1,9 +1,11 @@
 from abc import ABC
 from typing import Dict, List, Union
 
+import sqlalchemy
 from sqlalchemy import update, delete
 from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
+from telacore.models import QueryPage
 from telacore.utils.logger_util import log_error
 
 from src.model.config import DBConfig
@@ -24,10 +26,22 @@ class IRepository(ABC):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.close()
 
-    def find_all(self, entity: BaseEntity) -> List[BaseEntity]:
+    def find_all(self, entity: BaseEntity, query_page: QueryPage) -> List[BaseEntity]:
         with self.connection as conn:
             try:
-                result = conn.session.query(entity).all()
+                # TODO - Tratar erro de ordenacao com campo inexistente
+                base_query = conn.session.query(entity)
+                total = base_query.count()
+
+                sort = self.order_field(query_page)
+
+                query = (base_query
+                         .order_by(sort)
+                         .limit(query_page.size)
+                         .offset(query_page.page)
+                         )
+
+                result = query.all()
                 return result
             except Exception as e:
                 log_error(e)
@@ -84,3 +98,11 @@ class IRepository(ABC):
                 conn.session.rollback()
                 log_error(e)
                 raise DataBaseException(e)
+
+    def order_field(self, query_page: QueryPage):
+        sort = {
+            'desc': sqlalchemy.desc,
+            'asc': sqlalchemy.asc
+        }
+        function_order = sort[query_page.sort]
+        return function_order(query_page.orderby)

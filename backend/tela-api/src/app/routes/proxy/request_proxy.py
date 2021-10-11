@@ -3,7 +3,7 @@ from typing import Dict
 
 from flask import request
 from telacore.exceptions import UnauthorizationException
-from telacore.models import Credential
+from telacore.models import Credential, QueryPage
 from webargs.flaskparser import parser
 
 from src.model.repository import UsuarioRepository
@@ -36,6 +36,20 @@ class RequestProxy:
     def validate_args(self, validations: Dict, location: Location = Location.JSON) -> Dict:
         args = parser.parse(validations, request, location=location.value)
         return args
+
+    @staticmethod
+    def query_page() -> QueryPage:
+        page = request.args.get('page')
+        size = request.args.get('size')
+        order = request.args.get('orderby')
+
+        order_by = None
+        sort = None
+        if order:
+            order = order.split(':')
+            order_by = order[0]
+            sort = order[-1]
+        return QueryPage(page, size, order_by, sort)
 
     @staticmethod
     def check_resource(credential: Credential):
