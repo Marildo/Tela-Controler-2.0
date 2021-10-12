@@ -14,8 +14,8 @@ def http_response(func) -> Response:
     @wraps(func)
     def decorator(*args, **kwargs):
         try:
-            data, code = func(*args, **kwargs)
-            response = TelaResponse(data=data, code=code)
+            data, code, pagination = func(*args, **kwargs)
+            response = TelaResponse(data=data, code=code, pagination=pagination)
         except UnprocessableEntity as error:
             code = error.code
             args = error.exc.args[0]

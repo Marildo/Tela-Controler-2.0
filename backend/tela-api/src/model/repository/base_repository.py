@@ -1,11 +1,11 @@
 from abc import ABC
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Tuple
 
 import sqlalchemy
 from sqlalchemy import update, delete
 from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
-from telacore.models import QueryPage
+from telacore.models import QueryPage, Pagination
 from telacore.utils.logger_util import log_error
 
 from src.model.config import DBConfig
@@ -26,7 +26,7 @@ class IRepository(ABC):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.close()
 
-    def find_all(self, entity: BaseEntity, query_page: QueryPage) -> List[BaseEntity]:
+    def find_all(self, entity: BaseEntity, query_page: QueryPage) -> Tuple[List[BaseEntity], Pagination]:
         with self.connection as conn:
             try:
                 # TODO - Tratar erro de ordenacao com campo inexistente
@@ -38,10 +38,10 @@ class IRepository(ABC):
                 query = (base_query
                          .order_by(sort)
                          .limit(query_page.size)
-                         .offset(query_page.page)
+                         .offset(query_page.offset)
                          )
-
-                result = query.all()
+                data = query.all()
+                result = data, Pagination(total=total, page=query_page.page, size=query_page.size)
                 return result
             except Exception as e:
                 log_error(e)
