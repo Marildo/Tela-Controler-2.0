@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from src.model.config.init_database import init_database
 from src.model.config.db_config import DBConfig
 
+# TODO - Tratar erros com muitas conexoes
 
 class IDBConnection(ABC):
 

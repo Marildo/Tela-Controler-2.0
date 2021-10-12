@@ -1,23 +1,59 @@
 @import '../../css/palette.scss';
 
 .panel-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 0.3em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.3em;
 }
 
-.panel-header input{
-   border: 0.5px solid $ut-primary-100;
-   height: 1.8em;
+.panel-header input {
+  border: 0.5px solid $ut-primary-100;
+  height: 1.8em;
 }
 
-.panel-header input:focus{
-   border-color: $ut-secondary;
-   outline: none;
+.panel-header input:focus {
+  border-color: $ut-secondary;
+  outline: none;
 }
 
 .panel-content {
   margin-top: 0.3em;
 }
 
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.2em;
+  color: $ut-primary;
+  background-color: $ut-primary-50;
+  padding: 0.3em;
+}
+
+.pagination button {
+  padding: 0.3em;
+  cursor: pointer;
+  margin-left: 0.3em;
+  font-family: fantasy;
+  width: 2em;
+}
+
+.pagination button:hover {
+  background-color: $ut-secondary-200;
+  border: 1px solid $ut-secondary;
+}
+
+.pagination button:disabled, button[disabled]:hover{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+
+.active-page {
+  border: 1px solid $ut-secondary-300;
+  background-color: $ut-secondary-100;
+}

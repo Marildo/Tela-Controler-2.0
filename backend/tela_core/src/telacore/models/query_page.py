@@ -1,7 +1,7 @@
 class QueryPage:
     def __init__(self, page: int, size: int, orderby: str, sort: str) -> None:
-        self.page = int(page) if int(page) > 0 else 1
-        self.size = int(size)
+        self.page = int(page) if page and int(page) > 0 else 1
+        self.size = int(size) if size and int(size) > 0 else 50
         self.orderby = orderby
         self._sort = sort
 

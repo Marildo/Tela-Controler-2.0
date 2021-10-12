@@ -5,13 +5,15 @@ import { Injectable } from '@angular/core';
 
 
 import { environment } from './../../environments/environment';
-import { Unidade } from './model';
+import { Unidade, TelaResponse } from './model';
 import { map, tap, delay, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UnidadeService {
+
+
 
   private readonly API = `${environment.apiUrl}/unidades`
 
@@ -21,17 +23,19 @@ export class UnidadeService {
 
   // TODO - Centralizar chamada da api em um unico serviço
   // TODO - Tratar erro de API off
-  public load(): Observable<Array<Unidade>> {
+  public load(page: number = 1, size: number = 30): Observable<TelaResponse> {
     const httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.token}`
       })
     })
-    return this.http.get<any>(this.API, httpOptions)
+    let url = `${this.API}?&page=${page}&size=${size}`
+    return this.http.get<any>(url, httpOptions)
       .pipe(
         take(1),
-        map(i => i.data),
+        // delay(5000),
+        // map(i => i.data),
         //tap(console.log),
       )
   }
@@ -45,7 +49,7 @@ export class UnidadeService {
       body: unidade
     })
 
-    const method =  unidade.id === 0 ? 'post' : 'put'
+    const method = unidade.id === 0 ? 'post' : 'put'
     const url = unidade.id === 0 ? this.API : `${this.API}/${unidade.id}`
 
     return this.http.request<any>(method, url, httpOptions)
@@ -56,7 +60,8 @@ export class UnidadeService {
       )
   }
 
-  public delete(_id:number): Observable<Array<Unidade>> {
+  public delete(_id: number): Observable<Array<Unidade>> {
+    // TODO - Perguntar antes se realmente que excluir
     const httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
