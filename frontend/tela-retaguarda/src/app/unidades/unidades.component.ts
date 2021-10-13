@@ -34,7 +34,7 @@ export class UnidadesComponent implements OnInit {
   private onload(page: number = 1) {
     this.loading = true
     this.unidades = []
-    let size = 5
+    let size = 10
     this.unidadeService.load(page, size)
       .subscribe(resp => {
         this.unidades = resp.data
@@ -45,10 +45,10 @@ export class UnidadesComponent implements OnInit {
         this.pages = [0]
         this.pages.shift()
 
+
         let end = 1
         let items_before = 0
         for (let index = this.pagination.page ; index >= end && items_before < 5; index--) {
-          console.log(index)
           items_before++
           this.pages.push(index)
         }
@@ -63,7 +63,14 @@ export class UnidadesComponent implements OnInit {
         }
         this.pages.sort((c,n) => c - n)
 
-        // TODO - Enquanto menor que 10 inserir novamente
+        if (this.pages.length < 10 && this.pagination.total_pages > 10){
+            let index = this.pages[0]
+            while(this.pages.length < 10 && index >=1){
+              index--
+              this.pages.push(index)
+            }
+            this.pages.sort((c,n) => c - n)
+        }
       })
   }
 
