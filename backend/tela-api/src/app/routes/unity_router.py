@@ -15,7 +15,9 @@ unity_router = Blueprint(name=name, import_name=name, url_prefix='/unidades')
 @http_response
 def get():
     controller, proxy = __get_controller()
-    return controller.read_all_and_dump(proxy.query_page())
+    query_page = proxy.query_page()
+    query_page.filter_field = 'unid'
+    return controller.read_all_and_dump(query_page)
 
 
 @unity_router.route('<int:_id>', methods=['GET'])

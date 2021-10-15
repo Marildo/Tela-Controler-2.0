@@ -1,8 +1,8 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from typing import Dict, List, Union, Tuple
 
 import sqlalchemy
-from sqlalchemy import update, delete
+from sqlalchemy import update, delete, and_
 from sqlalchemy.exc import IntegrityError
 from telacore.exceptions import DataBaseException, DuplicateErrorException
 from telacore.models import QueryPage, Pagination
@@ -26,11 +26,26 @@ class IRepository(ABC):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.connection.close()
 
+    @abstractmethod
+    def translate_field(self, fieldname: str):
+        raise NotImplementedError()
+
     def find_all(self, entity: BaseEntity, query_page: QueryPage) -> Tuple[List[BaseEntity], Pagination]:
         with self.connection as conn:
             try:
                 # TODO - Tratar erro de ordenacao com campo inexistente
-                base_query = conn.session.query(entity)
+
+                filters = []
+                field = self.translate_field(query_page.field_name)
+
+                if field:
+                    if query_page.field_like():
+                        filters.append(field.ilike(f'%{query_page.field_value}%'))
+
+                base_query = (conn.session
+                              .query(entity)
+                              .filter(and_(*filters)))
+
                 total = base_query.count()
 
                 sort = self.order_field(query_page)
@@ -100,9 +115,9 @@ class IRepository(ABC):
                 raise DataBaseException(e)
 
     def order_field(self, query_page: QueryPage):
-        sort = {
+        sort_function = {
             'desc': sqlalchemy.desc,
             'asc': sqlalchemy.asc
         }
-        function_order = sort[query_page.sort]
-        return function_order(query_page.orderby)
+        orderby, sort = query_page.orderby()
+        return sort_function[sort](orderby)

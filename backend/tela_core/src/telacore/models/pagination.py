@@ -2,10 +2,10 @@ from typing import Dict
 import math
 
 class Pagination:
-    def __init__(self, total: int, page: str, size: int, ) -> None:
-        self.total = int(total)
-        self.page = int(page)
-        self.size = int(size)
+    def __init__(self, total: int, page: int, size: int, ) -> None:
+        self.total = total
+        self.page = page
+        self.size = size
 
     @property
     def json(self) -> Dict:

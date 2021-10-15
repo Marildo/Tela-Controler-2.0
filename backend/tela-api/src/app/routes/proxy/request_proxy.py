@@ -39,17 +39,7 @@ class RequestProxy:
 
     @staticmethod
     def query_page() -> QueryPage:
-        page = request.args.get('page')
-        size = request.args.get('size')
-        order = request.args.get('orderby')
-
-        order_by = None
-        sort = None
-        if order:
-            order = order.split(':')
-            order_by = order[0]
-            sort = order[-1]
-        return QueryPage(page, size, order_by, sort)
+        return QueryPage(request.args)
 
     @staticmethod
     def check_resource(credential: Credential):

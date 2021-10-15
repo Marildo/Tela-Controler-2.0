@@ -63,3 +63,6 @@ class UsuarioRepository(IRepository):
                 .filter(and_(*filters))
 
             return query.all()
+
+    def translate_field(self, fieldname: str):
+        return None

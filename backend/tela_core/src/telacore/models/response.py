@@ -25,7 +25,7 @@ class TelaResponse:
         result['code'] = self.code
         result['success'] = self.success
         result['data'] = self.data
-        if self.pagination:
+        if self.success and self.pagination:
             result['pagination'] = self.pagination.json
 
         resp = make_response(result)
