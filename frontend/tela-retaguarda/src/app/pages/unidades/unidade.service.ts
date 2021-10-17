@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
-import { AuthService } from './../auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Unidade, TelaResponse } from './model';
 import { map, tap, delay, take } from 'rxjs/operators';
 

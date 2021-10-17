@@ -1,5 +1,5 @@
 import { Unidade } from './../model';
-import { NotifyService } from './../../shared/notify.service';
+import { NotifyService } from 'src/app/shared/notify.service'
 import { UnidadeService } from './../unidade.service';
 import { Component, OnInit, Inject } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

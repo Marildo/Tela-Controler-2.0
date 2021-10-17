@@ -1,4 +1,4 @@
-import { AuthService } from './../../auth/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,8 +9,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toogleMenu = new EventEmitter<void>();
-  public expanded:Boolean 
-  public iconMenu:string 
+  public expanded:Boolean
+  public iconMenu:string
 
   constructor(private auth: AuthService) {
     this.expanded =  true;
@@ -31,6 +31,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLogout() {
-    this.auth.onLogout()    
+    this.auth.onLogout()
   }
 }

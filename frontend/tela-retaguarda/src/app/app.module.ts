@@ -9,16 +9,16 @@ import { AppMaterialModule } from './shared/app-material.module'
 
 import { AppComponent } from './app.component'
 import { LoginComponent } from './auth/login/login.component'
-import { DashboardComponent } from './dashboard/dasboard.component'
-import { IndexComponent } from './index/index.component'
-import { ProdutosComponent } from './produtos/produtos.component'
-import { ContentComponent } from './template/content/content.component'
-import { FooterComponent } from './template/footer/footer.component'
-import { HeaderComponent } from './template/header/header.component'
-import { MenuComponent } from './template/menu/menu.component'
-import { TemplateComponent } from './template/template.component'
-import { UnidadesComponent } from './unidades/unidades.component';
-import { UnidadeFormComponent } from './unidades/unidade.form/unidade.form.component'
+import { DashboardComponent } from './pages/dashboard/dasboard.component'
+import { IndexComponent } from './pages/index/index.component'
+import { ProdutosComponent } from './pages/produtos/produtos.component'
+import { ContentComponent } from './pages/template/content/content.component'
+import { FooterComponent } from './pages/template/footer/footer.component'
+import { HeaderComponent } from './pages/template/header/header.component'
+import { MenuComponent } from './pages/template/menu/menu.component'
+import { TemplateComponent } from './pages/template/template/template.component'
+import { UnidadesComponent } from './pages/unidades/unidades.component';
+import { UnidadeFormComponent } from './pages/unidades/unidade.form/unidade.form.component'
 
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { BreakpointState } from '@angular/cdk/layout';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, SimpleChange } from '@angular/core'
-import { ScreenService } from '../screen.service'
+import { ScreenService } from '../template/screen.service'
 import { delay } from 'rxjs/operators';
 import { Menu } from './menu.model';
 

@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { Unidade, Pagination } from './model';
 import { UnidadeService } from './unidade.service';
 import { UnidadeFormComponent } from './unidade.form/unidade.form.component'
-import { NotifyService } from '../shared/notify.service';
+import { NotifyService } from 'src/app/shared/notify.service';
 
 
 @Component({
