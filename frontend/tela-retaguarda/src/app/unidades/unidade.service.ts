@@ -15,7 +15,7 @@ export class UnidadeService {
 
 
 
-  private readonly API = `${environment.apiUrl}/unidades`
+  private readonly API = `${environment.apiUrl}unidades`
 
   constructor(private http: HttpClient, private authService: AuthService) {
 
@@ -23,14 +23,17 @@ export class UnidadeService {
 
   // TODO - Centralizar chamada da api em um unico serviço
   // TODO - Tratar erro de API off
-  public load(page: number = 1, size: number = 30): Observable<TelaResponse> {
+  public load(page: number = 1, size: number = 30, text: string | undefined = undefined): Observable<TelaResponse> {
     const httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.token}`
       })
     })
-    let url = `${this.API}?&page=${page}&size=${size}`
+    const fieldname= 'unid'
+    const like = text ? `&fieldname=${fieldname}&like=${text}` :''
+    let url = `${this.API}?&page=${page}&size=${size}${like ? like : ''}`
+    console.log(url)
     return this.http.get<any>(url, httpOptions)
       .pipe(
         take(1),
@@ -60,7 +63,7 @@ export class UnidadeService {
       )
   }
 
-  public delete(_id: number): Observable<Array<Unidade>> {
+  public delete(_id: number): Observable<TelaResponse> {
     // TODO - Perguntar antes se realmente que excluir
     const httpOptions = ({
       headers: new HttpHeaders({
@@ -73,6 +76,20 @@ export class UnidadeService {
       .pipe(
         take(1),
         map(i => i.data),
+      )
+  }
+
+  public findByText(text: string): Observable<TelaResponse> {
+    const httpOptions = ({
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.token}`
+      })
+    })
+    const url = `${this.API}/search?text=${text}`
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        take(1)
       )
   }
 }

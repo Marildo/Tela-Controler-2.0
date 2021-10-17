@@ -22,6 +22,7 @@ class QueryPage:
             sort = order[-1]
             sort = sort if sort == 'desc' else 'asc'
             return order[0], sort
+        return None,None
 
     def field_like(self) -> bool:
         self.field_value = self._args['like'] if 'like' in self._args else None

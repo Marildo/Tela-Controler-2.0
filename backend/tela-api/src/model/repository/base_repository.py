@@ -120,4 +120,6 @@ class IRepository(ABC):
             'asc': sqlalchemy.asc
         }
         orderby, sort = query_page.orderby()
-        return sort_function[sort](orderby)
+        if orderby:
+            return sort_function[sort](orderby)
+        return None

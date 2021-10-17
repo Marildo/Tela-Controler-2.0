@@ -37,7 +37,8 @@
   cursor: pointer;
   margin-left: 0.3em;
   font-family: fantasy;
-  width: 2em;
+  font-size: 0.8em;
+  width: 2.3em;
 }
 
 .pagination button:hover {
@@ -57,3 +58,6 @@
   border: 1px solid $ut-secondary-300;
   background-color: $ut-secondary-100;
 }
+
+
+// TODO - Deixa conteudo de tabela sempre com o mesmo tamanho

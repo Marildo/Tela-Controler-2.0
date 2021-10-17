@@ -6,8 +6,8 @@
       Nova unidade
     </button>
     <div>
-      <input matInput type="text" placeholder="Pesquisar">
-      <button mat-icon-button color="secondary">
+      <input matInput type="text" placeholder="Pesquisar" [formControl]="search">
+      <button mat-icon-button color="secondary" (click)="onSearch()">
         <mat-icon>search</mat-icon>
       </button>
     </div>
