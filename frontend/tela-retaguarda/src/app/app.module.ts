@@ -14,6 +14,7 @@ import { TemplateModule } from './pages/template/template.module';
 import { UnidadeFormComponent } from './pages/unidades/unidade.form/unidade.form.component';
 import { UnidadesComponent } from './pages/unidades/unidades.component';
 import { AppMaterialModule } from './shared/modules/app-material.module';
+import { NotFoundComponent } from './pages/others/not-found/not-found.component';
 
 
 
@@ -26,7 +27,8 @@ import { AppMaterialModule } from './shared/modules/app-material.module';
     DashboardComponent,
     ProdutosComponent,
     UnidadesComponent,
-    UnidadeFormComponent
+    UnidadeFormComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
