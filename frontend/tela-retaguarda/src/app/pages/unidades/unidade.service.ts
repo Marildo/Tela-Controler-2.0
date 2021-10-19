@@ -23,7 +23,7 @@ export class UnidadeService {
 
   // TODO - Centralizar chamada da api em um unico serviço
   // TODO - Tratar erro de API off
-  public load(page: number = 1, size: number = 30, text: string | undefined = undefined): Observable<TelaResponse> {
+  public load(page: number = 1, size: number = 30, text: String | undefined = undefined): Observable<TelaResponse> {
     const httpOptions = ({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

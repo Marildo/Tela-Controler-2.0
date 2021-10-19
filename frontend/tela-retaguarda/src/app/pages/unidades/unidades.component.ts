@@ -49,10 +49,10 @@ export class UnidadesComponent implements OnInit {
 
   }
 
-  private onLoad(page: number = 1, text:string = '') {
+  private onLoad(page: number = 1, text:String = '') {
     this.loading = true
     this.unidades = []
-    let size = 10
+    let size = 12
     this.unidadeService.load(page, size, text)
       .subscribe(resp => {
         this.unidades = resp.data
@@ -140,7 +140,8 @@ export class UnidadesComponent implements OnInit {
     return this.pagination.page === this.pagination.total_pages
   }
 
-  onSearch(){
-    console.log(this.search.value)
+  onSearch(text:String){
+    console.log(text)
+    this.onLoad(1,text)
   }
 }

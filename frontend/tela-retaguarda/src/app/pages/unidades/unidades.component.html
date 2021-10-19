@@ -1,18 +1,4 @@
-<div class="bd-b-primary-light">
-  <h2 class="ut-fc-gray">Cadastro de Unidades</h2>
-  <div class="panel-header">
-    <button mat-flat-button color="primary" (click)="addUnidade()">
-      <mat-icon>add</mat-icon>
-      Nova unidade
-    </button>
-    <div>
-      <input matInput type="text" placeholder="Pesquisar" [formControl]="search">
-      <button mat-icon-button color="secondary" (click)="onSearch()">
-        <mat-icon>search</mat-icon>
-      </button>
-    </div>
-  </div>
-</div>
+<ut-toobar title="Cadastro de Unidades" (eventSearch)="onSearch($event)" (eventNew)="addUnidade()" ></ut-toobar>
 
 <div class="panel-content">
   <div *ngIf="!loading;else onLoading">

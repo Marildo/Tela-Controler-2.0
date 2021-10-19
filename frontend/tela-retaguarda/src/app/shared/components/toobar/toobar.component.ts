@@ -10,7 +10,9 @@ import { FormControl } from '@angular/forms';
 export class ToobarComponent implements OnInit {
 
   @Input() title = ''
-  @Output() onSearch = new EventEmitter<String>()
+  @Output() eventSearch = new EventEmitter<String>()
+  @Output() eventNew = new EventEmitter<any>()
+
   public search = new FormControl()
 
   constructor() {
@@ -20,9 +22,14 @@ export class ToobarComponent implements OnInit {
         debounceTime(200), // esperar 200 millesegundo
         distinctUntilChanged(), // somente se o valor mudar
         tap(a => console.log(a)),
-      ).subscribe(text => this.onSearch.emit(text))
+      ).subscribe(text => this.eventSearch.emit(text))
   }
 
   ngOnInit(): void {
   }
+
+  onNew(){
+    this.eventNew.emit()
+  }
+
 }
