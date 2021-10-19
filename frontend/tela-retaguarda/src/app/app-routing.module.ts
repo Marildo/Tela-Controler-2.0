@@ -17,10 +17,11 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'produtos', component: ProdutosComponent },
       { path: 'unidades', component: UnidadesComponent },
-      { path: '**', component: NotFoundComponent }
     ]
   },
-  { path: 'login', component: LoginComponent }
+
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

@@ -21,4 +21,8 @@ export class ProdutosComponent implements OnInit {
       panelClass: ['notify-success']
     });
   }
+
+  onSearch(text:String){
+    console.log(text)
+  }
 }

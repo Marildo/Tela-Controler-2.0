@@ -1,0 +1,13 @@
+<div class="panel-header bd-b-primary-light">
+  <div>
+    <span class="title ut-fc-gray">{{title}}</span>
+    <button mat-stroked-button color="secondary" class="ml-1">
+      <!-- (click)="addUnidade()"> -->
+      <mat-icon>add</mat-icon>
+      Novo
+    </button>
+  </div>
+  <div>
+    <input matInput type="text" placeholder="Pesquisar" [formControl]="search">
+  </div>
+</div>
