@@ -1,7 +1,7 @@
-<ut-toobar title="Cadastro de Unidades" (eventSearch)="onSearch($event)" (eventNew)="addUnidade()" ></ut-toobar>
+<ut-toobar title="Cadastro de Unidades" [loading]="loading" icon="straighten" (eventSearch)="onSearch($event)" (eventNew)="addUnidade()" ></ut-toobar>
 
 <div class="panel-content">
-  <div *ngIf="!loading;else onLoading">
+  <div>
     <table mat-table [dataSource]="unidades" class="mat-elevation-z5 ut-table">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -64,7 +64,4 @@
       </div>
     </div>
   </div>
-  <ng-template #onLoading>
-    <mat-spinner></mat-spinner>
-  </ng-template>
 </div>

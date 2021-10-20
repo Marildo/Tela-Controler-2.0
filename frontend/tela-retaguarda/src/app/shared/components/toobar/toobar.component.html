@@ -1,12 +1,18 @@
-<div class="panel-header bd-b-primary-light">
-  <div>
-    <span class="title ut-fc-gray">{{title}}</span>
+<div class="panel panel-header bd-b-primary-light">
+  <div class="panel">
+    <div class="panel panel-icon">
+      <ut-spinner [ngClass]="{'fade-out': !loading}"></ut-spinner>
+      <mat-icon class="mat-icon-hidden" [ngClass]="{'fade-in': !loading}" color="primary">
+        {{icon}}
+      </mat-icon>
+    </div>
+    <span class="title ut-fc-gray">{{title}} </span>
     <button mat-stroked-button color="secondary" (click)="onNew()">
-      <mat-icon>add</mat-icon>
-      Novo
+      <mat-icon>add</mat-icon> Novo
     </button>
   </div>
-  <div>
+  <div class="panel">
+    <mat-icon color="secondary">search</mat-icon>
     <input matInput type="text" placeholder="Pesquisar" [formControl]="search">
   </div>
 </div>

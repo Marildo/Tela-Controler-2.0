@@ -16,7 +16,7 @@ import { UnidadesComponent } from './pages/unidades/unidades.component';
 import { AppMaterialModule } from './shared/modules/app-material.module';
 import { NotFoundComponent } from './pages/others/not-found/not-found.component'
 import { ToobarComponent } from './shared/components/toobar/toobar.component';
-
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 
 
@@ -30,7 +30,9 @@ import { ToobarComponent } from './shared/components/toobar/toobar.component';
     UnidadesComponent,
     UnidadeFormComponent,
     NotFoundComponent,
-    ToobarComponent
+    ToobarComponent,
+    SpinnerComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,9 @@ import { FormControl } from '@angular/forms';
 export class ToobarComponent implements OnInit {
 
   @Input() title = ''
+  @Input() loading = false
+  @Input() icon = ''
+
   @Output() eventSearch = new EventEmitter<String>()
   @Output() eventNew = new EventEmitter<any>()
 

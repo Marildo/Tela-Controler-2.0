@@ -1,17 +1,20 @@
 @import '../../../../css/palette.scss';
 
-.panel-header {
+.panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 0.1em;
+}
+
+.panel-header {
   margin-bottom: 0.3em;
   padding-bottom: 0.3em;
-  padding-right: 0.3em;
 }
 
 .title {
-  margin-right: 2em;
+  margin-right: 1.1em;
   font-size: 1.4em;
   font-weight: 500;
 }
@@ -25,4 +28,55 @@
 .panel-header input:focus {
   border-color: $ut-secondary;
   outline: none;
+}
+
+.panel-icon{
+  justify-content: center;
+  width: 3em;
+  max-height: 2em;
+}
+
+.mat-icon-hidden{
+  display: none;
+}
+
+.fade-out {
+	opacity: 0;
+  width: 1.3em;
+  display: none;
+	animation-name: fadeOutOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeOutOpacity {
+	0% {
+    width: 1.3em;
+    opacity: 0;
+	}
+	100% {
+    width: 0;
+    opacity: 1;
+	}
+}
+
+.fade-in{
+	opacity: 1;
+  display: block;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1.3s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+    display: none;
+		opacity: 0;
+	}
+	100% {
+    display: block;
+    opacity: 1;
+	}
 }
