@@ -17,6 +17,7 @@ import { AppMaterialModule } from './shared/modules/app-material.module';
 import { NotFoundComponent } from './pages/others/not-found/not-found.component'
 import { ToobarComponent } from './shared/components/toobar/toobar.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { PaginationComponent } from './shared/components/pagination/pagination.component';
 
 
 
@@ -32,6 +33,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
     NotFoundComponent,
     ToobarComponent,
     SpinnerComponent,
+    PaginationComponent,
 
   ],
   imports: [

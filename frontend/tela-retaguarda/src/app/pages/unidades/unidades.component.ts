@@ -1,7 +1,7 @@
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog'
 
 import { Unidade, Pagination } from './model';
@@ -20,12 +20,10 @@ export class UnidadesComponent implements OnInit {
 
   public loading = false;
   public unidades: Array<Unidade> = []
-  public pagination: Pagination =  new Pagination()
+  public pagination: Pagination = new Pagination()
   public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
-  public pages: [number]= [1]
   public search = new FormControl()
   // private search$: Observable<any>
-
 
 
   constructor(
@@ -33,23 +31,21 @@ export class UnidadesComponent implements OnInit {
     private notify: NotifyService,
     private unidadeService: UnidadeService) {
 
-      this.search.valueChanges
+    this.search.valueChanges
       .pipe(
         map(v => v.trim()),
         debounceTime(200), // esperar 200 millesegundo
         distinctUntilChanged(), // somente se o valor mudar
         tap(a => console.log(a)),
-      ).subscribe(text =>   this.onLoad(0, text))
-    }
+      ).subscribe(text => this.onLoad(0, text))
+  }
 
 
   ngOnInit(): void {
     this.onLoad()
-
-
   }
 
-  private onLoad(page: number = 1, text:String = '') {
+  private onLoad(page: number = 1, text: String = '') {
     this.loading = true
     this.unidades = []
     let size = 12
@@ -58,35 +54,6 @@ export class UnidadesComponent implements OnInit {
         this.unidades = resp.data
         this.pagination = resp.pagination
         this.loading = false
-
-
-        this.pages = [0]
-        this.pages.shift()
-
-
-        let end = 1
-        let items_before = 0
-        for (let index = this.pagination.page ; index >= end && items_before < 5; index--) {
-          items_before++
-          this.pages.push(index)
-        }
-
-
-        let x =  this.pagination.page + 5 < 10 ? 10  :this.pagination.page + 5
-        end = this.pagination.total_pages < x  ? this.pagination.total_pages : x
-        for (let index = this.pagination.page +1; index <= end; index++) {
-          this.pages.push(index)
-        }
-        this.pages.sort((c,n) => c - n)
-
-        if (this.pages.length < 10 && this.pagination.total_pages > 10){
-            let index = this.pages[0]
-            while(this.pages.length < 10 && index >=1){
-              index--
-              this.pages.push(index)
-            }
-            this.pages.sort((c,n) => c - n)
-        }
       })
   }
 
@@ -123,25 +90,16 @@ export class UnidadesComponent implements OnInit {
     });
   }
 
-  onChangePage(flag: number) {
-    let nextPage = this.pagination.page + flag
-    this.onLoad(nextPage)
-  }
-
-  onloadPage(page:number){
+  onChangePage(page:number){
     this.onLoad(page)
   }
 
-  disabled_previous(){
-    return this.pagination.page === 1
+  onSearch(text: String) {
+    this.onLoad(1, text)
   }
 
-  disabled_next(){
-    return this.pagination.page === this.pagination.total_pages
-  }
-
-  onSearch(text:String){
-    console.log(text)
-    this.onLoad(1,text)
+  // TODO - Deixa dinamico de acordo com o icone do menu
+  get_icon(): string {
+    return 'straighten'
   }
 }

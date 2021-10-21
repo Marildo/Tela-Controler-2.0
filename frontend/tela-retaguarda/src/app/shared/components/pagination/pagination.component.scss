@@ -1,0 +1,45 @@
+@import '../../../../css/palette.scss';
+
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $ut-primary-50;
+  color: $ut-secondary-900;
+  font-weight: 500;
+  padding: 0.3em ;
+}
+
+
+button {
+  padding: 0.3em;
+  cursor: pointer;
+  margin-left: 0.3em;
+  font-family: fantasy;
+  font-size: 0.8em;
+  width: 2.3em;
+  color: $ut-secondary-900;
+  border: 1px solid $ut-secondary-200;
+}
+
+button:hover {
+  background-color: $ut-secondary-200;
+  border: 1px solid $ut-secondary;
+}
+
+button:disabled, button[disabled]:hover{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.simbol{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.active-page {
+  border: 1px solid $ut-secondary-300;
+  background-color: $ut-secondary-100;
+}

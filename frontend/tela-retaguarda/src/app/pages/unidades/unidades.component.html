@@ -1,4 +1,5 @@
-<ut-toobar title="Cadastro de Unidades" [loading]="loading" icon="straighten" (eventSearch)="onSearch($event)" (eventNew)="addUnidade()" ></ut-toobar>
+<ut-toobar title="Cadastro de Unidades" [loading]="loading" [icon]="get_icon()" (eventSearch)="onSearch($event)"
+  (eventNew)="addUnidade()"></ut-toobar>
 
 <div class="panel-content">
   <div>
@@ -39,29 +40,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <div class="pagination">
-      <div>
-        Total de registros {{ pagination.total }}
-      </div>
-      <div>
-        <span>
-          Página {{ pagination.page }} de {{ pagination.total_pages }}
-        </span>
-        <button (click)="onChangePage(-1)" [disabled]="disabled_previous()">
-           <
-        </button>
-
-
-        <button  *ngFor="let item of pages" (click)="onloadPage(item)"
-        [ngClass]="{'active-page': item == pagination.page}">
-           {{item}}
-        </button>
-
-
-        <button (click)="onChangePage(+1)" [disabled]="disabled_next()">
-          >
-        </button>
-      </div>
-    </div>
+    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)" ></ut-pagination>
   </div>
 </div>

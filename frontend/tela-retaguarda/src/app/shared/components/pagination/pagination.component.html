@@ -1,0 +1,25 @@
+<main>
+  <div>
+    Total de registros {{ pagination.total }}
+  </div>
+  <div>
+    <span>
+      Página {{ pagination.page }} de {{ pagination.total_pages }}
+    </span>
+    <button (click)="onPreviusPage()" [disabled]="disabled_previous()" class="simbol">
+      <
+    </button>
+
+      <button *ngFor="let item of pages" (click)="onLoadPage(item)"
+        [ngClass]="{'active-page': item == pagination.page}">
+       {{item}}
+      </button>
+
+      <button (click)="onNextPage()" [disabled]="disabled_next()" class="simbol">
+        >
+      </button>
+  </div>
+</main>
+<pre>
+  {{ pagination | json}}
+</pre>
