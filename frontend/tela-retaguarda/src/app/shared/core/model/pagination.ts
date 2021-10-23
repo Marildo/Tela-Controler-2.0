@@ -5,8 +5,4 @@ export class Pagination {
     public total: number = 0,
     public total_pages: number = 0) {
   }
-
-  public isFirstPage(): boolean {
-    return this.page === 1
-  }
 }

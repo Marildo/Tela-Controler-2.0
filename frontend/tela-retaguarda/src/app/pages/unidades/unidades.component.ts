@@ -1,13 +1,13 @@
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog'
 
-import { Unidade, Pagination } from './model';
+import { Unidade } from './model';
 import { UnidadeService } from './unidade.service';
 import { UnidadeFormComponent } from './unidade.form/unidade.form.component'
 import { NotifyService } from 'src/app/shared/services/notify.service';
+import { Pagination } from 'src/app/shared/core/model/pagination';
 
 
 @Component({

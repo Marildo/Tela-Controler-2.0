@@ -5,15 +5,14 @@ import { Injectable } from '@angular/core';
 
 
 import { environment } from 'src/environments/environment';
-import { Unidade, TelaResponse } from './model';
+import { Unidade } from './model';
 import { map, tap, delay, take } from 'rxjs/operators';
+import { TelaResponse } from 'src/app/shared/core/model/tela-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UnidadeService {
-
-
 
   private readonly API = `${environment.apiUrl}unidades`
 
