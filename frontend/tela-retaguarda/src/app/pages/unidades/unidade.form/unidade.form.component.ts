@@ -1,9 +1,10 @@
-import { Unidade } from './../model';
-import { NotifyService } from 'src/app/shared/services/notify.service'
+
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NotifyService } from 'src/app/core/services/notify.service';
+import Unidade from 'src/app/shared/models/entity/unidade';
 import { UnidadeService } from './../unidade.service';
-import { Component, OnInit, Inject } from '@angular/core'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef ,MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({

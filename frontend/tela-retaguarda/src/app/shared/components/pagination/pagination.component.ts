@@ -1,4 +1,4 @@
-import { Pagination } from './../../core/model/pagination';
+import { Pagination } from '../../models/pagination';
 import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 
 

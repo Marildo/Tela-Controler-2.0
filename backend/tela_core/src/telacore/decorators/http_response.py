@@ -1,20 +1,23 @@
 from functools import wraps
 
 from flask import Response
+from werkzeug.exceptions import UnprocessableEntity
+
 from telacore.exceptions import EntityNotFound, DataBaseException, DuplicateErrorException, UnauthorizationException
 from telacore.models.response import TelaResponse
 from telacore.utils.logger_util import log_error
-from werkzeug.exceptions import UnprocessableEntity
 
 
 # TODO - Traduzir mensagem de erros
 # TODO - Retornar erro sempre dentro de um array
 
-def http_response(func) -> Response:
+def http_response(func) :
     @wraps(func)
     def decorator(*args, **kwargs):
         try:
-            data, code, pagination = func(*args, **kwargs)
+            result = func(*args, **kwargs)
+            data, code = result[0:2]
+            pagination = result[2] if len(result) == 3 else None
             response = TelaResponse(data=data, code=code, pagination=pagination)
         except UnprocessableEntity as error:
             code = error.code

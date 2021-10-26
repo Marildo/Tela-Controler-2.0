@@ -13,7 +13,7 @@ export class ToobarComponent implements OnInit {
   @Input() loading = false
   @Input() icon = ''
 
-  @Output() eventSearch = new EventEmitter<String>()
+  @Output() eventSearch = new EventEmitter<string>()
   @Output() eventNew = new EventEmitter<any>()
 
   public search = new FormControl()

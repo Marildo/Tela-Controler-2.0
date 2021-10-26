@@ -7,8 +7,8 @@ export interface Permission {
 export class User {
     constructor(
         public id?:number,
-        public nome?:string, 
-        public email?: string, 
+        public nome?:string,
+        public email?: string,
         public permissoes?: Array<Permission>) {
     }
 

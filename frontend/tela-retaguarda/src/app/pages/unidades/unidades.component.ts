@@ -1,13 +1,13 @@
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog'
 
-import { Unidade } from './model';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { NotifyService } from 'src/app/core/services/notify.service';
+import Unidade from 'src/app/shared/models/entity/unidade';
+import { Pagination } from 'src/app/shared/models/pagination';
+import { UnidadeFormComponent } from './unidade.form/unidade.form.component';
 import { UnidadeService } from './unidade.service';
-import { UnidadeFormComponent } from './unidade.form/unidade.form.component'
-import { NotifyService } from 'src/app/shared/services/notify.service';
-import { Pagination } from 'src/app/shared/core/model/pagination';
 
 
 @Component({
@@ -45,7 +45,7 @@ export class UnidadesComponent implements OnInit {
     this.onLoad()
   }
 
-  private onLoad(page: number = 1, text: String = '') {
+  private onLoad(page: number = 1, text: string = '') {
     this.loading = true
     this.unidades = []
     let size = 12
@@ -94,7 +94,7 @@ export class UnidadesComponent implements OnInit {
     this.onLoad(page)
   }
 
-  onSearch(text: String) {
+  onSearch(text: string) {
     this.onLoad(1, text)
   }
 
