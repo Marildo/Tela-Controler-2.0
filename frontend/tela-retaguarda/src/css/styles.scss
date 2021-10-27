@@ -9,13 +9,9 @@ $accent: mat.define-palette($ut-yellow-palette, 500);
 $warn: mat.define-palette($ut-red-palette, 500);
 
 
-$ut-theme: mat.define-light-theme((
-  color: (
-      primary: $primary,
+$ut-theme: mat.define-light-theme((color: (primary: $primary,
       accent: $accent,
-      warn: $warn
-    )
-  ));
+      warn: $warn)));
 
 @include mat.all-component-themes($ut-theme);
 
@@ -35,7 +31,7 @@ body {
 }
 
 .mat-secondary {
-  color:  $ut-secondary;
+  color: $ut-secondary;
 }
 
 .bg-primary {
@@ -46,27 +42,43 @@ body {
   border-bottom: 1px solid $ut-primary-100;
 }
 
-.ml-1{
-  margin-left: 3em ;
+.ml-1 {
+  margin-left: 3em;
 }
 
 .flex-end {
   display: flex;
   justify-content: flex-end;
-  gap: 1em;
+  align-items: center;
+  gap: .3em;
 }
 
 
-.mg-t-3{
+.mg-t-3 {
   margin-top: 3em;
+}
+
+.btn-secondary {
+  background: $ut-secondary;
+  color: #fff;
+}
+
+.btn-warn {
+  background: $ut-warn;
+  color: #fff;
+}
+
+.btn-accent {
+  background: $ut-accent;
+  color: #fff;
 }
 
 .notify-success {
   color: $ut-green !important;
   background-color: $ut-green-50 !important;
   border-color: $ut-green-50 !important;
+
   .mat-simple-snackbar-action {
-      color:$ut-green !important;
+    color: $ut-green !important;
   }
 }
-

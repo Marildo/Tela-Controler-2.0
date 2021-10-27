@@ -1,5 +1,5 @@
 @import 'variables';
-
+@import 'palette';
 
 .ut-fc-gray {
   color:    $ut-gray;
@@ -10,6 +10,9 @@
 }
 
 
+.ut-text-primary {
+  color: $ut-primary;
+}
 
 .ut-error {
   color:$ut-orange;

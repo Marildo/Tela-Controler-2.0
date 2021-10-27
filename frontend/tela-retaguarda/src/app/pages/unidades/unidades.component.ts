@@ -1,13 +1,12 @@
-
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import Unidade from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
+import { QuestionService } from './../../shared/components/question/question.service';
 import { UnidadeFormComponent } from './unidade.form/unidade.form.component';
 import { UnidadeService } from './unidade.service';
+
 
 
 @Component({
@@ -22,22 +21,13 @@ export class UnidadesComponent implements OnInit {
   public unidades: Array<Unidade> = []
   public pagination: Pagination = new Pagination()
   public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
-  public search = new FormControl()
-  // private search$: Observable<any>
 
 
   constructor(
     private dialog: MatDialog,
     private notify: NotifyService,
+    private questionService: QuestionService,
     private unidadeService: UnidadeService) {
-
-    this.search.valueChanges
-      .pipe(
-        map(v => v.trim()),
-        debounceTime(200), // esperar 200 millesegundo
-        distinctUntilChanged(), // somente se o valor mudar
-        tap(a => console.log(a)),
-      ).subscribe(text => this.onLoad(0, text))
   }
 
 
@@ -66,10 +56,14 @@ export class UnidadesComponent implements OnInit {
   }
 
   public deleteUnidade(_id: number) {
-    this.unidadeService.delete(_id).subscribe(() => {
-      this.notify.success('Unidade removida com sucesso!')
-      this.unidades = this.unidades.filter(item => item.id != _id)
-    })
+    this.questionService.confirm('Confirma a exclusão da Unidade ?')
+      .then(() => {
+        this.unidadeService.delete(_id).subscribe(() => {
+          this.notify.success('Unidade removida com sucesso!')
+          this.unidades = this.unidades.filter(item => item.id != _id)
+          this.pagination.total--
+        })
+      })
   }
 
   private openForm(unidade: Unidade) {
@@ -90,7 +84,7 @@ export class UnidadesComponent implements OnInit {
     });
   }
 
-  onChangePage(page:number){
+  onChangePage(page: number) {
     this.onLoad(page)
   }
 
