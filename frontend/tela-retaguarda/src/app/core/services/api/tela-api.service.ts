@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -8,35 +8,42 @@ import { TelaResponse } from '../../../shared/models/tela-response';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/auth.service';
 
+interface HttpOptions {
+  headers: HttpHeaders
+  params?: HttpParams
+  body?: any
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class TelaApiService {
 
+
   // TODO - Tratar erro de API off
   // TODO - Tratar erros retornado pela API
+  // TODO - Scrol infinito ao invez de paginacao
 
   private readonly API = `${environment.apiUrl}`
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+  public load(resource: string, page: number = 1, size: number = 30, fieldname: string, like: string = ''): Observable<TelaResponse> {
+    let params = new HttpParams()
+      .append('page', page)
+      .append('size', size)
 
-  private getOptions(body: object | undefined= undefined): object {
-    const httpOptions = ({
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.token}`
-      }),
-      body:body
-    })
-    return httpOptions
-  }
+    if (fieldname != '')
+      params = params.set('fieldname', fieldname)
 
-  public load(resource:string, page: number = 1, size: number = 30, fieldname:string, like: string | undefined = undefined): Observable<TelaResponse> {
-    const _like = like ? `&fieldname=${fieldname}&like=${like}` :''
-    let url = `${this.API}/${resource}?&page=${page}&size=${size}${_like ? _like : ''}`
+    if (like != '')
+      params = params.set('like', like)
 
-    return this.http.get<any>(url, this.getOptions())
+    const options = this.getOptions()
+    options.params = params
+
+    let url = `${this.API}${resource}`
+    return this.http.get<any>(url, options)
       .pipe(
         take(1), // apenas um chamada
         // delay(5000),
@@ -45,21 +52,21 @@ export class TelaApiService {
       )
   }
 
-  public save(resource:string, entity: BaseEntity): Observable<TelaResponse> {
+  public save(resource: string, entity: BaseEntity): Observable<TelaResponse> {
     const method = entity.id === 0 ? 'post' : 'put'
     const url = method === 'post' ? resource : `${this.API}/${resource}/${entity.id}`
 
-    return this.http.request<any>(method, url, this.getOptions(entity))
+    const options = this.getOptions()
+    options.body = entity
+    return this.http.request<any>(method, url, options)
       .pipe(
         take(1), // TODO - tentar uma vez e desincreve
-       // map(i => i.data)
+        // map(i => i.data)
       )
   }
 
 
-  public delete(resource:string, _id: number): Observable<TelaResponse> {
-    // TODO - Perguntar antes se realmente que excluir
-
+  public delete(resource: string, _id: number): Observable<TelaResponse> {
     const url = `${this.API}/${resource}/${_id}`
     return this.http.delete<TelaResponse>(url, this.getOptions())
       .pipe(
@@ -67,4 +74,14 @@ export class TelaApiService {
         //map(i => i.data),
       )
   }
+
+  private getOptions(): HttpOptions {
+    return ({
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.token}`
+      }),
+    })
+  }
+
 }

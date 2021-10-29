@@ -38,7 +38,7 @@ export class UnidadesComponent implements OnInit {
   private onLoad(page: number = 1, text: string = '') {
     this.loading = true
     this.unidades = []
-    let size = 12
+    let size = 10
     this.unidadeService.load(page, size, text)
       .subscribe(resp => {
         this.unidades = resp.data

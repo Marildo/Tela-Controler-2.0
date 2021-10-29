@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
 import Unidade from 'src/app/shared/models/entity/unidade';
 import { TelaResponse } from 'src/app/shared/models/tela-response';
 import { TelaApiService } from '../../core/services/api/tela-api.service';
@@ -15,7 +13,7 @@ export class UnidadeService {
 
   private readonly resource = 'unidades'
 
-  constructor(private api:TelaApiService,  private http: HttpClient, private authService: AuthService) {
+  constructor(private api:TelaApiService) {
 
   }
 
