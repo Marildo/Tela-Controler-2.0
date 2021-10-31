@@ -1,0 +1,12 @@
+<div [formGroup]='formGroup'>
+  <mat-form-field>
+    <input matInput type="text"
+      [formControlName]="controlName"
+      [maxlength]="maxlength"
+      [minlength]="minlength"
+      [placeholder]="title">
+    <mat-error *ngFor="let error of getErrors()">
+      {{error}}
+    </mat-error>
+  </mat-form-field>
+</div>

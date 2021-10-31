@@ -1,0 +1,15 @@
+<div [formGroup]='formGroup'>
+  <mat-form-field>
+    <input matInput type="number"
+      [formControlName]="controlName"
+      [readonly] = "readonly"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [placeholder]="title"
+    >
+    <mat-error *ngFor="let error of getErrors()">
+      {{error}}
+    </mat-error>
+  </mat-form-field>
+</div>

@@ -20,6 +20,9 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { PaginationComponent } from './shared/components/pagination/pagination.component';
 import { QuestionComponent } from './shared/components/question/question.component';
 import { YesNoPipe } from './shared/pipes/yes-no.pipe';
+import { InputTextComponent } from './shared/components/forms/inputs/input-text/input-text.component';
+import { BaseInputComponent } from './shared/components/forms/inputs/base-input/base-input.component';
+import { InputNumberComponent } from './shared/components/forms/inputs/input-number/input-number.component';
 
 
 
@@ -38,6 +41,9 @@ import { YesNoPipe } from './shared/pipes/yes-no.pipe';
     PaginationComponent,
     QuestionComponent,
     YesNoPipe,
+    InputTextComponent,
+    BaseInputComponent,
+    InputNumberComponent,
 
   ],
   imports: [
