@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dasboard.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';

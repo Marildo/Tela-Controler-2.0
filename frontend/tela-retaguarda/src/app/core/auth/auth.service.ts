@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
-import { User } from '../shared/models/user';
+import { User } from '../../shared/models/user';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 interface TokenData {
   exp: Number;

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { BaseEntity } from '../../../shared/models/entity/base';
 import { TelaResponse } from '../../../shared/models/tela-response';
 import { QueryParams } from './../../../shared/models/query-params';
