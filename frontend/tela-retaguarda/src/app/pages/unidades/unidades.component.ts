@@ -63,7 +63,7 @@ export class UnidadesComponent implements OnInit {
           this.unidades = this.unidades.filter(item => item.id != _id)
           this.pagination.total--
         })
-      })
+      }).catch(() => {})
   }
 
   private openForm(unidade: Unidade) {
@@ -77,8 +77,6 @@ export class UnidadesComponent implements OnInit {
       if (result != undefined) {
         // TODO - Validar antes de inserir
         this.unidades.push(result)
-
-        this.unidades.forEach(console.log)
       }
 
     });

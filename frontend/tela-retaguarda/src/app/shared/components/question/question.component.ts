@@ -11,7 +11,7 @@ export class QuestionComponent implements OnInit {
 
   constructor(  private dialogRef: MatDialogRef<QuestionComponent>,
                 @Inject(MAT_DIALOG_DATA) public params: QuestionParams) {
-                  console.log(params)
+
                 }
 
   ngOnInit(): void {

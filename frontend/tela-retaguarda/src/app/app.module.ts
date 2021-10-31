@@ -19,6 +19,7 @@ import { ToobarComponent } from './shared/components/toobar/toobar.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { PaginationComponent } from './shared/components/pagination/pagination.component';
 import { QuestionComponent } from './shared/components/question/question.component';
+import { YesNoPipe } from './shared/pipes/yes-no.pipe';
 
 
 
@@ -36,6 +37,7 @@ import { QuestionComponent } from './shared/components/question/question.compone
     SpinnerComponent,
     PaginationComponent,
     QuestionComponent,
+    YesNoPipe,
 
   ],
   imports: [

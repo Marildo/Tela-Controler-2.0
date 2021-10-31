@@ -21,7 +21,7 @@
 
       <ng-container matColumnDef="fracionavel">
         <th mat-header-cell *matHeaderCellDef> Fracionável </th>
-        <td mat-cell *matCellDef="let uni"> {{ uni.fracionavel }} </td>
+        <td mat-cell *matCellDef="let uni"> {{ uni.fracionavel | yesNo }} </td>
       </ng-container>
 
       <ng-container matColumnDef="action">
