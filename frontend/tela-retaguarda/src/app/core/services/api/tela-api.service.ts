@@ -2,11 +2,12 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-
-import { BaseEntity } from '../../../shared/models/entity/base';
-import { TelaResponse } from '../../../shared/models/tela-response';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../auth/auth.service';
+import { BaseEntity } from '../../../shared/models/entity/base';
+import { TelaResponse } from '../../../shared/models/tela-response';
+import { QueryParams } from './../../../shared/models/query-params';
+
 
 interface HttpOptions {
   headers: HttpHeaders
@@ -28,21 +29,21 @@ export class TelaApiService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  public load(resource: string, page: number = 1, size: number = 30, fieldname: string, like: string = ''): Observable<TelaResponse> {
+  public load(query: QueryParams): Observable<TelaResponse> {
     let params = new HttpParams()
-      .append('page', page)
-      .append('size', size)
+      .append('page', query.page)
+      .append('size', query.size)
 
-    if (fieldname != '')
-      params = params.set('fieldname', fieldname)
+    if (query.fieldname)
+      params = params.set('fieldname', query.fieldname)
 
-    if (like != '')
-      params = params.set('like', like)
+    if (query.like)
+      params = params.set('like', query.like)
 
     const options = this.getOptions()
     options.params = params
 
-    let url = `${this.API}${resource}`
+    let url = `${this.API}${query.resource}`
     return this.http.get<any>(url, options)
       .pipe(
         take(1), // apenas um chamada
