@@ -1,4 +1,11 @@
 <p>dasboard works!</p>
+
+<details id="detail-test">
+  <summary>
+    Alguam
+  </summary>
+
+
 <form action="" [formGroup]="cadastro"  (ngSubmit)="onSubmited()">
 
   <ut-input-text
@@ -22,3 +29,20 @@
 
   <button type="submit">Enviar</button>
 </form>
+</details>
+
+<button (click)="test()">testando</button>
+
+
+<ut-detail [closed]='detailClosed'>
+   outro texto que deveria ficar dentro de detail
+   <ul>
+     <li>1</li>
+     <li>1</li>
+     <li>1</li>
+     <li>1</li>
+     <li>1</li>
+     <li>1</li>
+     <li>1</li>
+   </ul>
+</ut-detail>

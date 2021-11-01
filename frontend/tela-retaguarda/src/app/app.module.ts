@@ -23,6 +23,7 @@ import { YesNoPipe } from './shared/pipes/yes-no.pipe';
 import { InputTextComponent } from './shared/components/forms/inputs/input-text/input-text.component';
 import { BaseInputComponent } from './shared/components/forms/inputs/base-input/base-input.component';
 import { InputNumberComponent } from './shared/components/forms/inputs/input-number/input-number.component';
+import { DetailComponent } from './shared/components/detail/detail.component';
 
 
 
@@ -44,6 +45,7 @@ import { InputNumberComponent } from './shared/components/forms/inputs/input-num
     InputTextComponent,
     BaseInputComponent,
     InputNumberComponent,
+    DetailComponent,
 
   ],
   imports: [

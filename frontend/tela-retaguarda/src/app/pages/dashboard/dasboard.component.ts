@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'ut-dashboard',
@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   cadastro:FormGroup
 
+  detailClosed = true
   constructor( private formBuilder: FormBuilder,) {
     this.cadastro = this.formBuilder.group({
       nome: ['Ma',[Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
@@ -21,5 +22,13 @@ export class DashboardComponent implements OnInit {
 
   onSubmited(){
     console.log(this.cadastro.value)
+  }
+
+  test(){
+    // const detailClientConnector = document.getElementById('detail-test') as HTMLDetailsElement
+    // if (detailClientConnector){
+    //   detailClientConnector.open = ! detailClientConnector.open
+    // }
+    this.detailClosed = !  this.detailClosed
   }
 }
