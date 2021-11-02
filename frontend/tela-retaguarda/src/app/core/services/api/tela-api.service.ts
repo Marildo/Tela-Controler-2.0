@@ -55,7 +55,7 @@ export class TelaApiService {
 
   public save(resource: string, entity: BaseEntity): Observable<TelaResponse> {
     const method = entity.id === 0 ? 'post' : 'put'
-    const url = method === 'post' ? resource : `${this.API}/${resource}/${entity.id}`
+    const url = method === 'post' ? `${this.API}/${resource}` : `${this.API}/${resource}/${entity.id}`
 
     const options = this.getOptions()
     options.body = entity

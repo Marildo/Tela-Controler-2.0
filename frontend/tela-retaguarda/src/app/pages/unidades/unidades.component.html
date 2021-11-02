@@ -1,6 +1,27 @@
 <ut-toobar title="Cadastro de Unidades" [loading]="loading" [icon]="get_icon()" (eventSearch)="onSearch($event)"
   (eventNew)="addUnidade()"></ut-toobar>
 
+<ut-detail [closed]="!editing">
+  <!-- TODO - Definir tamanho de campos  -->
+  <mat-card>
+    <h3 class="ut-fc-gray">{{titleForm}}</h3>
+    <div class="form-line" [formGroup]="formCadastro">
+      <ut-input-number title="Id" controlName="id" [formGroup]="formCadastro" [readonly]=true
+        *ngIf="titleForm != 'Nova Unidade'"></ut-input-number>
+      <ut-input-text title="Unidade" controlName="unid" [formGroup]="formCadastro"></ut-input-text>
+      <ut-input-text title="Descrição" controlName="descricao" [formGroup]="formCadastro"></ut-input-text>
+      <mat-checkbox formControlName="fracionavel" color="primary">Fracionável</mat-checkbox>
+      <mat-checkbox formControlName="ativo" color="primary">Ativo</mat-checkbox>
+      <button mat-raised-button class="btn-secondary" (click)="onSave()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+      <button mat-raised-button color="warn" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Cancelar
+      </button>
+    </div>
+  </mat-card>
+</ut-detail>
+<mat-error>{{ error }}</mat-error>
 <div class="panel-content">
   <div>
     <table mat-table [dataSource]="unidades" class="mat-elevation-z5 ut-table">
@@ -40,6 +61,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)" ></ut-pagination>
+    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)"></ut-pagination>
   </div>
 </div>

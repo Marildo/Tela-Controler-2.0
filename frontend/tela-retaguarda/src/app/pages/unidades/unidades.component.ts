@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import Unidade from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
 import { QuestionService } from './../../shared/components/question/question.service';
-import { UnidadeFormComponent } from './unidade.form/unidade.form.component';
 import { UnidadeService } from './unidade.service';
 
 
@@ -18,16 +17,28 @@ export class UnidadesComponent implements OnInit {
 
 
   public loading = false;
+  public editing = false
   public unidades: Array<Unidade> = []
   public pagination: Pagination = new Pagination()
   public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
+  public error = ''
+  public titleForm = ''
+  public formCadastro: FormGroup
 
 
   constructor(
-    private dialog: MatDialog,
     private notify: NotifyService,
     private questionService: QuestionService,
-    private unidadeService: UnidadeService) {
+    private unidadeService: UnidadeService,
+    private formBuilder: FormBuilder,) {
+
+      this.formCadastro = this.formBuilder.group({
+        id: [null],
+        unid:[null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
+        descricao: [null,[Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
+        fracionavel:[false],
+        ativo:[true]
+      })
   }
 
 
@@ -66,22 +77,6 @@ export class UnidadesComponent implements OnInit {
       }).catch(() => {})
   }
 
-  private openForm(unidade: Unidade) {
-    const dialogRef = this.dialog.open(UnidadeFormComponent, {
-      data: unidade,
-      width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result, this.unidades.length)
-      if (result != undefined) {
-        // TODO - Validar antes de inserir
-        this.unidades.push(result)
-      }
-
-    });
-  }
-
   onChangePage(page: number) {
     this.onLoad(page)
   }
@@ -94,4 +89,32 @@ export class UnidadesComponent implements OnInit {
   get_icon(): string {
     return 'straighten'
   }
+
+  onSave(){
+    this.unidadeService.save(this.formCadastro.value)
+    .subscribe(
+      () =>{
+        this.notify.success('Operacao realizada com sucesso!')
+        this.editing = false
+      },
+      resp_error => {
+        // TODO - tratar erros de forma generica
+        console.log(resp_error.error.data[0]  )
+        this.error = resp_error.error.data.error.description
+      }
+    )
+  }
+
+  onCancel(){
+    this.editing = false
+  }
+
+  private openForm(unidade: Unidade) {
+    this.titleForm = unidade.id === 0 ? 'Nova Unidade':'Alterando Unidade'
+    this.formCadastro.setValue(unidade)
+    this.editing = true
+
+    // this.unidades.push(result)
+  }
+
 }

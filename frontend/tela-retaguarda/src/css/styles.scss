@@ -46,6 +46,14 @@ body {
   margin-left: 3em;
 }
 
+.form-line {
+  display: flex;
+  justify-content: safe;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
 .flex-end {
   display: flex;
   justify-content: flex-end;
