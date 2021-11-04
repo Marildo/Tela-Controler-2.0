@@ -1,3 +1,4 @@
+import { MenuService } from './../../core/services/menu.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
@@ -83,11 +84,6 @@ export class UnidadesComponent implements OnInit {
 
   onSearch(text: string) {
     this.onLoad(1, text)
-  }
-
-  // TODO - Deixa dinamico de acordo com o icone do menu
-  get_icon(): string {
-    return 'straighten'
   }
 
   onSave(){

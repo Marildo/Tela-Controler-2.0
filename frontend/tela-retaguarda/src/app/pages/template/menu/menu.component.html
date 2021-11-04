@@ -1,7 +1,7 @@
 <aside [@toggle]="{value: toggleMenu, params:{smWidth: smWidth, lgWidth:lgWidth }}">
     <nav>
         <ul>
-            <li *ngFor="let item of itemsMenu">
+            <li *ngFor="let item of getItems()">
                 <a [routerLink]="item.path" routerLinkActive="active-link">
                     <mat-icon> {{item.icon}} </mat-icon>
                     {{ item.title }}

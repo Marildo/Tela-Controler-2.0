@@ -1,6 +1,8 @@
-import { map, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { MenuService } from './../../../core/services/menu.service';
 
 @Component({
   selector: 'ut-toobar',
@@ -18,17 +20,20 @@ export class ToobarComponent implements OnInit {
 
   public search = new FormControl()
 
-  constructor() {
+  constructor(private router: Router, private menuService: MenuService) {
     this.search.valueChanges
       .pipe(
         map(v => v.trim()),
-        debounceTime(200), // esperar 200 millesegundo
+        debounceTime(200), // esperar 200 ms
         distinctUntilChanged(), // somente se o valor mudar
         tap(a => console.log(a)),
       ).subscribe(text => this.eventSearch.emit(text))
   }
 
   ngOnInit(): void {
+     if (this.icon == ''){
+       this.icon =  this.menuService.getIconByPath(this.router.routerState.snapshot.url)
+     }
   }
 
   onNew(){

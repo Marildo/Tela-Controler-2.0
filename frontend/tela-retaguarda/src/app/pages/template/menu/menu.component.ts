@@ -1,9 +1,10 @@
+import { MenuService } from './../../../core/services/menu.service';
 import { BreakpointState } from '@angular/cdk/layout';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, SimpleChange } from '@angular/core'
 import { ScreenService } from '../template/screen.service'
 import { delay } from 'rxjs/operators';
-import { Menu } from './menu.model';
+import { ItemMenu } from '../../../shared/models/item-menu';
 
 
 @Component({
@@ -34,17 +35,8 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
   public smWidth = '35px';
   public lgWidth = '160px';
 
-  public itemsMenu:Array<Menu> = [
-    { title: 'Dashboard', icon: 'dashboard', path: '/dashboard'},
-    { title: 'Pedidos', icon: 'receipt_long', path: '/pedidos'},
-    { title: 'Produtos', icon: 'inventory', path: '/produtos'},
-    { title: 'Clientes', icon: 'supervisor_account', path: '/clientes'},
-    { title: 'Financeiro', icon: 'request_page', path: '/financeiro'},
-    { title: 'Unidades', icon: 'straighten', path: '/unidades'}
-  ]
 
-
-  constructor(private screenService: ScreenService) {
+  constructor(private screenService: ScreenService, private menuService:MenuService) {
     this.expandMenu = true
   }
 
@@ -69,6 +61,10 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.screenService.isBelowSm().subscribe().unsubscribe()
+  }
+
+  getItems(){
+    return this.menuService.getItemsMenu()
   }
 
 }
