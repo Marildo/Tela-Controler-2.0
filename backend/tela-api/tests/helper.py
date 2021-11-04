@@ -120,7 +120,7 @@ class Helper(TestCase):
 
     def login(self):
         body = {"email": "maria2@paiva.com",
-                "password": "123456789",
+                "password": "tela@123456789",
                 "codigo": "MTM0OTAyMzk2MjAwNjAzOQ=="}
         response = post(self.host + '/login', json=body)
         self.assertEqual(response.status_code, 200)

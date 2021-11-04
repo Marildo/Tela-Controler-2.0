@@ -15,8 +15,9 @@ section_router = Blueprint(name=name, import_name=name, url_prefix=resource)
 @section_router.route('', methods=['GET'])
 @http_response
 def get():
-    controller, _ = __get_controller()
-    return controller.read_all_and_dump()
+    controller, proxy = __get_controller()
+    query_page = proxy.query_page()
+    return controller.read_all_and_dump(query_page)
 
 
 @section_router.route('<int:_id>', methods=['GET'])
