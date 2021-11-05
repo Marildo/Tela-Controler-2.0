@@ -4,4 +4,5 @@ export interface QueryParams{
    size:number
    fieldname?:string
    like?:string
+   equal?:string
 }

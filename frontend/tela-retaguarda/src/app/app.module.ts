@@ -36,3 +36,7 @@ import { SharedModule } from './shared/shared/shared.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// TODO - Unsubscribe from RxJS Observables
+// TODO - Use Lazy Loading
+// TODO - Ajustar tamanho de campo do front com backend, se possivel carregar do back uma lista e salvar em json e deixar automatico

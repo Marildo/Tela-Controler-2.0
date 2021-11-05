@@ -1,3 +1,62 @@
-<ut-toobar title="Cadastro de Setores" [loading]="loading" (eventSearch)="onSearch($event)"
-  (eventNew)="addSetor()"></ut-toobar>
+<ut-toobar title="Cadastro de setorores" [loading]="loading" (eventSearch)="onSearch($event)"
+  (eventNew)="addItem()"></ut-toobar>
 <p>setores works!</p>
+
+
+<ut-detail [closed]="!editing">
+  <!-- TODO - Definir tamanho de campos  -->
+  <mat-card>
+    <h3 class="ut-fc-gray">{{titleForm}}</h3>
+    <div class="form-line" [formGroup]="formCadastro">
+      <ut-input-number title="Id" controlName="id" [formGroup]="formCadastro" [readonly]=true
+        *ngIf="titleForm != 'Novo Setor'"></ut-input-number>
+      <ut-input-text title="Nome" controlName="nome" [formGroup]="formCadastro"></ut-input-text>
+      <mat-checkbox formControlName="ativo" color="primary">Ativo</mat-checkbox>
+      <button mat-raised-button class="btn-secondary" (click)="onSave()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+      <button mat-raised-button color="warn" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Cancelar
+      </button>
+    </div>
+  </mat-card>
+</ut-detail>
+<mat-error>{{ error }}</mat-error>
+<div class="panel-content">
+  <div>
+    <table mat-table [dataSource]="setores" class="mat-elevation-z5 ut-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let setor"> {{ setor.id }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let setor"> {{ setor.nome }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef> Ativo </th>
+        <td mat-cell *matCellDef="let setor"> {{ setor.ativo | yesNo }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let uni">
+          <button mat-icon-button color="secondary" (click)='editItem(uni)'>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)='deleteItem(uni.id)'>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)"></ut-pagination>
+  </div>
+</div>

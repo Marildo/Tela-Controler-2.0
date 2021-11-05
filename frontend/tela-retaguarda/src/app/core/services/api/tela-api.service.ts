@@ -34,11 +34,12 @@ export class TelaApiService {
       .append('page', query.page)
       .append('size', query.size)
 
-    if (query.fieldname)
-      params = params.set('fieldname', query.fieldname)
-
     if (query.like)
       params = params.set('like', query.like)
+
+
+    if ((query.fieldname) && (query.like || query.equal))
+      params = params.set('fieldname', query.fieldname)
 
     const options = this.getOptions()
     options.params = params

@@ -63,7 +63,7 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
     this.screenService.isBelowSm().subscribe().unsubscribe()
   }
 
-  getItems(){
+  getItems():ItemMenu[]{
     return this.menuService.getItemsMenu()
   }
 

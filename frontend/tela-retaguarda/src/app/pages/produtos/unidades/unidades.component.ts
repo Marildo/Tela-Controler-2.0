@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
-import Unidade from 'src/app/shared/models/entity/unidade';
+import { Unidade } from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
 import { QuestionService } from '../../../shared/components/question/question.service';
 import { UnidadeService } from './unidade.service';
@@ -20,7 +20,7 @@ export class UnidadesComponent implements OnInit {
   public editing = false
   public unidades: Array<Unidade> = []
   public pagination: Pagination = new Pagination()
-  public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel', 'action']
+  public displayedColumns = ['id', 'unid', 'descricao', 'fracionavel','ativo', 'action']
   public error = ''
   public titleForm = ''
   public formCadastro: FormGroup
