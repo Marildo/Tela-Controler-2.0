@@ -1,10 +1,9 @@
-import { MenuService } from './../../core/services/menu.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import Unidade from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
-import { QuestionService } from './../../shared/components/question/question.service';
+import { QuestionService } from '../../../shared/components/question/question.service';
 import { UnidadeService } from './unidade.service';
 
 

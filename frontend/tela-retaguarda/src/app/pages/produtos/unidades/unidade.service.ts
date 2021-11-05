@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Unidade from 'src/app/shared/models/entity/unidade';
 import { TelaResponse } from 'src/app/shared/models/tela-response';
-import { TelaApiService } from '../../core/services/api/tela-api.service';
+import { TelaApiService } from '../../../core/services/api/tela-api.service';
 
 
 

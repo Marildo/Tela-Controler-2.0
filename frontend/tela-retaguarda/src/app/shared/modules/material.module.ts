@@ -35,4 +35,4 @@ import { MatTableModule } from '@angular/material/table';
     MatSnackBarModule
   ]
 })
-export class AppMaterialModule { }
+export class MaterialModule { }

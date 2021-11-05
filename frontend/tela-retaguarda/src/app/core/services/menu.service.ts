@@ -12,7 +12,8 @@ export class MenuService {
     { title: 'Produtos', icon: 'inventory', path: '/produtos' },
     { title: 'Clientes', icon: 'supervisor_account', path: '/clientes' },
     { title: 'Financeiro', icon: 'request_page', path: '/financeiro' },
-    { title: 'Unidades', icon: 'straighten', path: '/unidades' }
+    { title: 'Unidades', icon: 'straighten', path: '/unidades' },
+    { title: 'Setores', icon: 'grid_view', path: '/setores' }
   ]
 
 
