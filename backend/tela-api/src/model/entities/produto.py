@@ -7,8 +7,8 @@ from .base_entity import BaseEntity
 class Produto(BaseEntity):
     __tablename__ = 'produtos'
 
-    codigo = Column(String(60), unique=True, nullable=False)
-    descricao = Column(String(250), default='')
+    codigo = Column(String(30), unique=True, nullable=False)
+    nome = Column(String(250), default='')
     cod_barras = Column(String(14), default='')
     unidade = Column(String(6), ForeignKey('unidades.unid'))
     ncm = Column(String(8), default='')

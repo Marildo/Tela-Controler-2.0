@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgControl, Validators } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import { Unidade } from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
@@ -30,7 +30,7 @@ export class UnidadesComponent implements OnInit {
     private notify: NotifyService,
     private questionService: QuestionService,
     private unidadeService: UnidadeService,
-    private formBuilder: FormBuilder,) {
+    private formBuilder: FormBuilder) {
 
       this.formCadastro = this.formBuilder.group({
         id: [null],

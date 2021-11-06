@@ -5,3 +5,13 @@
 <button mat-fab color="primary" (click)="onTest()">
     <mat-icon >edit</mat-icon>
 </button>
+
+
+<form>
+  <ut-input-text title="Código" controlName="codigo" [formGroup]="formCadastro"></ut-input-text>
+  <ut-input-text title="Nome" controlName="nome" [formGroup]="formCadastro"></ut-input-text>
+</form>
+
+<pre>
+   {{formCadastro.value | json}}
+</pre>

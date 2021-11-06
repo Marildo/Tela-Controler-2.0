@@ -1,12 +1,10 @@
 from webargs import fields, validate
 
-codigo = {'codigo': fields.Str(required=True, validate=[validate.Length(min=5, max=60)])}
-descricao = {'descricao': fields.Str(required=True, validate=[validate.Length(min=5, max=250)])}
+id = {'id': fields.Int()}
+codigo = {'codigo': fields.Str(required=True, validate=[validate.Length(min=1, max=30)])}
+nome = {'nome': fields.Str(required=True, validate=[validate.Length(min=5, max=250)])}
 
-CREATE_PRODUCT_ARGS = dict()
-CREATE_PRODUCT_ARGS.update(codigo)
-CREATE_PRODUCT_ARGS.update(descricao)
-
-UPDATE_PRODUCT_ARGS = dict()
-UPDATE_PRODUCT_ARGS.update(codigo)
-UPDATE_PRODUCT_ARGS.update(descricao)
+PRODUCT_ARGS = dict()
+PRODUCT_ARGS.update(id)
+PRODUCT_ARGS.update(codigo)
+PRODUCT_ARGS.update(nome)

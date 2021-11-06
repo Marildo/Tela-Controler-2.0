@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import {MatSnackBar} from '@angular/material/snack-bar'
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormsService } from './../../../core/services/forms.service';
+
 
 @Component({
   selector: 'ut-produtos',
@@ -8,21 +10,23 @@ import {MatSnackBar} from '@angular/material/snack-bar'
 })
 export class ProdutosComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar) { }
+  public formCadastro: FormGroup
+
+  constructor(private fomrsService: FormsService) {
+    this.formCadastro = fomrsService.buildForm('produtos')
+  }
 
   ngOnInit(): void {
-  }
 
-  onTest(){
-    this._snackBar.open('Cannonball!!', 'X', {
-      duration: 38 * 1000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['notify-success']
-    });
   }
-
-  onSearch(text:String){
+  onSearch(text: String) {
     console.log(text)
   }
+
+  onTest() {
+    console.log(this.formCadastro.controls)
+    console.log(this.formCadastro.value)
+  }
+
+
 }
