@@ -4,7 +4,7 @@ from flask import Blueprint
 from telacore.decorators import http_response
 
 from src.app.routes.proxy import RequestProxy
-from src.app.routes.validators.product_validations import CREATE_PRODUCT_ARGS, UPDATE_PRODUCT_ARGS
+from src.app.routes.validators.product_validations import PRODUCT_ARGS
 from src.controller import ProductController
 
 product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', url_prefix='/produtos')
@@ -28,7 +28,7 @@ def get_by_id(_id: int):
 @http_response
 def __post():
     controller, proxy = __get_controller()
-    args = proxy.validate_args(CREATE_PRODUCT_ARGS)
+    args = proxy.validate_args(PRODUCT_ARGS)
     return controller.create(args)
 
 
@@ -36,7 +36,7 @@ def __post():
 @http_response
 def put(_id: int):
     controller, proxy = __get_controller()
-    args = proxy.validate_args(UPDATE_PRODUCT_ARGS)
+    args = proxy.validate_args(PRODUCT_ARGS)
     return controller.update_and_dump(_id, args)
 
 

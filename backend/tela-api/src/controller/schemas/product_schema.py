@@ -9,8 +9,26 @@ class ProductSchema(SQLAlchemySchema):
         load_instance = True
         model = Produto
 
-    id = auto_field()
     codigo = auto_field()
-    descricao = auto_field()
+    nome = auto_field()
     cod_barras = auto_field()
+    referencia = auto_field()
+    observacao = auto_field()
+
+    pr_venda_vista = auto_field()
+    pr_venda_prazo = auto_field()
+
+    estoque = auto_field()
+    estoque_minimo = auto_field()
+    pr_custo = auto_field()
+    outros = auto_field()
+
+    unidade = auto_field()
+    qtd_embalagem = auto_field()
+    setor_id = auto_field()
     setor = Nested(SectionSchema, exclude=('ativo',))
+
+    ultima_compra = auto_field()
+    ultima_venda = auto_field()
+    ativo = auto_field()
+

@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Blueprint
 from marshmallow import validate
 
-from .validators.product_validations import UPDATE_PRODUCT_ARGS
+from .validators.product_validations import PRODUCT_ARGS
 from .validators.unity_validations import UPDATE_UNITY_ARGS
 
 name = 'IndexRouter'
@@ -19,7 +19,7 @@ def get():
 def validations():
     response = {}
 
-    response.update(load_fiedls('produtos', UPDATE_PRODUCT_ARGS))
+    response.update(load_fiedls('produtos', PRODUCT_ARGS))
     response.update(load_fiedls('unidades', UPDATE_UNITY_ARGS))
     return response
 
@@ -32,7 +32,9 @@ def load_fiedls(name: str, arg):
         for i in values.validators:
             if isinstance(i, validate.Length):
                 propries.update({'length': {'max': i.max, 'min': i.min}})
-                print(i.max)
+            elif isinstance(i,validate.Range):
+                propries.update({'range': {'max': i.max, 'min': i.min}})
+
 
         fields.update({key: propries})
 
