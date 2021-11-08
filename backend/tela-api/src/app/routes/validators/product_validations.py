@@ -12,11 +12,8 @@ PRODUCT_ARGS = {
     'pr_custo': fields.Decimal(required=False, validate=[validate.Range(min=0)]),
     'outros': fields.Decimal(required=False, validate=[validate.Range(min=0)]),
     'estoque_minimo': fields.Decimal(required=False, validate=[validate.Range(min=0)]),
-
     'unidade': fields.Str(required=True, validate=validate.Length(min=2, max=4)),
     'setor_id': fields.Int(required=True),
     'qtd_embalagem': fields.Decimal(required=False),
-
     'ativo': fields.Boolean(),
-
 }

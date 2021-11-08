@@ -4,7 +4,7 @@ from flask import Blueprint
 from telacore.decorators import http_response
 
 from src.app.routes.proxy import RequestProxy
-from src.app.routes.validators.unity_validations import CREATE_UNITY_ARGS, UPDATE_UNITY_ARGS
+from src.app.routes.validators.unity_validations import UNITY_ARGS
 from src.controller import UnityController
 
 name = 'UnityRouter'
@@ -31,7 +31,7 @@ def get_by_id(_id: int):
 @http_response
 def post():
     controller, proxy = __get_controller()
-    args = proxy.validate_args(CREATE_UNITY_ARGS)
+    args = proxy.validate_args(UNITY_ARGS)
     return controller.create_and_dump(args)
 
 
@@ -39,7 +39,7 @@ def post():
 @http_response
 def put(_id: int):
     controller, proxy = __get_controller()
-    args = proxy.validate_args(UPDATE_UNITY_ARGS)
+    args = proxy.validate_args(UNITY_ARGS)
     return controller.update_and_dump(_id, args)
 
 

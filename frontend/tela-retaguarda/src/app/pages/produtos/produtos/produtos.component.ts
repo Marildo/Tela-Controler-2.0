@@ -13,7 +13,7 @@ export class ProdutosComponent implements OnInit {
   public formCadastro: FormGroup
 
   constructor(private fomrsService: FormsService) {
-    this.formCadastro = fomrsService.buildForm('produtos')
+    this.formCadastro = this.fomrsService.buildForm('produtos')
   }
 
   ngOnInit(): void {
