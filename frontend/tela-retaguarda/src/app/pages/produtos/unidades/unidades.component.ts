@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import { Unidade } from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
 import { QuestionService } from '../../../shared/components/question/question.service';
+import { FormsService } from './../../../core/services/forms.service';
 import { UnidadeService } from './unidade.service';
 
 
@@ -30,15 +31,9 @@ export class UnidadesComponent implements OnInit {
     private notify: NotifyService,
     private questionService: QuestionService,
     private unidadeService: UnidadeService,
-    private formBuilder: FormBuilder) {
+    private fomrsService: FormsService) {
 
-      this.formCadastro = this.formBuilder.group({
-        id: [null],
-        unid:[null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
-        descricao: [null,[Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
-        fracionavel:[false],
-        ativo:[true]
-      })
+      this.formCadastro =   this.formCadastro = this.fomrsService.buildForm('unidades')
   }
 
 
@@ -91,6 +86,7 @@ export class UnidadesComponent implements OnInit {
       () =>{
         this.notify.success('Operacao realizada com sucesso!')
         this.editing = false
+        this.formCadastro.reset()
       },
       resp_error => {
         // TODO - tratar erros de forma generica
@@ -101,6 +97,7 @@ export class UnidadesComponent implements OnInit {
   }
 
   onCancel(){
+    this.formCadastro.reset()
     this.editing = false
   }
 

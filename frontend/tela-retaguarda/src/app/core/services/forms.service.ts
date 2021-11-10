@@ -19,51 +19,139 @@ interface Properties {
 export class FormsService {
 
   data: any = {
-    produtos: {
-      codigo: {
-        length: {
-          max: 60,
-          min: 5
-        },
-        required: true
+    "produtos": {
+      "ativo": {
+        "required": false
       },
-      nome: {
-        length: {
-          max: 250,
-          min: 5
+      "cod_barras": {
+        "length": {
+          "max": 14,
+          "min": null
         },
-        required: true
+        "required": true
       },
-      id: {
-        required: false
+      "codigo": {
+        "length": {
+          "max": 30,
+          "min": 1
+        },
+        "required": true
+      },
+      "estoque_minimo": {
+        "range": {
+          "max": null,
+          "min": 0
+        },
+        "required": false
+      },
+      "id": {
+        "required": false
+      },
+      "nome": {
+        "length": {
+          "max": 250,
+          "min": 5
+        },
+        "required": true
+      },
+      "observacao": {
+        "length": {
+          "max": 250,
+          "min": null
+        },
+        "required": true
+      },
+      "outros": {
+        "range": {
+          "max": null,
+          "min": 0
+        },
+        "required": false
+      },
+      "pr_custo": {
+        "range": {
+          "max": null,
+          "min": 0
+        },
+        "required": false
+      },
+      "pr_venda_prazo": {
+        "range": {
+          "max": null,
+          "min": 0.01
+        },
+        "required": false
+      },
+      "pr_venda_vista": {
+        "range": {
+          "max": null,
+          "min": 0.01
+        },
+        "required": false
+      },
+      "qtd_embalagem": {
+        "required": false
+      },
+      "referencia": {
+        "length": {
+          "max": 14,
+          "min": null
+        },
+        "required": true
+      },
+      "setor_id": {
+        "required": true
+      },
+      "unidade": {
+        "length": {
+          "max": 4,
+          "min": 2
+        },
+        "required": true
       }
     },
-    unidades: {
-      ativo: {
-        required: false
+    "setores": {
+      "ativo": {
+        "required": false
       },
-      descricao: {
-        length: {
-          max: 30,
-          min: 1
+      "id": {
+        "required": false
+      },
+      "nome": {
+        "length": {
+          "max": 30,
+          "min": 1
         },
-        required: false
+        "required": true
+      }
+    },
+    "unidades": {
+      "ativo": {
+        "required": false
       },
-      fracionavel: {
-        required: false
-      },
-      id: {
-        required: false
-      },
-      unid: {
-        length: {
-          max: 4,
-          min: 1
+      "descricao": {
+        "length": {
+          "max": 30,
+          "min": 1
         },
-        required: true
+        "required": false
+      },
+      "fracionavel": {
+        "required": false
+      },
+      "id": {
+        "required": false
+      },
+      "unid": {
+        "length": {
+          "max": 4,
+          "min": 2
+        },
+        "required": true
       }
     }
   }
+
 
   constructor(private formBuilder: FormBuilder) { }
 

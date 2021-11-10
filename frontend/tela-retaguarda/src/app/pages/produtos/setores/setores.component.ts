@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Setor } from 'src/app/shared/models/entity/setor';
 import { Pagination } from 'src/app/shared/models/pagination';
+import { FormsService } from './../../../core/services/forms.service';
 import { NotifyService } from './../../../core/services/notify.service';
 import { QuestionService } from './../../../shared/components/question/question.service';
 import { SetorService } from './setor.service';
@@ -26,13 +27,9 @@ export class SetoresComponent implements OnInit {
   constructor(private notify: NotifyService,
     private questionService: QuestionService,
     private setorService: SetorService,
-    private formBuilder: FormBuilder) {
+    private fomrsService: FormsService) {
 
-    this.formCadastro = this.formBuilder.group({
-      id: [null],
-      nome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
-      ativo: [true]
-    })
+    this.formCadastro =   this.formCadastro = this.fomrsService.buildForm('setores')
   }
 
   ngOnInit(): void {
@@ -60,7 +57,7 @@ export class SetoresComponent implements OnInit {
   }
 
   public deleteItem(_id: number) {
-    this.questionService.confirm('Confirma a exclusão da Unidade ?')
+    this.questionService.confirm('Confirma a exclusão do Setor ?')
       .then(() => {
         this.setorService.delete(_id).subscribe(() => {
           this.notify.success('Unidade removida com sucesso!')
@@ -82,18 +79,18 @@ export class SetoresComponent implements OnInit {
     this.setorService.save(this.formCadastro.value)
       .subscribe(
         () => {
+          this.formCadastro.reset()
           this.notify.success('Operacao realizada com sucesso!')
           this.editing = false
         },
         resp_error => {
-          // TODO - tratar erros de forma generica
-          console.log(resp_error.error.data[0])
           this.error = resp_error.error.data.error.description
         }
       )
   }
 
   onCancel() {
+    this.formCadastro.reset()
     this.editing = false
   }
 
