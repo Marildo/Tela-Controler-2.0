@@ -7,9 +7,13 @@ class ProcuctTest(TestCase):
     resource = '/produtos'
 
     entity = {
-        "descricao": helper.generator_words(30),
-        "codigo": helper.generator_number(13)
+        'id': 0,
+        "nome": helper.generator_words(30),
+        "codigo": helper.generator_number(13),
+        "setor_id": helper.generator_number(1),
+        "unidade_id": helper.generator_number(1),
     }
+
 
     def setUp(self) -> None:
         helper.login()
@@ -20,7 +24,7 @@ class ProcuctTest(TestCase):
 
     def test_should_return_403(self):
         url = helper.host + self.resource
-        helper.assert_403(url)        
+        helper.assert_403(url)
 
     def test_should_return_200_and_list(self):
         helper.assert_200_and_list(self.resource)

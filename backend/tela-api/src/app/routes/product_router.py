@@ -13,8 +13,9 @@ product_router = Blueprint(name='ProductRouter', import_name='ProductRouter', ur
 @product_router.route('', methods=['GET'])
 @http_response
 def get():
-    controller, _ = __get_controller()
-    return controller.read_all_and_dump()
+    controller, proxy = __get_controller()
+    query_page = proxy.query_page()
+    return controller.read_all_and_dump(query_page)
 
 
 @product_router.route('<int:_id>', methods=['GET'])
@@ -29,7 +30,7 @@ def get_by_id(_id: int):
 def __post():
     controller, proxy = __get_controller()
     args = proxy.validate_args(PRODUCT_ARGS)
-    return controller.create(args)
+    return controller.create_and_dump(args)
 
 
 @product_router.route('<int:_id>', methods=['PUT'])

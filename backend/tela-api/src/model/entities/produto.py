@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DECIMAL, INTEGER,DATETIME, Boolean, ForeignKey
+from sqlalchemy import Column, String, DECIMAL, INTEGER, DATETIME, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base_entity import BaseEntity
@@ -15,14 +15,16 @@ class Produto(BaseEntity):
 
     pr_venda_vista = Column(DECIMAL(10, 2), default=0.01)
     pr_venda_prazo = Column(DECIMAL(10, 2), default=0.01)
-    pr_custo = Column(DECIMAL(12,3))
-    outros = Column(DECIMAL(12,3))
+    pr_custo = Column(DECIMAL(12, 3), default=0.01)
+    outros = Column(DECIMAL(12, 3), default=0.01)
 
     estoque = Column(DECIMAL(12, 3), default=0.0)
     estoque_minimo = Column(DECIMAL(10, 2))
 
-    unidade = Column(String(6), ForeignKey('unidades.unid'), nullable=False)
-    qtd_embalagem = Column(DECIMAL(10,2), default=0.0)
+    qtd_embalagem = Column(DECIMAL(10, 2), default=0.0)
+    unidade_id = Column(INTEGER, ForeignKey('unidades.id'), nullable=False)
+    unidade = relationship('Unidade')
+
     setor_id = Column(INTEGER, ForeignKey('setores.id'), nullable=False)
     setor = relationship('Setor')
 

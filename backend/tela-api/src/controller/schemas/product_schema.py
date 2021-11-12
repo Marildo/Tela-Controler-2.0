@@ -1,7 +1,8 @@
 from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
-from marshmallow_sqlalchemy.fields import Nested
-from .section_schema import SectionSchema
+from marshmallow_sqlalchemy.fields import Nested, fields
+
 from src.model.entities import Produto
+from .section_schema import SectionSchema
 
 
 class ProductSchema(SQLAlchemySchema):
@@ -15,20 +16,19 @@ class ProductSchema(SQLAlchemySchema):
     referencia = auto_field()
     observacao = auto_field()
 
-    pr_venda_vista = auto_field()
-    pr_venda_prazo = auto_field()
+    pr_venda_vista = fields.String()
+    pr_venda_prazo = fields.String()
 
-    estoque = auto_field()
-    estoque_minimo = auto_field()
-    pr_custo = auto_field()
-    outros = auto_field()
+    estoque = fields.String()
+    estoque_minimo = fields.String()
+    pr_custo = fields.String()
+    outros = fields.String()
 
-    unidade = auto_field()
-    qtd_embalagem = auto_field()
-    setor_id = auto_field()
+    qtd_embalagem = fields.String()
+
+    unidade = Nested(SectionSchema, exclude=('ativo',))
     setor = Nested(SectionSchema, exclude=('ativo',))
 
-    ultima_compra = auto_field()
-    ultima_venda = auto_field()
+    ultima_compra = fields.String()
+    ultima_venda = fields.String()
     ativo = auto_field()
-

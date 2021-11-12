@@ -16,6 +16,6 @@ class ProductController(BaseController):
         self.ClassRepository = ProdutoRepository
         self.ClassEntity = Produto
 
-    def create(self, args: Dict) -> Tuple:
-        product = Produto(**args)
-        return self.create_and_dump(product)
+    # def create(self, args: Dict) -> Tuple:
+    #     # product = Produto(**args)
+    #     return self.create_and_dump(args)

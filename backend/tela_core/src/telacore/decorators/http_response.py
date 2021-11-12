@@ -1,6 +1,5 @@
 from functools import wraps
 
-from flask import Response
 from werkzeug.exceptions import UnprocessableEntity
 
 from telacore.exceptions import EntityNotFound, DataBaseException, DuplicateErrorException, UnauthorizationException
@@ -11,7 +10,7 @@ from telacore.utils.logger_util import log_error
 # TODO - Traduzir mensagem de erros
 # TODO - Retornar erro sempre dentro de um array
 
-def http_response(func) :
+def http_response(func):
     @wraps(func)
     def decorator(*args, **kwargs):
         try:
