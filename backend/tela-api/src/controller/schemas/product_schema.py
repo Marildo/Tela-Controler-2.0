@@ -10,6 +10,7 @@ class ProductSchema(SQLAlchemySchema):
         load_instance = True
         model = Produto
 
+    id = auto_field()
     codigo = auto_field()
     nome = auto_field()
     cod_barras = auto_field()

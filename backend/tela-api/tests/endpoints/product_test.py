@@ -8,12 +8,11 @@ class ProcuctTest(TestCase):
 
     entity = {
         'id': 0,
-        "nome": helper.generator_words(30),
         "codigo": helper.generator_number(13),
+        "nome": helper.generator_words(30),
         "setor_id": helper.generator_number(1),
         "unidade_id": helper.generator_number(1),
     }
-
 
     def setUp(self) -> None:
         helper.login()
@@ -34,11 +33,14 @@ class ProcuctTest(TestCase):
         helper.assert_200_and_entity(url)
 
     def test_should_return_201_and_entity_created(self):
-        unid_create = self.entity.copy()
-        unid_create.update({"codigo": helper.generator_number(13)})
-        helper.assert_201_and_entity_created(self.resource, unid_create)
+        new_product = self.entity.copy()
+        new_product.update({"codigo": helper.generator_number(13)})
+        helper.assert_201_and_entity_created(self.resource, new_product)
+
 
     def test_should_return_422_entity_without_a_field_not_created(self):
+        product_aux = self.entity.copy()
+        product_aux['codigo'] = None
         helper.assert_422_entity_without_a_field(self.resource, self.entity)
 
     def test_should_return_422_entity_with_an_unknown_field_not_created(self):
@@ -47,11 +49,11 @@ class ProcuctTest(TestCase):
     def test_should_return_200_and_entity_updated(self):
         copy = self.entity.copy()
         desc = helper.generator_words(12)
-        copy.update({'descricao': desc})
+        copy.update({'nome': desc})
         url = f'{self.resource}/{1}'
         response = helper.assert_200_and_entity_updated(url, copy)
         data = response.json()
-        self.assertEqual(desc, data['data']['descricao'])
+        self.assertEqual(desc, data['data']['nome'])
 
     def test_should_return_422_entity_with_an_unknown_field_not_updated(self):
         url = f'{self.resource}/{1}'
