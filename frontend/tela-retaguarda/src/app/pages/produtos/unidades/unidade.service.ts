@@ -1,3 +1,4 @@
+import { FormService } from '../../../core/services/form.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Unidade } from 'src/app/shared/models/entity/unidade';
@@ -13,7 +14,7 @@ export class UnidadeService {
 
   private readonly resource = 'unidades'
 
-  constructor(private api: TelaApiService) {
+  constructor(private api: TelaApiService, public fomrService: FormService) {
 
   }
 

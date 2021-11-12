@@ -1,5 +1,5 @@
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Lenght {
   max?: number
@@ -16,7 +16,7 @@ interface Properties {
 @Injectable({
   providedIn: 'root'
 })
-export class FormsService {
+export class FormService {
 
   data: any = {
     "produtos": {

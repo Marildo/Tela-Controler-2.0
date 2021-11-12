@@ -1,7 +1,9 @@
-import { Setor } from 'src/app/shared/models/entity/setor';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Setor } from 'src/app/shared/models/entity/setor';
+
 import { TelaApiService } from './../../../core/services/api/tela-api.service';
+import { FormService } from './../../../core/services/form.service';
 import { TelaResponse } from './../../../shared/models/tela-response';
 
 @Injectable({
@@ -12,7 +14,7 @@ export class SetorService {
 
   private readonly resource = 'setores'
 
-  constructor(private api: TelaApiService) {
+  constructor(private api: TelaApiService,public formService: FormService) {
 
   }
 

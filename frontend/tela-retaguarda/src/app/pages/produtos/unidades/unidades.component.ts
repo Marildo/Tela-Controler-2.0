@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { NotifyService } from 'src/app/core/services/notify.service';
 import { Unidade } from 'src/app/shared/models/entity/unidade';
 import { Pagination } from 'src/app/shared/models/pagination';
+
 import { QuestionService } from '../../../shared/components/question/question.service';
-import { FormsService } from './../../../core/services/forms.service';
 import { UnidadeService } from './unidade.service';
 
 
@@ -30,10 +30,9 @@ export class UnidadesComponent implements OnInit {
   constructor(
     private notify: NotifyService,
     private questionService: QuestionService,
-    private unidadeService: UnidadeService,
-    private fomrsService: FormsService) {
+    private unidadeService: UnidadeService) {
 
-      this.formCadastro =   this.formCadastro = this.fomrsService.buildForm('unidades')
+     this.formCadastro = this.unidadeService.fomrService.buildForm('unidades')
   }
 
 

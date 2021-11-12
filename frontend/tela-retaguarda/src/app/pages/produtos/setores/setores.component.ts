@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Setor } from 'src/app/shared/models/entity/setor';
 import { Pagination } from 'src/app/shared/models/pagination';
-import { FormsService } from './../../../core/services/forms.service';
+
 import { NotifyService } from './../../../core/services/notify.service';
 import { QuestionService } from './../../../shared/components/question/question.service';
 import { SetorService } from './setor.service';
@@ -26,10 +26,9 @@ export class SetoresComponent implements OnInit {
 
   constructor(private notify: NotifyService,
     private questionService: QuestionService,
-    private setorService: SetorService,
-    private fomrsService: FormsService) {
+    private setorService: SetorService) {
 
-    this.formCadastro =   this.formCadastro = this.fomrsService.buildForm('setores')
+    this.formCadastro = setorService.formService.buildForm('setores')
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormsService } from './../../../core/services/forms.service';
+import { ProdutoService } from './produto.service';
 
 
 @Component({
@@ -12,8 +12,8 @@ export class ProdutosComponent implements OnInit {
 
   public formCadastro: FormGroup
 
-  constructor(private fomrsService: FormsService) {
-    this.formCadastro = this.fomrsService.buildForm('produtos')
+  constructor(private produtoService: ProdutoService) {
+    this.formCadastro = this.produtoService.fomrService.buildForm('produtos')
   }
 
   ngOnInit(): void {
