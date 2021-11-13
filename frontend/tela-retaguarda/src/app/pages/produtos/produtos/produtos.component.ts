@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { Pagination } from 'src/app/shared/models/pagination';
-import { Produto } from '@entity/produto';
+import { QueryParams } from './../../../shared/models/query-params';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Produto } from '@entity/produto';
+import { Pagination } from 'src/app/shared/models/pagination';
 import { ProdutoService } from './produto.service';
 
 
@@ -35,7 +35,6 @@ export class ProdutosComponent implements OnInit {
     this.produtoService.load(page, size, text)
       .subscribe(resp => {
         this.produtos = resp.data
-        console.log(this.produtos)
         this.pagination = resp.pagination
         this.loading = false
       })
@@ -81,7 +80,7 @@ export class ProdutosComponent implements OnInit {
 
 
   private openForm(produto: Produto) {
-    this.router.navigate(['/produtos/edit', {id:100 , skipLocationChange: true, replaceUrl: false}])
+    this.router.navigate(['produtos/edit', produto.id])
   }
 
 }

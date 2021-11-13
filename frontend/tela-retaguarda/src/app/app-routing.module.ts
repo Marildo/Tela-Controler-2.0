@@ -1,3 +1,4 @@
+import { ProdutosListComponent } from './pages/produtos/produtos/produtos-list/produtos-list.component';
 import { ProdutoEditComponent } from './pages/produtos/produtos/produto-edit/produto-edit.component';
 import { SetoresComponent } from './pages/produtos/setores/setores.component';
 import { NotFoundComponent } from './pages/others/not-found/not-found.component';
@@ -17,8 +18,19 @@ const routes: Routes = [
     children: [
       { path: '' , redirectTo: 'dashboard', pathMatch:'full'},
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'produtos', component: ProdutosComponent },
-      { path: 'produtos/edit', component: ProdutoEditComponent },
+      { path: 'produtos', component: ProdutosComponent,
+        children:[
+          {
+            path:'',
+            component:ProdutosListComponent
+          },
+          {
+            path: 'edit/:id',
+             component: ProdutoEditComponent
+          }
+        ]
+    },
+     // ,
       { path: 'unidades', component: UnidadesComponent },
       { path: 'setores', component: SetoresComponent },
     ]

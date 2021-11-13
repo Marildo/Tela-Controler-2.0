@@ -2,6 +2,8 @@
 
 <ut-toobar title="Cadastro de Produtos" (eventNew)="onNewItem($event)" (eventSearch)="onSearch($event)" ></ut-toobar>
 
+<router-outlet></router-outlet>
+
 <div class="panel-content">
   <div>
     <table mat-table [dataSource]="produtos" class="mat-elevation-z5 ut-table">
