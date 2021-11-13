@@ -31,6 +31,10 @@ def load_fiedls(name: str, arg):
     result = ({name: fields})
     for key, values in arg.items():
         propries = {'required': values.required}
+
+        if values.missing:
+            propries['default'] = values.missing
+
         for i in values.validators:
             if isinstance(i, validate.Length):
                 propries.update({'length': {'max': i.max, 'min': i.min}})

@@ -3,6 +3,7 @@ from marshmallow_sqlalchemy.fields import Nested, fields
 
 from src.model.entities import Produto
 from .section_schema import SectionSchema
+from .unity_schema import UnitySchema
 
 
 class ProductSchema(SQLAlchemySchema):
@@ -27,7 +28,7 @@ class ProductSchema(SQLAlchemySchema):
 
     qtd_embalagem = fields.String()
 
-    unidade = Nested(SectionSchema, exclude=('ativo',))
+    unidade = Nested(UnitySchema, exclude=('descricao','ativo',))
     setor = Nested(SectionSchema, exclude=('ativo',))
 
     ultima_compra = fields.String()

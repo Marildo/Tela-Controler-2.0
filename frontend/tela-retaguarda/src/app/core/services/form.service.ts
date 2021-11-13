@@ -10,6 +10,7 @@ interface Lenght {
 interface Properties {
   required: boolean
   length?: Lenght
+  default: string | number
 }
 
 
@@ -21,6 +22,7 @@ export class FormService {
   data: any = {
     "produtos": {
       "ativo": {
+        "default": true,
         "required": false
       },
       "cod_barras": {
@@ -28,7 +30,7 @@ export class FormService {
           "max": 14,
           "min": null
         },
-        "required": true
+        "required": false
       },
       "codigo": {
         "length": {
@@ -59,9 +61,10 @@ export class FormService {
           "max": 250,
           "min": null
         },
-        "required": true
+        "required": false
       },
       "outros": {
+        "default": 0.01,
         "range": {
           "max": null,
           "min": 0
@@ -69,6 +72,7 @@ export class FormService {
         "required": false
       },
       "pr_custo": {
+        "default": 0.01,
         "range": {
           "max": null,
           "min": 0
@@ -76,6 +80,7 @@ export class FormService {
         "required": false
       },
       "pr_venda_prazo": {
+        "default": 0.01,
         "range": {
           "max": null,
           "min": 0.01
@@ -83,6 +88,7 @@ export class FormService {
         "required": false
       },
       "pr_venda_vista": {
+        "default": 0.01,
         "range": {
           "max": null,
           "min": 0.01
@@ -97,16 +103,12 @@ export class FormService {
           "max": 14,
           "min": null
         },
-        "required": true
+        "required": false
       },
       "setor_id": {
         "required": true
       },
-      "unidade": {
-        "length": {
-          "max": 4,
-          "min": 2
-        },
+      "unidade_id": {
         "required": true
       }
     },
@@ -171,6 +173,7 @@ export class FormService {
 
   private addItemForm(form: FormGroup, name: string, properties: Properties): void {
     const validators = []
+    let default_value:any = ''
 
     if (properties.required) {
       validators.push(Validators.required)
@@ -184,8 +187,11 @@ export class FormService {
       validators.push(Validators.minLength(properties.length.min))
     }
 
+    if (properties.default)
+      default_value = properties.default
+
     form.addControl(name,
-      this.formBuilder.control('', validators)
+      this.formBuilder.control(default_value, validators)
     )
   }
 }
