@@ -1,10 +1,7 @@
-<ut-toobar title="Cadastro de setorores" [loading]="loading" (eventSearch)="onSearch($event)"
-  (eventNew)="addItem()"></ut-toobar>
-<p>setores works!</p>
-
+<ut-page-title title="Cadastro de Setores" [loading]="loading"></ut-page-title>
+<ut-toobar   (eventSearch)="onSearch($event)"   (eventNew)="addItem()"></ut-toobar>
 
 <ut-detail [closed]="!editing">
-  <!-- TODO - Definir tamanho de campos  -->
   <mat-card>
     <h3 class="ut-fc-gray">{{titleForm}}</h3>
     <div class="form-line" [formGroup]="formCadastro">
@@ -21,7 +18,9 @@
     </div>
   </mat-card>
 </ut-detail>
+
 <mat-error>{{ error }}</mat-error>
+
 <div class="panel-content">
   <div>
     <table mat-table [dataSource]="setores" class="mat-elevation-z5 ut-table">

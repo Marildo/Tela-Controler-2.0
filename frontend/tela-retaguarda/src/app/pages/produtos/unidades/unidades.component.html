@@ -1,8 +1,7 @@
-<ut-toobar title="Cadastro de Unidades" [loading]="loading" (eventSearch)="onSearch($event)"
-  (eventNew)="addUnidade()"></ut-toobar>
+<ut-page-title title="Cadastro de Unidades" [loading]="loading"></ut-page-title>
+<ut-toobar (eventSearch)="onSearch($event)" (eventNew)="addUnidade()"></ut-toobar>
 
 <ut-detail [closed]="!editing">
-  <!-- TODO - Definir tamanho de campos  -->
   <mat-card>
     <h3 class="ut-fc-gray">{{titleForm}}</h3>
     <div class="form-line" [formGroup]="formCadastro">

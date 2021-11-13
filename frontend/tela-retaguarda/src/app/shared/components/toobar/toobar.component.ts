@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
-import { MenuService } from './../../../core/services/menu.service';
 
 @Component({
   selector: 'ut-toobar',
@@ -20,7 +18,7 @@ export class ToobarComponent implements OnInit {
 
   public search = new FormControl()
 
-  constructor(private router: Router, private menuService: MenuService) {
+  constructor() {
     this.search.valueChanges
       .pipe(
         map(v => v.trim()),
@@ -31,9 +29,7 @@ export class ToobarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     if (this.icon == ''){
-       this.icon =  this.menuService.getIconByPath(this.router.routerState.snapshot.url)
-     }
+
   }
 
   onNew(){

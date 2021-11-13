@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Pagination } from 'src/app/shared/models/pagination';
 import { Produto } from '@entity/produto';
 import { Component, OnInit } from '@angular/core';
@@ -17,10 +18,10 @@ export class ProdutosComponent implements OnInit {
   public produtos: Array<Produto> = []
   public pagination: Pagination = new Pagination()
   public displayedColumns = ['codigo', 'nome', 'preco','estoque', 'unidade', 'action']
-  public formCadastro: FormGroup
 
-  constructor(private produtoService: ProdutoService) {
-    this.formCadastro = this.produtoService.fomrService.buildForm('produtos')
+
+  constructor(private produtoService: ProdutoService, private router:Router) {
+
   }
 
   ngOnInit(): void {
@@ -57,6 +58,11 @@ export class ProdutosComponent implements OnInit {
     })
   }
 
+  public onNewItem(produto: Produto) {
+    this.openForm(produto)
+  }
+
+
   public editItem(produto: Produto) {
     this.openForm(produto)
   }
@@ -75,7 +81,7 @@ export class ProdutosComponent implements OnInit {
 
 
   private openForm(produto: Produto) {
-
+    this.router.navigate(['/produtos/edit', {id:100 , skipLocationChange: true, replaceUrl: false}])
   }
 
 }

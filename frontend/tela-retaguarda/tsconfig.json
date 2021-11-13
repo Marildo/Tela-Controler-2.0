@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@ut-components/*":["./src/app/shared/components"],
       "@entity/*":["./src/app/shared/models/entity/*"]
     },
     "outDir": "./dist/out-tsc",

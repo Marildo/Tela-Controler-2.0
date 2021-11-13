@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ItemMenu } from 'src/app/shared/models/item-menu';
 
@@ -17,7 +18,7 @@ export class MenuService {
   ]
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   getItemsMenu(): ItemMenu[]{
     return this.items
@@ -28,7 +29,8 @@ export class MenuService {
     return fi.map(i => i.icon)[0]
   }
 
-  getIconByPath(path:string):string {
+  getIconByPath():string {
+    const path = this.router.routerState.snapshot.url
     const fi = this.items.filter(i => i.path === path)
     return fi.map(i => i.icon)[0]
   }

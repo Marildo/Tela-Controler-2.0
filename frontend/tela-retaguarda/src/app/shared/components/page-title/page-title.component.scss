@@ -1,0 +1,67 @@
+.panel-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.4em;
+  height: 2em;
+}
+
+.panel-title span {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.panel-icon {
+  display: flex;
+  justify-content: center;
+  width: 2em;
+  max-width: 2em;
+}
+
+.mat-icon-hidden {
+  display: none;
+}
+
+.fade-in {
+  opacity: 1;
+  display: block;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-duration: 1.5s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+
+.fade-out {
+  opacity: 0;
+  width: 1.3em;
+  display: none;
+  animation-name: fadeOutOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-duration: 1.5s;
+}
+
+@keyframes fadeOutOpacity {
+  0% {
+    width: 1.3em;
+    opacity: 0;
+  }
+
+  100% {
+    width: 0;
+    opacity: 1;
+  }
+}

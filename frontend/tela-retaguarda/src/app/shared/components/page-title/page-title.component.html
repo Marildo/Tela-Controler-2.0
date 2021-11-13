@@ -1,0 +1,9 @@
+<div class="panel-title">
+  <div class="panel panel-icon">
+    <ut-spinner [ngClass]="{'fade-out': !loading}"></ut-spinner>
+    <mat-icon class="mat-icon-hidden" [ngClass]="{'fade-in': !loading}" color="primary">
+      {{ icon }}
+    </mat-icon>
+  </div>
+  <span class="title ut-fc-gray">{{title}} </span>
+</div>

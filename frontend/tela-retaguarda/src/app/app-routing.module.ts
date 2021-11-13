@@ -1,3 +1,4 @@
+import { ProdutoEditComponent } from './pages/produtos/produtos/produto-edit/produto-edit.component';
 import { SetoresComponent } from './pages/produtos/setores/setores.component';
 import { NotFoundComponent } from './pages/others/not-found/not-found.component';
 import { UnidadesComponent } from './pages/produtos/unidades/unidades.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '' , redirectTo: 'dashboard', pathMatch:'full'},
       { path: 'dashboard', component: DashboardComponent },
       { path: 'produtos', component: ProdutosComponent },
+      { path: 'produtos/edit', component: ProdutoEditComponent },
       { path: 'unidades', component: UnidadesComponent },
       { path: 'setores', component: SetoresComponent },
     ]
