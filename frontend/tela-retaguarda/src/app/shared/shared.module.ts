@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +36,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
 
     MaterialModule,
     PipesModule
@@ -44,6 +46,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
 
     MaterialModule,
     PipesModule,

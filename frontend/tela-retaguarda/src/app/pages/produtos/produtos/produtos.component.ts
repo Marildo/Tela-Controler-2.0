@@ -1,8 +1,4 @@
-import { QueryParams } from './../../../shared/models/query-params';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Produto } from '@entity/produto';
-import { Pagination } from 'src/app/shared/models/pagination';
 import { ProdutoService } from './produto.service';
 
 
@@ -14,73 +10,14 @@ import { ProdutoService } from './produto.service';
 export class ProdutosComponent implements OnInit {
 
   public loading = false;
-  public editing = false
-  public produtos: Array<Produto> = []
-  public pagination: Pagination = new Pagination()
-  public displayedColumns = ['codigo', 'nome', 'preco','estoque', 'unidade', 'action']
 
-
-  constructor(private produtoService: ProdutoService, private router:Router) {
+  constructor(private produtoService: ProdutoService) {
 
   }
 
   ngOnInit(): void {
-    this.onLoad()
-  }
-
-  private onLoad(page: number = 1, text: string = '') {
-    this.loading = true
-    this.produtos = []
-    let size = 10
-    this.produtoService.load(page, size, text)
-      .subscribe(resp => {
-        this.produtos = resp.data
-        this.pagination = resp.pagination
-        this.loading = false
-      })
-  }
-
-
-  public addItem() {
-    this.openForm({
-      id: 0,
-      nome: '',
-      cod_barras: 0,
-      codigo: '',
-      pr_custo: 0,
-      pr_venda_vista: 0.1,
-      pr_venda_prazo: 0.1,
-      estoque: 0,
-      estoque_minimo: 0,
-      qtd_embalagem:1,
-      ativo: true
+    this.produtoService.onLoaded.subscribe(resp => {
+      this.loading = resp
     })
   }
-
-  public onNewItem(produto: Produto) {
-    this.openForm(produto)
-  }
-
-
-  public editItem(produto: Produto) {
-    this.openForm(produto)
-  }
-
-  public deleteItem(_id: number) {
-
-  }
-
-  onChangePage(page: number) {
-    this.onLoad(page)
-  }
-
-  onSearch(text: string) {
-    this.onLoad(1, text)
-  }
-
-
-  private openForm(produto: Produto) {
-    this.router.navigate(['produtos/edit', produto.id])
-  }
-
 }

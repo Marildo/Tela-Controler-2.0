@@ -1,52 +1,5 @@
 <ut-page-title title="Cadastro de Produtos" [loading]="loading"></ut-page-title>
 
-<ut-toobar title="Cadastro de Produtos" (eventNew)="onNewItem($event)" (eventSearch)="onSearch($event)" ></ut-toobar>
-
 <router-outlet></router-outlet>
 
-<div class="panel-content">
-  <div>
-    <table mat-table [dataSource]="produtos" class="mat-elevation-z5 ut-table">
-      <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.codigo }} </td>
-      </ng-container>
 
-
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.nome }} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="preco">
-        <th mat-header-cell *matHeaderCellDef> Preço </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.pr_venda_vista }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="estoque">
-        <th mat-header-cell *matHeaderCellDef> Estoque </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.estoque }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="unidade">
-        <th mat-header-cell *matHeaderCellDef> Unidade </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.unidade.unid }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Ação </th>
-        <td mat-cell *matCellDef="let uni">
-          <button mat-icon-button color="secondary" (click)='editItem(uni)'>
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)"></ut-pagination>
-  </div>
-</div>
