@@ -1,6 +1,61 @@
-  Id:{{ id }}
-<form>
-  <ut-input-text title="Código" controlName="codigo" [formGroup]="formCadastro"></ut-input-text>
-  <ut-input-text title="Nome" controlName="nome" [formGroup]="formCadastro"></ut-input-text>
-  <ut-input-number title="Preco" controlName="pr_venda_vista" [formGroup]="formCadastro"></ut-input-number>
-</form>
+Id:{{ id }}
+
+<div fxLayout="row" fxLayoutAlign="start start">
+  <div fxFlex="20%" style="background-color: azure; padding: 1em">
+    <div><img src="https://picsum.photos/200" /></div>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-mini-fab>
+        <mat-icon>remover</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxFlex="80%">
+    <form>
+      <div fxLayout="row" fxFlexAlign="start start">
+        <div fxFlex="30%">
+          <ut-input-text title="Código" controlName="codigo" [formGroup]="formCadastro"></ut-input-text>
+        </div>
+        <div fxFlex="65%" fxFlexOffset="1em">
+          <ut-input-text title="Nome" controlName="nome" [formGroup]="formCadastro"></ut-input-text>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxFlexAlign="start start">
+        <div fxFlex="10%" style="margin-right: 1em">
+          <ut-input-number title="Venda a Prazo" controlName="pr_venda_prazo" [formGroup]="formCadastro">
+          </ut-input-number>
+        </div>
+        <div fxFlex="10%"  style="margin-right: 1em">
+          <ut-input-number title="Venda a Vista" controlName="pr_venda_vista" [formGroup]="formCadastro">
+          </ut-input-number>
+        </div>
+        <div fxFlex="15%">
+           <div>Preço sugerido</div>
+           <div> R$ 1,25 </div>
+        </div>
+
+        <div fxFlex="15%" style="margin-right: 1em">
+          <div>Custo de venda</div>
+          <div> R$ 1,25 </div>
+        </div>
+        <div fxFlex="15%"  style="margin-right: 1em">
+          <div>Markup Real</div>
+          <div> R$ 1,25 </div>
+        </div>
+        <div fxFlex="15%">
+          <div>Markup Desejado</div>
+          <div> R$ 1,25 </div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxFlexAlign="start start">
+        <div fxFlex="10%" style="margin-right: 1em">
+           <select name="" list id=""></select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

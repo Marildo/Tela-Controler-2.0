@@ -25,7 +25,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     TemplateModule,
     SharedModule,
-    ProdutosModule,
+    ProdutosModule
   ],
   providers: [
   ],

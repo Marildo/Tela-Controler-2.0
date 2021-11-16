@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { CommonModule } from '@angular/common';
@@ -37,6 +38,8 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FlexLayoutModule,
+
 
     MaterialModule,
     PipesModule
@@ -47,6 +50,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FlexLayoutModule,
 
     MaterialModule,
     PipesModule,

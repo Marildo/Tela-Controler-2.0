@@ -16,7 +16,6 @@ export class ProdutoService {
   onLoaded: BehaviorSubject<boolean>;
 
   constructor(private api: TelaApiService, public fomrService: FormService) {
-    console.log('contrutor de produtosService')
     this.onLoaded = new BehaviorSubject<boolean>(true)
   }
 
