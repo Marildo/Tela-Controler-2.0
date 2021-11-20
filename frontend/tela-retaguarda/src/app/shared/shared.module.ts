@@ -16,6 +16,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { QuestionComponent } from './components/question/question.component';
 import { MaterialModule } from './modules/material.module';
 import { PipesModule } from './pipes/pipes/pipes.module';
+import { InputListComponent } from './components/forms/inputs/input-list/input-list.component';
 
 
 
@@ -30,6 +31,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     BaseInputComponent,
     InputTextComponent,
     InputNumberComponent,
+    InputListComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +65,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     BaseInputComponent,
     InputTextComponent,
     InputNumberComponent,
+    InputListComponent
   ]
 })
 export class SharedModule { }

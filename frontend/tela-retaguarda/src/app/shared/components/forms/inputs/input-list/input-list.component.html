@@ -1,0 +1,22 @@
+<div [formGroup]="formGroup">
+  <input [formControlName]="controlName" type="hidden" />
+  <mat-form-field>
+    <input
+      matInput
+      [formControl]="field_aux"
+      [placeholder]="title"
+      list="list_items"
+      autocomplete="off"
+      onfocus="this.select()"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+    <datalist id="list_items">
+      <option *ngFor="let item of dataList" [ngValue]="item">
+        {{ item.unid }}
+      </option>
+    </datalist>
+    <mat-error *ngFor="let error of getErrors()">
+      {{ error }}
+    </mat-error>
+  </mat-form-field>
+</div>

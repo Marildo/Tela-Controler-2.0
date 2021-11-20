@@ -1,7 +1,7 @@
 Id:{{ id }}
 
 <div fxLayout="row" fxLayoutAlign="start start">
-  <div fxFlex="20%" style="background-color: azure; padding: 1em">
+  <div fxFlex.gt-md ="20%" fxFlex.gt-sm="100%" style="background-color: azure; padding: 1em">
     <div><img src="https://picsum.photos/200" /></div>
     <div fxLayout="row" fxLayoutAlign="end">
       <button mat-mini-fab>
@@ -12,7 +12,7 @@ Id:{{ id }}
       </button>
     </div>
   </div>
-  <div fxFlex="80%">
+  <div fxFlex.gt-md ="80%" fxFlex.gt-sm="100%">
     <form>
       <div fxLayout="row" fxFlexAlign="start start">
         <div fxFlex="30%">
@@ -53,9 +53,15 @@ Id:{{ id }}
 
       <div fxLayout="row" fxFlexAlign="start start">
         <div fxFlex="10%" style="margin-right: 1em">
-           <select name="" list id=""></select>
+           <ut-input-list title="Unidade" controlName="unidade" [dataSourceObservable]="obsUnidades" [formGroup]="formCadastro"></ut-input-list>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+<button (click)="onSave()">Salvar</button>
+
+<pre>
+  {{ formCadastro.value | json}}
+</pre>

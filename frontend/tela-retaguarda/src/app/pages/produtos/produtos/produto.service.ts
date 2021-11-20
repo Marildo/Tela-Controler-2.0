@@ -6,6 +6,7 @@ import { TelaApiService } from './../../../core/services/api/tela-api.service';
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { FormService } from './../../../core/services/form.service';
+import { UnidadeService } from 'src/app/pages/produtos/unidades/unidade.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,11 @@ export class ProdutoService {
   private readonly resource = 'produtos'
   onLoaded: BehaviorSubject<boolean>;
 
-  constructor(private api: TelaApiService, public fomrService: FormService) {
+  constructor(
+    public fomrService: FormService,
+    public unidadeService: UnidadeService,
+    private api: TelaApiService)
+  {
     this.onLoaded = new BehaviorSubject<boolean>(true)
   }
 

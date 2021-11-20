@@ -22,8 +22,8 @@ def validations():
 
     response = {}
     response.update(load_fiedls('produtos', PRODUCT_ARGS))
-    # response.update(load_fiedls('setores', SECTION_ARGS))
-    # response.update(load_fiedls('unidades', UNITY_ARGS))
+    response.update(load_fiedls('setores', SECTION_ARGS))
+    response.update(load_fiedls('unidades', UNITY_ARGS))
     return response
 
 
@@ -31,13 +31,11 @@ def load_fiedls(name: str, arg):
     _fields = {}
     result = ({name: _fields})
     for key, values in arg.items():
-
+        propries = {'required': values.required}
         if isinstance(values, fields.Nested):
             v = load_fiedls('fields', values.schema.fields)
-            propries = v['fields']
+            propries.update(v['fields'])
         else:
-            propries = {'required': values.required}
-
             if values.missing:
                 propries['default'] = values.missing
 

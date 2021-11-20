@@ -19,7 +19,7 @@ interface Properties {
 })
 export class FormService {
 
-  data: any = {
+  data: any ={
     "produtos": {
       "ativo": {
         "default": true,
@@ -105,11 +105,47 @@ export class FormService {
         },
         "required": false
       },
-      "setor_id": {
+      "setor": {
+        "ativo": {
+          "required": false
+        },
+        "id": {
+          "required": false
+        },
+        "nome": {
+          "length": {
+            "max": 30,
+            "min": 1
+          },
+          "required": true
+        },
         "required": true
       },
-      "unidade_id": {
-        "required": true
+      "unidade": {
+        "ativo": {
+          "required": false
+        },
+        "descricao": {
+          "length": {
+            "max": 30,
+            "min": 1
+          },
+          "required": false
+        },
+        "fracionavel": {
+          "required": false
+        },
+        "id": {
+          "required": false
+        },
+        "required": true,
+        "unid": {
+          "length": {
+            "max": 4,
+            "min": 2
+          },
+          "required": true
+        }
       }
     },
     "setores": {
@@ -153,6 +189,8 @@ export class FormService {
       }
     }
   }
+
+
 
 
   constructor(private formBuilder: FormBuilder) { }
