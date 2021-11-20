@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from flask import Blueprint
-from marshmallow import validate
+from flask import Blueprint, request
+from marshmallow import validate,fields
 
 from .validators.product_validations import PRODUCT_ARGS
 from .validators.section_validations import SECTION_ARGS
@@ -16,31 +16,37 @@ def get():
     return {'Server is running': str(datetime.now())}
 
 
-@index_router.route('/validations', methods=['GET'])
+@index_router.route('/validations', methods=['GET','PUT'])
 def validations():
-    response = {}
+    headers = request.headers
 
+    response = {}
     response.update(load_fiedls('produtos', PRODUCT_ARGS))
-    response.update(load_fiedls('setores', SECTION_ARGS))
-    response.update(load_fiedls('unidades', UNITY_ARGS))
+    # response.update(load_fiedls('setores', SECTION_ARGS))
+    # response.update(load_fiedls('unidades', UNITY_ARGS))
     return response
 
 
 def load_fiedls(name: str, arg):
-    fields = {}
-    result = ({name: fields})
+    _fields = {}
+    result = ({name: _fields})
     for key, values in arg.items():
-        propries = {'required': values.required}
 
-        if values.missing:
-            propries['default'] = values.missing
+        if isinstance(values, fields.Nested):
+            v = load_fiedls('fields', values.schema.fields)
+            propries = v['fields']
+        else:
+            propries = {'required': values.required}
 
-        for i in values.validators:
-            if isinstance(i, validate.Length):
-                propries.update({'length': {'max': i.max, 'min': i.min}})
-            elif isinstance(i, validate.Range):
-                propries.update({'range': {'max': i.max, 'min': i.min}})
+            if values.missing:
+                propries['default'] = values.missing
 
-        fields.update({key: propries})
+            for i in values.validators:
+                if isinstance(i, validate.Length):
+                    propries.update({'length': {'max': i.max, 'min': i.min}})
+                elif isinstance(i, validate.Range):
+                    propries.update({'range': {'max': i.max, 'min': i.min}})
+
+        _fields.update({key: propries})
 
     return result

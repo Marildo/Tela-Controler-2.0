@@ -1,5 +1,8 @@
 from webargs import fields, validate
 
+from .section_validations import SECTION_ARGS
+from .unity_validations import UNITY_ARGS
+
 PRODUCT_ARGS = {
     'id': fields.Int(),
     'codigo': fields.Str(required=True, validate=[validate.Length(min=1, max=30)]),
@@ -12,8 +15,8 @@ PRODUCT_ARGS = {
     'pr_custo': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0.01),
     'outros': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0.01),
     'estoque_minimo': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0),
-    'unidade_id': fields.Int(required=True),
-    'setor_id': fields.Int(required=True),
     'qtd_embalagem': fields.Decimal(required=False, missing=0),
-    'ativo': fields.Boolean(required=False,missing=True),
+    'ativo': fields.Boolean(required=False, missing=True),
+    'unidade': fields.Nested(UNITY_ARGS, required=True),
+    'setor': fields.Nested(SECTION_ARGS, required=True),
 }
