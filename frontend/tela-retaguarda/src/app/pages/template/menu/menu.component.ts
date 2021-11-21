@@ -49,6 +49,7 @@ export class MenuComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((isBelowSm: BreakpointState) => {
       let isBSm = isBelowSm.matches;
       this.smWidth = isBSm ? '0' : '35px'
+      this.toggleMenu = isBSm ? 'small' : 'large'
     });
 
   }

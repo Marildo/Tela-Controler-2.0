@@ -59,6 +59,7 @@ export class ProdutosListComponent implements OnInit {
 
 
   private openForm(produto: Produto) {
+    this.produtoService.onLoaded.subscribe().unsubscribe()
     this.router.navigate(['/produtos/edit', 1])
   }
 

@@ -7,6 +7,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { FormService } from './../../../core/services/form.service';
 import { UnidadeService } from 'src/app/pages/produtos/unidades/unidade.service';
+import { SetorService } from 'src/app/pages/produtos/setores/setor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class ProdutoService {
   constructor(
     public fomrService: FormService,
     public unidadeService: UnidadeService,
+    public setorService: SetorService,
     private api: TelaApiService)
   {
     this.onLoaded = new BehaviorSubject<boolean>(true)

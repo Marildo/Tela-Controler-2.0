@@ -46,6 +46,13 @@ body {
   margin-left: 3em;
 }
 
+.mt-1 {
+  margin-top: 1em;
+}
+.mt-3 {
+  margin-top: 3em;
+}
+
 .form-line {
   display: flex;
   justify-content: safe;
@@ -54,17 +61,23 @@ body {
   flex-wrap: wrap;
 }
 
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap:0.5em
+}
+
 .flex-end {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  gap: .3em;
+  align-items:  flex-end;
+  flex-wrap: wrap;
 }
 
 
-.mg-t-3 {
-  margin-top: 3em;
-}
 
 .btn-secondary {
   background: $ut-secondary;

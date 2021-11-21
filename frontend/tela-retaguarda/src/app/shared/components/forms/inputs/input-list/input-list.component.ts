@@ -1,9 +1,9 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { TelaResponse } from './../../../../models/tela-response';
-import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseInputComponent } from './../base-input/base-input.component';
-import { Component, OnInit, Input } from '@angular/core';
-import {  Observable, of } from 'rxjs';
 
 @Component({
   selector: 'ut-input-list',
@@ -12,17 +12,24 @@ import {  Observable, of } from 'rxjs';
 })
 export class InputListComponent extends BaseInputComponent implements OnInit {
 
+  @Input() displayField: string = ''
   @Input() dataSourceObservable: Observable<TelaResponse> = of()
+
+  dataList_id:string=''
 
   field_aux = new FormControl()
   dataList:Array<any> = []
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor() {
     super()
   }
 
   ngOnInit(): void {
-    this.dataSourceObservable.subscribe(resp => this.dataList = resp.data)
+    this.dataList_id = this.title+'_list'
+    this.dataSourceObservable.subscribe(resp =>{
+      this.dataList = resp.data
+      console.log(this.dataList)
+    } )
 
     const originalField = this.formGroup.controls[this.controlName]
     if (originalField?.validator)
@@ -33,9 +40,9 @@ export class InputListComponent extends BaseInputComponent implements OnInit {
         // map(v => v.trim()),
          debounceTime(200),
          distinctUntilChanged(),
-        tap(a => console.log(a)),
+        // tap(a => console.log(a)),
       ).subscribe(value => {
-        const item = this.dataList.filter(i => i.unid === value)
+        const item = this.dataList.filter(i => i[this.displayField] === value)
         const newValue = item.length > 0 ? item[0] : ""
         this.formGroup.get(this.controlName)?.setValue(newValue)
       })

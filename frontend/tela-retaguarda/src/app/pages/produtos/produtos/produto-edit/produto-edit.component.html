@@ -1,9 +1,9 @@
 Id:{{ id }}
 
-<div fxLayout="row" fxLayoutAlign="start start">
-  <div fxFlex.gt-md ="20%" fxFlex.gt-sm="100%" style="background-color: azure; padding: 1em">
-    <div><img src="https://picsum.photos/200" /></div>
-    <div fxLayout="row" fxLayoutAlign="end">
+<div class="flex-start ut-text-primary">
+  <div style="background-color: rgb(37, 70, 70); padding: 1em" utFlexWidth xs="100%" md="20%">
+    <!-- <div><img src="https://picsum.photos/200" width="98%" /></div> -->
+    <div>
       <button mat-mini-fab>
         <mat-icon>add</mat-icon>
       </button>
@@ -12,49 +12,44 @@ Id:{{ id }}
       </button>
     </div>
   </div>
-  <div fxFlex.gt-md ="80%" fxFlex.gt-sm="100%">
+  <div utFlexWidth xs="100%" md="70%">
     <form>
-      <div fxLayout="row" fxFlexAlign="start start">
-        <div fxFlex="30%">
-          <ut-input-text title="Código" controlName="codigo" [formGroup]="formCadastro"></ut-input-text>
-        </div>
-        <div fxFlex="65%" fxFlexOffset="1em">
-          <ut-input-text title="Nome" controlName="nome" [formGroup]="formCadastro"></ut-input-text>
-        </div>
+      <div class="flex-start">
+        <ut-input-text utFlexWidth sm="100%" md="20%" title="Código" controlName="codigo" [formGroup]="formCadastro">
+        </ut-input-text>
+        <ut-input-text utFlexWidth sm="100%" md="78%" title="Nome" controlName="nome" [formGroup]="formCadastro">
+        </ut-input-text>
+      </div>
+      <div class="flex-start mt-1">
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Prazo" controlName="pr_venda_prazo"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Vista" controlName="pr_venda_vista"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço sugerido" controlName="pr_sugerido"
+        [formGroup]="formCalculate">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Custo de venda" controlName="custo_venda"
+        [formGroup]="formCalculate">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Markup Real" controlName="markup_real"
+        [formGroup]="formCalculate">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado"
+        [formGroup]="formCalculate">
+        </ut-input-number>
       </div>
 
-      <div fxLayout="row" fxFlexAlign="start start">
-        <div fxFlex="10%" style="margin-right: 1em">
-          <ut-input-number title="Venda a Prazo" controlName="pr_venda_prazo" [formGroup]="formCadastro">
-          </ut-input-number>
-        </div>
-        <div fxFlex="10%"  style="margin-right: 1em">
-          <ut-input-number title="Venda a Vista" controlName="pr_venda_vista" [formGroup]="formCadastro">
-          </ut-input-number>
-        </div>
-        <div fxFlex="15%">
-           <div>Preço sugerido</div>
-           <div> R$ 1,25 </div>
-        </div>
-
-        <div fxFlex="15%" style="margin-right: 1em">
-          <div>Custo de venda</div>
-          <div> R$ 1,25 </div>
-        </div>
-        <div fxFlex="15%"  style="margin-right: 1em">
-          <div>Markup Real</div>
-          <div> R$ 1,25 </div>
-        </div>
-        <div fxFlex="15%">
-          <div>Markup Desejado</div>
-          <div> R$ 1,25 </div>
-        </div>
-      </div>
-
-      <div fxLayout="row" fxFlexAlign="start start">
-        <div fxFlex="10%" style="margin-right: 1em">
-           <ut-input-list title="Unidade" controlName="unidade" [dataSourceObservable]="obsUnidades" [formGroup]="formCadastro"></ut-input-list>
-        </div>
+      <div class="flex-start mt-1">
+        <ut-input-list  utFlexWidth sm="100%" md="10%" title="Unidade" controlName="unidade" displayField="unid" [dataSourceObservable]="obsUnidades"
+          [formGroup]="formCadastro"></ut-input-list>
+        <ut-input-list  utFlexWidth sm="100%" md="18%" title="Setor" controlName="setor" displayField="nome" [dataSourceObservable]="obsSetores"
+          [formGroup]="formCadastro"></ut-input-list>
       </div>
     </form>
   </div>
@@ -63,5 +58,5 @@ Id:{{ id }}
 <button (click)="onSave()">Salvar</button>
 
 <pre>
-  {{ formCadastro.value | json}}
+  {{ formCadastro.value | json }}
 </pre>
