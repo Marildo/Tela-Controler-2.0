@@ -15,7 +15,7 @@ import { SetorService } from 'src/app/pages/produtos/setores/setor.service';
 export class ProdutoService {
 
   private readonly resource = 'produtos'
-  onLoaded: BehaviorSubject<boolean>;
+  onLoaded: EventEmitter<boolean>;
 
   constructor(
     public fomrService: FormService,
@@ -23,12 +23,13 @@ export class ProdutoService {
     public setorService: SetorService,
     private api: TelaApiService)
   {
-    this.onLoaded = new BehaviorSubject<boolean>(true)
+    this.onLoaded = new EventEmitter<boolean>(true)
   }
 
   public load(page: number = 1, size: number = 30, like: string | undefined = undefined): Observable<TelaResponse> {
     const fieldname = 'nome'
-    this.onLoaded.next(true)
+    this.onLoaded.emit(true)
+    console.log('Carregando')
     return this.api.load({
       resource: this.resource,
       page: page,
@@ -37,9 +38,15 @@ export class ProdutoService {
       like: like
     }).pipe(
       tap(() => {
-         this.onLoaded.next(false)
+         this.onLoaded.emit(false)
+         console.log('Carregou')
       })
     )
+  }
+
+  public loadById(){
+    this.onLoaded.emit(false)
+    console.log('load by id')
   }
 
   public save(produto: Produto): Observable<any> {

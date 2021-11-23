@@ -24,12 +24,10 @@ export class ProdutosListComponent implements OnInit {
   private onLoad(page: number = 1, text: string = '') {
     this.produtos = []
     let size = 7
-    // this.produtoService.onLoaded.next(true)
     this.produtoService.load(page, size, text)
       .subscribe(resp => {
         this.produtos = resp.data
         this.pagination = resp.pagination
-        // this.produtoService.onLoaded.next(false)
       })
   }
 
@@ -60,7 +58,7 @@ export class ProdutosListComponent implements OnInit {
 
   private openForm(produto: Produto) {
     this.produtoService.onLoaded.subscribe().unsubscribe()
-    this.router.navigate(['/produtos/edit', 1])
+    this.router.navigate(['/produtos/novo'])
   }
 
 }

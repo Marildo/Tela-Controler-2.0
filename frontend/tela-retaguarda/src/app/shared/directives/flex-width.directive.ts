@@ -32,7 +32,6 @@ export class FlexWidth implements OnInit {
       .observe(breakpoints)
       .subscribe((state: BreakpointState) => {
         if (state.breakpoints[Breakpoints.XSmall]) {
-          console.log('SX -> ');
           if (this.xs != '') {
             this.width = this.xs;
           } else if (this.sm != '') {
@@ -43,7 +42,6 @@ export class FlexWidth implements OnInit {
         }
 
         if (state.breakpoints[Breakpoints.Small]) {
-          console.log('SM -> ');
           if (this.sm != '') {
             this.width = this.sm;
           } else {
@@ -52,21 +50,20 @@ export class FlexWidth implements OnInit {
         }
 
         if (state.breakpoints[Breakpoints.Medium]) {
-          console.log('MD -> ');
           if (this.md != '') {
             this.width = this.md;
           }
         }
+
         if (state.breakpoints[Breakpoints.Large]) {
-          console.log('LG -> ');
           if (this.lg != '') {
             this.width = this.lg;
           } else {
             this.width = this.md;
           }
         }
+
         if (state.breakpoints[Breakpoints.XLarge]) {
-          console.log('XL -> ');
           if (this.xl != '') {
             this.width = this.xl;
           } else if (this.lg != '') {

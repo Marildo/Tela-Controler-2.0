@@ -28,6 +28,7 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
     this.paramsSubcription = this.activeRoute.params.subscribe(
       (params: any) => {
         this.id = params['id']
+      //  produtoService.loadById()
       }
     )
 
@@ -50,8 +51,9 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
   }
   onSave(){
-    console.log(this.formCadastro.controls)
-    console.log(this.formCadastro.value)
+     this.produtoService.save(this.formCadastro.value).subscribe(resp => {
+         console.log(resp.data)
+     } )
   }
 
   ngOnDestroy(): void {

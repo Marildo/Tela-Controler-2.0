@@ -1,3 +1,4 @@
+import { Subscription, of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from './produto.service';
 
@@ -12,12 +13,19 @@ export class ProdutosComponent implements OnInit {
   public loading = false;
 
   constructor(private produtoService: ProdutoService) {
+    this.produtoService.onLoaded.subscribe( resp => {
+      if (this.loading != resp){
+        this.loading = resp
+        console.log('resp', resp)
+      }
+    })
+  }
+
+  ngAfterViewInit(){
 
   }
 
   ngOnInit(): void {
-    this.produtoService.onLoaded.subscribe(resp => {
-      this.loading = resp
-    })
+
   }
 }

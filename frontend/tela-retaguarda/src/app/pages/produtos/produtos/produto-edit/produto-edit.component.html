@@ -1,8 +1,6 @@
-Id:{{ id }}
-
 <div class="flex-start ut-text-primary">
   <div style="background-color: rgb(37, 70, 70); padding: 1em" utFlexWidth xs="100%" md="20%">
-    <!-- <div><img src="https://picsum.photos/200" width="98%" /></div> -->
+    <div><img src="http://lorempixel.com/400/200/" width="98%" /></div>
     <div>
       <button mat-mini-fab>
         <mat-icon>add</mat-icon>
@@ -29,27 +27,70 @@ Id:{{ id }}
         </ut-input-number>
 
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço sugerido" controlName="pr_sugerido"
-        [formGroup]="formCalculate">
+          [formGroup]="formCalculate">
         </ut-input-number>
 
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Custo de venda" controlName="custo_venda"
-        [formGroup]="formCalculate">
+          [formGroup]="formCalculate">
         </ut-input-number>
 
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Markup Real" controlName="markup_real"
-        [formGroup]="formCalculate">
+          [formGroup]="formCalculate">
         </ut-input-number>
 
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado"
-        [formGroup]="formCalculate">
+          [formGroup]="formCalculate">
         </ut-input-number>
       </div>
 
       <div class="flex-start mt-1">
-        <ut-input-list  utFlexWidth sm="100%" md="10%" title="Unidade" controlName="unidade" displayField="unid" [dataSourceObservable]="obsUnidades"
-          [formGroup]="formCadastro"></ut-input-list>
-        <ut-input-list  utFlexWidth sm="100%" md="18%" title="Setor" controlName="setor" displayField="nome" [dataSourceObservable]="obsSetores"
-          [formGroup]="formCadastro"></ut-input-list>
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço Custo" controlName="pr_custo"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque" controlName="estoque"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque mínimo" controlName="estoque_minimo"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
+          [formGroup]="formCadastro">
+        </ut-input-number>
+
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado"
+          [formGroup]="formCalculate">
+        </ut-input-number>
+        <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Referencia" controlName="referencia"
+          [formGroup]="formCadastro">
+        </ut-input-text>
+
+        <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Observação" controlName="observacao"
+          [formGroup]="formCadastro">
+        </ut-input-text>
+
+        <mat-form-field>
+          <input utFlexWidth xs="100%" sm="45%" md="15%" matInput placeholder="Última Compra"
+            [formGroup]="formCadastro">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input utFlexWidth xs="100%" sm="45%" md="15%" matInput placeholder="Última Venda" [formGroup]="formCadastro">
+        </mat-form-field>
+
+      </div>
+
+
+      <div class="flex-start mt-1">
+        <ut-input-list utFlexWidth sm="100%" md="10%" title="Unidade" controlName="unidade" displayField="unid"
+          [dataSourceObservable]="obsUnidades" [formGroup]="formCadastro"></ut-input-list>
+        <ut-input-list utFlexWidth sm="100%" md="18%" title="Setor" controlName="setor" displayField="nome"
+          [dataSourceObservable]="obsSetores" [formGroup]="formCadastro"></ut-input-list>
       </div>
     </form>
   </div>

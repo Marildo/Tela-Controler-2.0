@@ -44,7 +44,8 @@ export class FormService {
           "max": null,
           "min": 0
         },
-        "required": false
+        "required": false,
+        "default": 0.01,
       },
       "id": {
         "required": false
@@ -72,6 +73,14 @@ export class FormService {
         "required": false
       },
       "pr_custo": {
+        "default": 0.01,
+        "range": {
+          "max": null,
+          "min": 0
+        },
+        "required": false
+      },
+      "estoque": {
         "default": 0.01,
         "range": {
           "max": null,

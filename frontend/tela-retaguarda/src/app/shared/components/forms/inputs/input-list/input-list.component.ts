@@ -26,10 +26,7 @@ export class InputListComponent extends BaseInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataList_id = this.title+'_list'
-    this.dataSourceObservable.subscribe(resp =>{
-      this.dataList = resp.data
-      console.log(this.dataList)
-    } )
+    this.dataSourceObservable.subscribe(resp =>  this.dataList = resp.data )
 
     const originalField = this.formGroup.controls[this.controlName]
     if (originalField?.validator)

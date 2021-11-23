@@ -14,9 +14,12 @@ PRODUCT_ARGS = {
     'pr_venda_prazo': fields.Decimal(required=False, validate=[validate.Range(min=0.01)], missing=0.01),
     'pr_custo': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0.01),
     'outros': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0.01),
+    'estoque': fields.Decimal(required=False, missing=0),
     'estoque_minimo': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0),
-    'qtd_embalagem': fields.Decimal(required=False, missing=0),
+    'qtd_embalagem': fields.Decimal(required=False, missing=1),
     'ativo': fields.Boolean(required=False, missing=True),
     'unidade': fields.Nested(UNITY_ARGS, required=True),
     'setor': fields.Nested(SECTION_ARGS, required=True),
+    'ultima_compra': fields.Date(required=False),
+    'ultima_venda': fields.Date(required=False)
 }

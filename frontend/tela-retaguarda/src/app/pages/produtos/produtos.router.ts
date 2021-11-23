@@ -12,7 +12,7 @@ export const produtosRoute:Route = {
       component: ProdutosListComponent
     },
     {
-      path: 'edit/:id',
+      path: 'novo',
       component: ProdutoEditComponent
     }
   ]
