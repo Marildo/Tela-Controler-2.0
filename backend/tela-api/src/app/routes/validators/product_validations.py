@@ -18,8 +18,8 @@ PRODUCT_ARGS = {
     'estoque_minimo': fields.Decimal(required=False, validate=[validate.Range(min=0)], missing=0),
     'qtd_embalagem': fields.Decimal(required=False, missing=1),
     'ativo': fields.Boolean(required=False, missing=True),
-    'unidade': fields.Nested(UNITY_ARGS, required=True),
-    'setor': fields.Nested(SECTION_ARGS, required=True),
+    'unidade': fields.Nested(UNITY_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
+    'setor': fields.Nested(SECTION_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
     'ultima_compra': fields.Date(required=False),
     'ultima_venda': fields.Date(required=False)
 }

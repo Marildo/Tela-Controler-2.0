@@ -3,8 +3,9 @@ from abc import ABC, abstractmethod
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from src.model.config.init_database import init_database
 from src.model.config.db_config import DBConfig
+from src.model.config.init_database import init_database
+
 
 # TODO - Tratar erros com muitas conexoes
 
@@ -13,7 +14,7 @@ class IDBConnection(ABC):
     def __init__(self, config: DBConfig):
         self._config: DBConfig = config
         self._engine = create_engine(self._get_url(), echo=True)  # self._config.debug)
-        maker = sessionmaker()
+        maker = sessionmaker(expire_on_commit=False)
         self._session = maker(bind=self._engine)
         init_database(self._engine)
 

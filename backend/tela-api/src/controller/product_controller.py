@@ -1,8 +1,8 @@
 from typing import Dict, Tuple
 
 from src.controller.schemas import ProductSchema
-from src.model.entities import Produto, Unidade
-from src.model.repository import ProdutoRepository,UnidadeRepository
+from src.model.entities import Produto
+from src.model.repository import ProdutoRepository
 from telacore.models import Credential
 from .base_controller import BaseController
 
@@ -28,6 +28,6 @@ class ProductController(BaseController):
 
         with self.repository as rep:
             rep.save(produto)
+            produto = rep.find_by_field(Produto, 'codigo', produto.codigo)
             data = self.schema.dump(produto)
-
             return data, 201

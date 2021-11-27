@@ -71,6 +71,17 @@ class IRepository(ABC):
                 log_error(e)
                 raise DataBaseException(e)
 
+    def find_by_field(self, entity: BaseEntity, field_name: str, field_value) -> Union[BaseEntity, None]:
+        with self.connection as conn:
+            try:
+                field = self.translate_field(field_name)
+                result = conn.session.query(entity).filter(field == field_value).first()
+                return result
+            except Exception as e:
+                log_error(e)
+                raise DataBaseException(e)
+
+
     def save(self, entity: BaseEntity) -> BaseEntity:
         with self.connection as conn:
             try:

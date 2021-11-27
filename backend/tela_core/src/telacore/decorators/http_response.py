@@ -21,7 +21,15 @@ def http_response(func):
         except UnprocessableEntity as error:
             code = error.code
             args = error.exc.args[0]
-            data = [{'field': key, 'error': value[0]} for key, value in args.items()]
+
+            data = []
+            for key, value in args.items():
+                if isinstance(value, dict):
+                    if '_schema' in value:
+                        value = value['_schema']
+
+                data.append({'field': key, 'error': value[0]})
+
             log_error(data)
             response = TelaResponse(success=False, data=data, code=code)
         except (DuplicateErrorException, DataBaseException, EntityNotFound,
