@@ -1,10 +1,10 @@
+import { NgxCurrencyModule } from 'ngx-currency';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
 import { DetailComponent } from './components/detail/detail.component';
 import { BaseInputComponent } from './components/forms/inputs/base-input/base-input.component';
 import { InputListComponent } from './components/forms/inputs/input-list/input-list.component';
@@ -18,7 +18,21 @@ import { ToobarComponent } from './components/toobar/toobar.component';
 import { FlexWidth } from './directives/flex-width.directive';
 import { MaterialModule } from './modules/material.module';
 import { PipesModule } from './pipes/pipes/pipes.module';
+import { InputMoneyComponent } from './components/forms/inputs/input-money/input-money.component';
 
+
+// TODO - Muda para um arquivo de configuracao
+export const customCurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: ".",
+  nullable: true
+};
 
 
 @NgModule({
@@ -32,8 +46,11 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     BaseInputComponent,
     InputTextComponent,
     InputNumberComponent,
+    InputMoneyComponent,
     InputListComponent,
-    FlexWidth
+
+    FlexWidth,
+    InputMoneyComponent
    ],
   imports: [
     CommonModule,
@@ -45,7 +62,9 @@ import { PipesModule } from './pipes/pipes/pipes.module';
 
 
     MaterialModule,
-    PipesModule
+    PipesModule,
+
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   exports:[
     BrowserAnimationsModule,
@@ -65,6 +84,7 @@ import { PipesModule } from './pipes/pipes/pipes.module';
     BaseInputComponent,
     InputTextComponent,
     InputNumberComponent,
+    InputMoneyComponent,
     InputListComponent,
 
     FlexWidth,

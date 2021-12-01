@@ -47,9 +47,9 @@
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço Custo" controlName="pr_custo"
           [formGroup]="formCadastro">
         </ut-input-number>
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros"
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros"
           [formGroup]="formCadastro">
-        </ut-input-number>
+        </ut-input-money>
 
         <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque" controlName="estoque"
           [formGroup]="formCadastro">
@@ -92,9 +92,14 @@
         <ut-input-list utFlexWidth sm="100%" md="18%" title="Setor" controlName="setor" displayField="nome"
           [dataSourceObservable]="obsSetores" [formGroup]="formCadastro"></ut-input-list>
       </div>
+
+
     </form>
   </div>
 </div>
+<mat-error *ngFor="let item of error">
+  <div> {{ item.field }} : {{item.error}} </div>
+</mat-error>
 
 <button (click)="onSave()">Salvar</button>
 

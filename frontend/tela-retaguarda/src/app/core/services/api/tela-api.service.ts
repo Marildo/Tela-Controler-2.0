@@ -24,6 +24,7 @@ export class TelaApiService {
   // TODO - Tratar erro de API off
   // TODO - Tratar erros retornado pela API
   // TODO - Scrol infinito ao invez de paginacao
+  // TODO - HTTP INTERCEPTS ?
 
   private readonly API = `${environment.apiUrl}`
 

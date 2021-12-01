@@ -35,7 +35,8 @@
             ],
             "styles": [
               "src/css/styles.scss",
-              "src/css/text.styles.scss"
+              "src/css/text.styles.scss",
+              "src/css/palette.scss"
             ],
             "scripts": []
           },

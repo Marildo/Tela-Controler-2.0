@@ -22,7 +22,7 @@ export class BaseInputComponent implements OnInit {
 
   getErrors(): Array<string> {
     const control = this.formGroup.controls[this.controlName]
-    const errors = ['']
+    const errors: Array<string> = []
 
     if (control.status === 'VALID')
       return errors
@@ -40,6 +40,11 @@ export class BaseInputComponent implements OnInit {
       errors.push(`Tamanho máximo de ${maxlength.requiredLength} caracteres`)
 
     return errors
+  }
+
+  isError(): boolean {
+    const control = this.formGroup.controls[this.controlName]
+    return control.status !== 'VALID'
   }
 
 }

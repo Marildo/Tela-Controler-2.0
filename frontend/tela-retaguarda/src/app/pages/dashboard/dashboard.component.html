@@ -1,48 +1,37 @@
 <p>dasboard works!</p>
 
-<details id="detail-test">
-  <summary>
-    Alguam
-  </summary>
+<section>
+  Valor {{ 12788.95 | currency}}
+</section>
+
+<section>
+  Data: {{ hoje | date:'full' }}
+</section>
+
+<br>
+
+<div class="flex-start">
+
+ <ut-input-money utFlexWidth  md="10%" title="Valor" controlName="valor"
+  [formGroup]="cadastro">
+</ut-input-money>
+
+<input type="search" name="" id="">
+
+ <!-- <ut-input-money utFlexWidth  md="10%" title="Descontos" controlName="desconto"
+[formGroup]="cadastro">
+</ut-input-money> -->
+
+</div>
+
+<pre>
+  {{ cadastro.value | json }}
+</pre>
 
 
-<form action="" [formGroup]="cadastro"  (ngSubmit)="onSubmited()">
-
-  <ut-input-text
-     title="Nome"
-     controlName="nome"
-     maxlength="6"
-     [formGroup]="cadastro"
-  >
-  </ut-input-text>
-
-  <ut-input-number
-  title="Idade"
-  controlName="idade"
-  [formGroup]="cadastro"
-  max="10"
-  min="-3"
-  step="3"
-  >
-  </ut-input-number>
-
-
-  <button type="submit">Enviar</button>
-</form>
-</details>
-
-<button (click)="test()">testando</button>
-
-
-<ut-detail [closed]='detailClosed'>
-   outro texto que deveria ficar dentro de detail
-   <ul>
-     <li>1</li>
-     <li>1</li>
-     <li>1</li>
-     <li>1</li>
-     <li>1</li>
-     <li>1</li>
-     <li>1</li>
-   </ul>
-</ut-detail>
+<div class="flex-start mt-1">
+  <div  utFlexWidth xs="100%" sm="45%" md="16%" > 1</div >
+  <div  utFlexWidth xs="100%" sm="45%" md="16%" > 12</div>
+  <div  utFlexWidth xs="100%" sm="45%" md="16%" > 13</div>
+  <div  utFlexWidth xs="100%" sm="45%" md="16%" > 14</div>
+</div>

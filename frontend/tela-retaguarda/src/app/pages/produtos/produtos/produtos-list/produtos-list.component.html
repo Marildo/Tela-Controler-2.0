@@ -16,7 +16,7 @@
 
       <ng-container matColumnDef="preco">
         <th mat-header-cell *matHeaderCellDef> Preço </th>
-        <td mat-cell *matCellDef="let produto"> {{ produto.pr_venda_vista }} </td>
+        <td mat-cell *matCellDef="let produto"> {{ produto.pr_venda_vista | currency }} </td>
       </ng-container>
 
       <ng-container matColumnDef="estoque">

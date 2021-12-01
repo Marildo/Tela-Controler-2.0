@@ -14,6 +14,7 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
   public formCadastro: FormGroup;
   public formCalculate:FormGroup;
+  error: any
 
   public id: any
   private paramsSubcription: Subscription
@@ -51,8 +52,16 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
   }
   onSave(){
-     this.produtoService.save(this.formCadastro.value).subscribe(resp => {
+    const data = this.formCadastro.value
+     if (!data['id']){
+       data.id = 0
+     }
+     this.produtoService.save(data).subscribe(
+       (resp) => {
          console.log(resp.data)
+     },
+     (erro) => {
+       this.error = erro.error.data
      } )
   }
 

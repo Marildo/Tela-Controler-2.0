@@ -1,0 +1,24 @@
+<div #dv
+  class="form-field"
+  [formGroup]="formGroup"
+  [ngClass]="getDivClass()"
+>
+  <label [for]="controlName">
+    {{ title }}
+  </label>
+  <input
+    type="text"
+    currencyMask
+    #target
+    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+    [formControlName]="controlName"
+    [id]="controlName"
+    [readonly]="readonly"
+    placeholder="R$ 0,00"
+    (focus)="setFocus(target)"
+    (focusout)="lossFocus()"
+  />
+</div>
+<mat-error *ngFor="let error of getErrors()">
+  {{ error }}
+</mat-error>

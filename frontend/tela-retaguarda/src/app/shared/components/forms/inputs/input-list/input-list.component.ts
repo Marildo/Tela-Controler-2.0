@@ -43,7 +43,6 @@ export class InputListComponent extends BaseInputComponent implements OnInit {
         const newValue = item.length > 0 ? item[0] : ""
         this.formGroup.get(this.controlName)?.setValue(newValue)
       })
-
   }
 
 }
