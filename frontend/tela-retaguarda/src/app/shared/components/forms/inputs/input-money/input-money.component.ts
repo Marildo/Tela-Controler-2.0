@@ -1,5 +1,5 @@
 import { BaseInputComponent } from './../base-input/base-input.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ut-input-money',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputMoneyComponent  extends BaseInputComponent implements OnInit {
 
-  isFocused = false
+  @Input() prefix = ''
+
   options = {}
 
   constructor() {
@@ -16,23 +17,6 @@ export class InputMoneyComponent  extends BaseInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.options =  "{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-  }
-
-  setFocus(target:any){
-    console.log(target)
-    target.select()
-    this.isFocused = true
-  }
-
-  lossFocus(){
-    this.isFocused = false
-  }
-
-  getDivClass():string {
-    if (this.isError()){
-       return 'error'
-    }
-     return this.isFocused ? 'focused' : ''
+   this.options =  { prefix: this.prefix, thousands: '.', decimal: ',' }
   }
 }

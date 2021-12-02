@@ -1,8 +1,4 @@
-<div #dv
-  class="form-field"
-  [formGroup]="formGroup"
-  [ngClass]="getDivClass()"
->
+<div class="form-field" [formGroup]="formGroup" [ngClass]="getDivClass()">
   <label [for]="controlName">
     {{ title }}
   </label>
@@ -10,7 +6,7 @@
     type="text"
     currencyMask
     #target
-    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+    [options]="options"
     [formControlName]="controlName"
     [id]="controlName"
     [readonly]="readonly"

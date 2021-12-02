@@ -11,7 +11,10 @@ export class BaseInputComponent implements OnInit {
   @Input() formGroup: FormGroup
   @Input() controlName = ''
   @Input() title = ''
+  @Input() placeholder = ''
   @Input() readonly = false
+
+  isFocused = false
 
   constructor() {
     this.formGroup = new FormGroup({})
@@ -24,7 +27,7 @@ export class BaseInputComponent implements OnInit {
     const control = this.formGroup.controls[this.controlName]
     const errors: Array<string> = []
 
-    if (control.status === 'VALID')
+    if (control.status === 'VALID'|| !control.touched)
       return errors
 
     const required = control.errors?.required ?? false
@@ -44,7 +47,23 @@ export class BaseInputComponent implements OnInit {
 
   isError(): boolean {
     const control = this.formGroup.controls[this.controlName]
-    return control.status !== 'VALID'
+    return control.status !== 'VALID' && control.touched
+  }
+
+  setFocus(target:any){
+    target.select()
+    this.isFocused = true
+  }
+
+  lossFocus(){
+    this.isFocused = false
+  }
+
+  getDivClass():string {
+    if (this.isError()){
+       return 'error'
+    }
+    return this.isFocused ? 'focused' : ''
   }
 
 }

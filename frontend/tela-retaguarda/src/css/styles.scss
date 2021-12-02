@@ -103,3 +103,47 @@ body {
     color: $ut-green !important;
   }
 }
+
+/** Formularios **/
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $ut-primary-300;
+}
+
+label {
+  padding: 0.1rem 0.2rem;
+  font-size: 0.8rem;
+  color: $ut-primary-400;
+}
+
+input {
+  border: 0;
+  width: auto;
+  padding: 0.1rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+
+.focused {
+  border-bottom: 1px solid $ut-secondary-400;
+  box-shadow: 2px 2px 2px 0px $ut-secondary-100;
+}
+
+.focused label {
+  color: $ut-secondary-400;
+  font-weight: 500;
+}
+
+.error {
+  border-bottom: 1px solid   $ut-warn;
+}
+
+.error label {
+  color: $ut-warn;
+}

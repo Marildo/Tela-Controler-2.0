@@ -1,6 +1,6 @@
 <div class="flex-start ut-text-primary">
   <div style="background-color: rgb(37, 70, 70); padding: 1em" utFlexWidth xs="100%" md="20%">
-    <div><img src="http://lorempixel.com/400/200/" width="98%" /></div>
+    <div><img src="http://placekitten.com/200/300" width="98%" /></div>
     <div>
       <button mat-mini-fab>
         <mat-icon>add</mat-icon>
@@ -19,53 +19,54 @@
         </ut-input-text>
       </div>
       <div class="flex-start mt-1">
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Prazo" controlName="pr_venda_prazo"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Vista" controlName="pr_venda_vista"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço sugerido" controlName="pr_sugerido"
-          [formGroup]="formCalculate">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Custo de venda" controlName="custo_venda"
-          [formGroup]="formCalculate">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Markup Real" controlName="markup_real"
-          [formGroup]="formCalculate">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado"
-          [formGroup]="formCalculate">
-        </ut-input-number>
-      </div>
-
-      <div class="flex-start mt-1">
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Preço Custo" controlName="pr_custo"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros"
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Vista" controlName="pr_venda_vista" prefix="R$ "
           [formGroup]="formCadastro">
         </ut-input-money>
 
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque" controlName="estoque"
-          [formGroup]="formCadastro">
-        </ut-input-number>
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Prazo" controlName="pr_venda_prazo" prefix="R$ "
+        [formGroup]="formCadastro">
+      </ut-input-money>
 
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque mínimo" controlName="estoque_minimo"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado"
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Preço sugerido" controlName="pr_sugerido" prefix="R$ "
           [formGroup]="formCalculate">
-        </ut-input-number>
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Custo de venda" controlName="custo_venda" prefix="R$ "
+          [formGroup]="formCalculate">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Markup Real" controlName="markup_real" prefix="R$ "
+          [formGroup]="formCalculate">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Desejado" controlName="markup_desejado" prefix="R$ "
+          [formGroup]="formCalculate">
+        </ut-input-money>
+      </div>
+
+      <div class="flex-start mt-1">
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Preço Custo" controlName="pr_custo" prefix="R$ "
+          [formGroup]="formCadastro">
+        </ut-input-money>
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros" prefix="R$ "
+          [formGroup]="formCadastro">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque" controlName="estoque"
+          [formGroup]="formCadastro">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque mínimo" controlName="estoque_minimo"
+          [formGroup]="formCadastro">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
+          [formGroup]="formCadastro">
+        </ut-input-money>
+
+        <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado" prefix="R$ "
+          [formGroup]="formCalculate">
+        </ut-input-money>
         <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Referencia" controlName="referencia"
           [formGroup]="formCadastro">
         </ut-input-text>

@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit {
     this.cadastro = this.formBuilder.group({
       nome: ['Ma',[Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
       idade:[null,[Validators.required, Validators.max(10), Validators.min(-5)]],
-      valor:[0.1,[Validators.required, Validators.max(1000), Validators.min(-5)]],
-      desconto:[0.1,[Validators.required, Validators.max(1000), Validators.min(-5)]]
+      valor:[null,[Validators.required, Validators.max(1000), Validators.min(-5)]],
+      desconto:[null,[Validators.required, Validators.max(1000), Validators.min(-5)]]
     })
    }
 

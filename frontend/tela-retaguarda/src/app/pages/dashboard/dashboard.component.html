@@ -12,7 +12,11 @@
 
 <div class="flex-start">
 
- <ut-input-money utFlexWidth  md="10%" title="Valor" controlName="valor"
+<ut-input-money utFlexWidth  md="10%" title="Valor" controlName="valor"
+  [formGroup]="cadastro">
+</ut-input-money>
+
+<ut-input-money utFlexWidth  md="10%" title="desconto" controlName="desconto"
   [formGroup]="cadastro">
 </ut-input-money>
 

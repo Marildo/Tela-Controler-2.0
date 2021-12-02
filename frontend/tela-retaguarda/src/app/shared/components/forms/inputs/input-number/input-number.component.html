@@ -1,15 +1,18 @@
-<div [formGroup]='formGroup'>
-  <mat-form-field>
-    <input matInput type="number"
+<div class="form-field" [formGroup]="formGroup" [ngClass]="getDivClass()">
+  <label [for]="controlName">
+    {{ title }}
+  </label>
+    <input type="number"
       [formControlName]="controlName"
       [readonly] = "readonly"
       [max]="max"
       [min]="min"
       [step]="step"
-      [placeholder]="title"
+      #target
+      (focus)="setFocus(target)"
+      (focusout)="lossFocus()"
     >
-    <mat-error *ngFor="let error of getErrors()">
-      {{error}}
-    </mat-error>
-  </mat-form-field>
 </div>
+<mat-error *ngFor="let error of getErrors()">
+  {{error}}
+</mat-error>

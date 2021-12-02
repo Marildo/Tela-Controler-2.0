@@ -1,12 +1,18 @@
-<div [formGroup]='formGroup'>
-  <mat-form-field>
-    <input matInput type="text"
-      [formControlName]="controlName"
-      [maxlength]="maxlength"
-      [minlength]="minlength"
-      [placeholder]="title">
-    <mat-error *ngFor="let error of getErrors()">
-      {{error}}
-    </mat-error>
-  </mat-form-field>
+<div class="form-field" [formGroup]="formGroup" [ngClass]="getDivClass()">
+  <label [for]="controlName">
+    {{ title }}
+  </label>
+  <input
+    type="text"
+    [formControlName]="controlName"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    [placeholder]="placeholder"
+    #target
+    (focus)="setFocus(target)"
+    (focusout)="lossFocus()"
+  />
 </div>
+<mat-error *ngFor="let error of getErrors()">
+  {{ error }}
+</mat-error>
