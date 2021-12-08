@@ -62,7 +62,7 @@ export class FormService {
           "max": 250,
           "min": null
         },
-        "required": false
+        "required": true
       },
       "outros": {
         "default": 0.01,
@@ -70,7 +70,7 @@ export class FormService {
           "max": null,
           "min": 0
         },
-        "required": false
+        "required": true
       },
       "pr_custo": {
         "default": 0.01,
@@ -94,7 +94,7 @@ export class FormService {
           "max": null,
           "min": 0.01
         },
-        "required": false
+        "required": true
       },
       "pr_venda_vista": {
         "default": 0.01,
@@ -102,10 +102,11 @@ export class FormService {
           "max": null,
           "min": 0.01
         },
-        "required": false
+        "required": true
       },
       "qtd_embalagem": {
-        "required": false
+        "required": false,
+        "default": 1,
       },
       "referencia": {
         "length": {

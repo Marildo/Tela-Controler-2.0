@@ -19,6 +19,7 @@ import { FlexWidth } from './directives/flex-width.directive';
 import { MaterialModule } from './modules/material.module';
 import { PipesModule } from './pipes/pipes/pipes.module';
 import { InputMoneyComponent } from './components/forms/inputs/input-money/input-money.component';
+import { InputCheckboxComponent } from './components/forms/inputs/input-checkbox/input-checkbox.component';
 
 
 // TODO - Muda para um arquivo de configuracao
@@ -48,9 +49,11 @@ export const customCurrencyMaskConfig = {
     InputNumberComponent,
     InputMoneyComponent,
     InputListComponent,
+    InputCheckboxComponent,
 
     FlexWidth,
-    InputMoneyComponent
+    InputMoneyComponent,
+    InputCheckboxComponent
    ],
   imports: [
     CommonModule,
@@ -86,6 +89,7 @@ export const customCurrencyMaskConfig = {
     InputNumberComponent,
     InputMoneyComponent,
     InputListComponent,
+    InputCheckboxComponent,
 
     FlexWidth,
   ]

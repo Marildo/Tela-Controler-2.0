@@ -35,6 +35,7 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
     this.formCadastro = this.produtoService.fomrService.buildForm('produtos')
     this.formCalculate = this.formBuilder.group({
+      gerar_codigo:[false],
       pr_sugerido: [0.01],
       custo_venda:[0.01],
       markup_real:[0.01],

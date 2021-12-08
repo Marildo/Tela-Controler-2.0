@@ -20,6 +20,8 @@
   [formGroup]="cadastro">
 </ut-input-money>
 
+
+
 <input type="search" name="" id="">
 
  <!-- <ut-input-money utFlexWidth  md="10%" title="Descontos" controlName="desconto"
@@ -27,6 +29,14 @@
 </ut-input-money> -->
 
 </div>
+
+<br>
+<br>
+<br>
+
+<ut-input-checkbox  utFlexWidth  md="10%" title="ativo" controlName="ativo" [formGroup]="cadastro">
+</ut-input-checkbox>
+
 
 <pre>
   {{ cadastro.value | json }}

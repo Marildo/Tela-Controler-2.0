@@ -1,0 +1,13 @@
+<div class="form-field-no-border" [formGroup]="formGroup" [ngClass]="getDivClass()">
+  <label>
+    <input type="checkbox"
+    [id]="controlName"
+     [formControlName]="controlName" [checked]="checked"
+     #target
+      (focus)="setFocus(target)" (focusout)="lossFocus()" />
+    {{ title }}
+ </label>
+</div>
+<mat-error *ngFor="let error of getErrors()">
+  {{ error }}
+</mat-error>

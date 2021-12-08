@@ -15,6 +15,8 @@
       <div class="flex-start">
         <ut-input-text utFlexWidth sm="100%" md="20%" title="Código" controlName="codigo" [formGroup]="formCadastro">
         </ut-input-text>
+        <ut-input-checkbox  utFlexWidth sm="100%" md="40%" title="Gerar codigo automaticamente"  controlName="gerar_codigo"  [formGroup]="formCalculate">
+        </ut-input-checkbox>
         <ut-input-text utFlexWidth sm="100%" md="78%" title="Nome" controlName="nome" [formGroup]="formCadastro">
         </ut-input-text>
       </div>
@@ -60,9 +62,9 @@
           [formGroup]="formCadastro">
         </ut-input-money>
 
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
+        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
           [formGroup]="formCadastro">
-        </ut-input-money>
+        </ut-input-number>
 
         <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado" prefix="R$ "
           [formGroup]="formCalculate">

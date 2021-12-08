@@ -113,6 +113,12 @@ body {
   border-bottom: 1px solid $ut-primary-300;
 }
 
+.form-field input[type=checkbox]{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 label {
   padding: 0.1rem 0.2rem;
   font-size: 0.8rem;
@@ -125,14 +131,27 @@ input {
   padding: 0.1rem;
 }
 
+// input[type=checkbox]{
+//    border:0
+// }
+
 input:focus {
   outline: none;
 }
 
-
 .focused {
   border-bottom: 1px solid $ut-secondary-400;
   box-shadow: 2px 2px 2px 0px $ut-secondary-100;
+}
+
+.focused-checkbox label{
+  color: $ut-secondary-400;
+  font-weight: 500;
+}
+
+.error-checkbox label{
+  color:  $ut-warn;
+  font-weight: 500;
 }
 
 .focused label {
