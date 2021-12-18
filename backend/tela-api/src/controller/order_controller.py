@@ -11,6 +11,6 @@ class OrderController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = OrderSchema()
-        self.ClassRepository = PedidoRepository
-        self.ClassEntity = Pedido
+        self.classRepository = PedidoRepository
+        self.classEntity = Pedido
 

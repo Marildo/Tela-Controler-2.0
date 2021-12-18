@@ -13,8 +13,8 @@ class UnityController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = UnitySchema()
-        self.ClassRepository = UnidadeRepository
-        self.ClassEntity = Unidade
+        self.classRepository = UnidadeRepository
+        self.classEntity = Unidade
 
 
     def create_and_dump(self, data: Dict) -> Tuple[Dict, int]:

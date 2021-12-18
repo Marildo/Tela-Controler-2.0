@@ -12,22 +12,25 @@ class ProductController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = ProductSchema()
-        self.ClassRepository = ProdutoRepository
-        self.ClassEntity = Produto
+        self.classRepository = ProdutoRepository
+        self.classEntity = Produto
 
     def create_and_dump(self, data: Dict) -> Tuple[Dict, int]:
-        unidade_id = data['unidade']['id']
-        setor_id = data['setor']['id']
-
-        del data['unidade']
-        del data['setor']
-
+        data = self.__prepare_product(data)
         produto = Produto(**data)
-        produto.unidade_id = unidade_id
-        produto.setor_id = setor_id
-
         with self.repository as rep:
             rep.save(produto)
             produto = rep.find_by_field(Produto, 'codigo', produto.codigo)
             data = self.schema.dump(produto)
             return data, 201
+
+    def update_and_dump(self, _id: int, args) -> Tuple[Dict, int]:
+        data = self.__prepare_product(args)
+        return super().update_and_dump(_id, data)
+
+    def __prepare_product(self, data: Dict) -> Dict:
+        data['unidade_id'] = data['unidade']['id']
+        data['setor_id'] = data['setor']['id']
+        del data['unidade']
+        del data['setor']
+        return data

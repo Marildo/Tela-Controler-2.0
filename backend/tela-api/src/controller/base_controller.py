@@ -11,9 +11,9 @@ from src.model.repository import IRepository
 class BaseController(ABC):
 
     def __init__(self):
-        self.ClassRepository: IRepository = None
+        self.classRepository: IRepository = None
         self.schema: SQLAlchemySchema = None
-        self.ClassEntity: BaseEntity = None
+        self.classEntity: BaseEntity = None
         self.credential: Credential = None
 
     @abstractmethod
@@ -27,19 +27,19 @@ class BaseController(ABC):
 
     @property
     def repository(self):
-        repository = self.ClassRepository(self.cnpj)
+        repository = self.classRepository(self.cnpj)
         return repository
 
     def read_all_and_dump(self, query: QueryPage) -> Tuple[Dict, int, Pagination]:
         with self.repository as rep:
-            data, pagination = rep.find_all(self.ClassEntity, query)
+            data, pagination = rep.find_all(self.classEntity, query)
             data = self.schema.dump(data, many=True)
 
             return data, 200, pagination
 
     def read_by_id_and_dump(self, _id: int) -> Tuple[Dict, int]:
         with self.repository as rep:
-            result = rep.find_by_id(self.ClassEntity, _id)
+            result = rep.find_by_id(self.classEntity, _id)
             data = self.schema.dump(result)
 
             return data, 200
@@ -49,8 +49,7 @@ class BaseController(ABC):
             data['id'] = None
 
         with self.repository as rep:
-            print(data)
-            entity = self.ClassEntity(**data)
+            entity = self.classEntity(**data)
             rep.save(entity)
             data = self.schema.dump(entity)
 
@@ -58,21 +57,20 @@ class BaseController(ABC):
 
     def update_and_dump(self, _id: int, args) -> Tuple[Dict, int]:
         with self.repository as rep:
-            entity = rep.update(self.ClassEntity, _id, args)
+            entity = rep.update(self.classEntity, _id, args)
             data = self.schema.dump(entity)
-
             return data, 200
 
     def delete_and_dump(self, _id: int) -> Tuple[Dict, int]:
         with self.repository as rep:
-            rows = rep.delete(self.ClassEntity, _id)
+            rows = rep.delete(self.classEntity, _id)
             data = {'rows_affected': rows}
 
             return data, 200
 
     def soft_delete_and_dump(self, _id: int) -> Tuple[Dict, int]:
         with self.repository as rep:
-            rep.update(self.ClassEntity, _id, {'ativo': False})
+            rep.update(self.classEntity, _id, {'ativo': False})
             data = {'rows_affected': 1}
 
             return data, 200

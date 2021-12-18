@@ -11,6 +11,6 @@ class ItemOrderController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = ItemOrderSchema()
-        self.ClassRepository = ItensPedidoRepository
-        self.ClassEntity = ItensPedido
+        self.classRepository = ItensPedidoRepository
+        self.classEntity = ItensPedido
 

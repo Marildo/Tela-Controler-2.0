@@ -14,8 +14,8 @@ class UserController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = UsuarioSchema()
-        self.ClassRepository = UsuarioRepository
-        self.ClassEntity = Usuario
+        self.classRepository = UsuarioRepository
+        self.classEntity = Usuario
 
     def create(self, args: Dict):
         password = SecurityUtil.hash(args['password'])

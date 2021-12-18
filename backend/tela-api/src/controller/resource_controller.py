@@ -11,5 +11,5 @@ class ResourceController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = ResourceSchema()
-        self.ClassRepository = RecursoRepository
-        self.ClassEntity = Recurso
+        self.classRepository = RecursoRepository
+        self.classEntity = Recurso

@@ -18,8 +18,8 @@ class CompanyController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = CompanySchema()
-        self.ClassRepository = EmpresaRepository
-        self.ClassEntity = Empresa
+        self.classRepository = EmpresaRepository
+        self.classEntity = Empresa
 
     def create(self, args: Dict):
         cnpj = CNPJUtil.decode(args['codigo'])

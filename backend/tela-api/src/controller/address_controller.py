@@ -11,6 +11,6 @@ class AddressController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = AddressSchema()
-        self.ClassRepository = EnderecoRepository
-        self.ClassEntity = Endereco
+        self.classRepository = EnderecoRepository
+        self.classEntity = Endereco
 

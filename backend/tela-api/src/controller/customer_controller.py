@@ -11,6 +11,6 @@ class CustomerController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = CustomerSchema()
-        self.ClassRepository = ParticipanteRepository
-        self.ClassEntity = Participante
+        self.classRepository = ParticipanteRepository
+        self.classEntity = Participante
 

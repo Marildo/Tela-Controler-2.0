@@ -11,6 +11,6 @@ class SectionController(BaseController):
     def initialize(self, credential: Credential):
         self.credential = credential
         self.schema = SectionSchema()
-        self.ClassRepository = SetorRepository
-        self.ClassEntity = Setor
+        self.classRepository = SetorRepository
+        self.classEntity = Setor
 
