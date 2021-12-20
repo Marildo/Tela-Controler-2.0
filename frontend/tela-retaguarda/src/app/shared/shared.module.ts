@@ -20,6 +20,7 @@ import { MaterialModule } from './modules/material.module';
 import { PipesModule } from './pipes/pipes/pipes.module';
 import { InputMoneyComponent } from './components/forms/inputs/input-money/input-money.component';
 import { InputCheckboxComponent } from './components/forms/inputs/input-checkbox/input-checkbox.component';
+import { InputDateComponent } from 'src/app/shared/components/forms/inputs/input-date/input-date.component';
 
 
 // TODO - Muda para um arquivo de configuracao
@@ -46,6 +47,7 @@ export const customCurrencyMaskConfig = {
     QuestionComponent,
     BaseInputComponent,
     InputTextComponent,
+    InputDateComponent,
     InputNumberComponent,
     InputMoneyComponent,
     InputListComponent,
@@ -86,6 +88,7 @@ export const customCurrencyMaskConfig = {
     QuestionComponent,
     BaseInputComponent,
     InputTextComponent,
+    InputDateComponent,
     InputNumberComponent,
     InputMoneyComponent,
     InputListComponent,

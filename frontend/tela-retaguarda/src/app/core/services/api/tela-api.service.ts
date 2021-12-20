@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, map, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../auth/auth.service';
 import { BaseEntity } from '../../../shared/models/entity/base';
@@ -53,6 +53,16 @@ export class TelaApiService {
         // map(i => i.data),
         //tap(console.log),
       )
+  }
+
+  public loadById(resource: string, id: number): Observable<TelaResponse> {
+    const options = this.getOptions()
+    let url = `${this.API}${resource}/${id}`
+    return this.http.get<any>(url,options)
+    .pipe(
+      tap(console.log),
+      take(1)
+    )
   }
 
   public save(resource: string, entity: BaseEntity): Observable<TelaResponse> {

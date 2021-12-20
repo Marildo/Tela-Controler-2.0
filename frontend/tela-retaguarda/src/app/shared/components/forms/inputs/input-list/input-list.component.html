@@ -2,6 +2,7 @@
   <input [formControlName]="controlName" type="hidden" />
   <mat-form-field>
     <input
+    type="select"
       matInput
       [formControl]="field_aux"
       [placeholder]="title"
@@ -12,7 +13,7 @@
     <mat-icon matSuffix>search</mat-icon>
     <datalist [id]="dataList_id">
       <option *ngFor="let item of dataList" [ngValue]="item">
-        {{ item[displayField] }}
+        {{ item[displayField] }} {{item.selected}}
       </option>
     </datalist>
     <mat-error *ngFor="let error of getErrors()">

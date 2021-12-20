@@ -1,0 +1,17 @@
+<div class="form-field" [formGroup]="formGroup" [ngClass]="getDivClass()">
+  <label [for]="controlName">
+    {{ title }}
+  </label>
+  <input
+    type="date"
+    [id]="controlName"
+    [formControlName]="controlName"
+    [placeholder]="placeholder"
+    #target
+    (focus)="setFocus(target)"
+    (focusout)="lossFocus()"
+  />
+</div>
+<mat-error *ngFor="let error of getErrors()">
+  {{ error }}
+</mat-error>

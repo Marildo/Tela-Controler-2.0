@@ -11,12 +11,12 @@
     </div>
   </div>
   <div utFlexWidth xs="100%" md="70%">
-    <form>
+    <form [formGroup]="formCadastro">
       <div class="flex-start">
         <ut-input-text utFlexWidth sm="100%" md="20%" title="Código" controlName="codigo" [formGroup]="formCadastro">
         </ut-input-text>
         <ut-input-checkbox  utFlexWidth sm="100%" md="40%" title="Gerar codigo automaticamente"  controlName="gerar_codigo"  [formGroup]="formCalculate">
-        </ut-input-checkbox>
+        </ut-input-checkbox >
         <ut-input-text utFlexWidth sm="100%" md="78%" title="Nome" controlName="nome" [formGroup]="formCadastro">
         </ut-input-text>
       </div>
@@ -77,14 +77,13 @@
           [formGroup]="formCadastro">
         </ut-input-text>
 
-        <mat-form-field>
-          <input utFlexWidth xs="100%" sm="45%" md="15%" matInput placeholder="Última Compra"
-            [formGroup]="formCadastro">
-        </mat-form-field>
+      <ut-input-date utFlexWidth xs="100%" sm="45%" md="16%" title="Última Compra" controlName="ultima_compra"
+        [formGroup]="formCadastro">
+      </ut-input-date>
 
-        <mat-form-field>
-          <input utFlexWidth xs="100%" sm="45%" md="15%" matInput placeholder="Última Venda" [formGroup]="formCadastro">
-        </mat-form-field>
+      <ut-input-date utFlexWidth xs="100%" sm="45%" md="16%" title="Última Venda" controlName="ultima_venda"
+        [formGroup]="formCadastro">
+      </ut-input-date>
 
       </div>
 

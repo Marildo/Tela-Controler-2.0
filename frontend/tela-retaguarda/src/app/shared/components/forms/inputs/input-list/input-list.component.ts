@@ -26,11 +26,8 @@ export class InputListComponent extends BaseInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataList_id = this.title+'_list'
-    this.dataSourceObservable.subscribe(resp =>  this.dataList = resp.data )
+    this.dataSourceObservable.subscribe(resp => this.dataList = resp.data)
 
-    const originalField = this.formGroup.controls[this.controlName]
-    if (originalField?.validator)
-     this.field_aux.validator = originalField.validator
 
     this.field_aux.valueChanges
       .pipe(
@@ -42,6 +39,14 @@ export class InputListComponent extends BaseInputComponent implements OnInit {
         const item = this.dataList.filter(i => i[this.displayField] === value)
         const newValue = item.length > 0 ? item[0] : ""
         this.formGroup.get(this.controlName)?.setValue(newValue)
+      })
+
+    const originalField = this.formGroup.controls[this.controlName]
+    if (originalField?.validator)
+    this.field_aux.validator = originalField.validator
+
+      originalField.valueChanges.subscribe(v => {
+        this.field_aux.setValue(v[this.displayField])
       })
   }
 

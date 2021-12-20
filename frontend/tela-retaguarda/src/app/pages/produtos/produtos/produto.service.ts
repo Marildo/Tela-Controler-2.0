@@ -29,7 +29,6 @@ export class ProdutoService {
   public load(page: number = 1, size: number = 30, like: string | undefined = undefined): Observable<TelaResponse> {
     const fieldname = 'nome'
     this.onLoaded.emit(true)
-    console.log('Carregando')
     return this.api.load({
       resource: this.resource,
       page: page,
@@ -39,14 +38,19 @@ export class ProdutoService {
     }).pipe(
       tap(() => {
          this.onLoaded.emit(false)
-         console.log('Carregou')
       })
     )
   }
 
-  public loadById(){
+  public loadById(id:number){
     this.onLoaded.emit(false)
-    console.log('load by id')
+    return this.api.loadById(this.resource, id)
+    .pipe(
+      tap((resp) => {
+         console.log(resp),
+         this.onLoaded.emit(false)
+      })
+    )
   }
 
   public save(produto: Produto): Observable<any> {

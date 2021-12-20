@@ -29,7 +29,7 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
     this.paramsSubcription = this.activeRoute.params.subscribe(
       (params: any) => {
         this.id = params['id']
-      //  produtoService.loadById()
+        produtoService.loadById(this.id).subscribe(res => this.formCadastro.setValue(res.data))
       }
     )
 

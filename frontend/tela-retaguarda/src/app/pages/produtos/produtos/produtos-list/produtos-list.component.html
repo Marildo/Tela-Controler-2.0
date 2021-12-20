@@ -1,5 +1,5 @@
 <div class="panel-content">
-  <ut-toobar (eventNew)="onNewItem($event)" (eventSearch)="onSearch($event)" ></ut-toobar>
+  <ut-toobar (eventNew)="onNewItem()" (eventSearch)="onSearch($event)" ></ut-toobar>
   <div>
     <table mat-table [dataSource]="produtos" class="mat-elevation-z5 ut-table">
       <ng-container matColumnDef="codigo">
@@ -31,8 +31,8 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Ação </th>
-        <td mat-cell *matCellDef="let uni">
-          <button mat-icon-button color="secondary" (click)='editItem(uni)'>
+        <td mat-cell *matCellDef="let item">
+          <button mat-icon-button color="secondary" (click)='editItem(item.id)'>
             <mat-icon>edit</mat-icon>
           </button>
         </td>

@@ -14,7 +14,11 @@ export const produtosRoute:Route = {
     {
       path: 'novo',
       component: ProdutoEditComponent
-    }
+    },
+    {
+      path: ':id',
+      component: ProdutoEditComponent
+    },
   ]
 }
 

@@ -31,12 +31,10 @@ export class ProdutosListComponent implements OnInit {
       })
   }
 
-
-
-  public onNewItem(produto: Produto) {
-  this.openForm(produto)
-}
-
+  public onNewItem() {
+    this.produtoService.onLoaded.subscribe().unsubscribe()
+    this.router.navigate(['/produtos/novo'])
+  }
 
   onChangePage(page: number) {
     this.onLoad(page)
@@ -46,8 +44,9 @@ export class ProdutosListComponent implements OnInit {
     this.onLoad(1, text)
   }
 
-  public editItem(produto: Produto) {
-   // this.openForm(produto)
+  public editItem(id: number) {
+    this.produtoService.onLoaded.subscribe().unsubscribe()
+    this.router.navigate(['/produtos/', id])
   }
 
 
@@ -56,9 +55,6 @@ export class ProdutosListComponent implements OnInit {
   }
 
 
-  private openForm(produto: Produto) {
-    this.produtoService.onLoaded.subscribe().unsubscribe()
-    this.router.navigate(['/produtos/novo'])
-  }
+
 
 }
