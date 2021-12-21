@@ -14,6 +14,7 @@ export class BaseInputComponent implements OnInit {
   @Input() placeholder = ''
   @Input() readonly = false
 
+
   isFocused = false
 
   constructor() {

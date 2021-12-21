@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable , of} from 'rxjs';
+import { PipeEnum } from 'src/app/shared/pipes/pipes-enum';
 
 @Component({
   selector: 'ut-produto-edit',
@@ -14,7 +15,7 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
   public formCadastro: FormGroup;
   public formCalculate:FormGroup;
-  error: any
+  public error: any
 
   public id: any
   private paramsSubcription: Subscription
@@ -26,13 +27,6 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
     private produtoService: ProdutoService,
     private formBuilder: FormBuilder,
   ){
-    this.paramsSubcription = this.activeRoute.params.subscribe(
-      (params: any) => {
-        this.id = params['id']
-        produtoService.loadById(this.id).subscribe(res => this.formCadastro.setValue(res.data))
-      }
-    )
-
     this.formCadastro = this.produtoService.fomrService.buildForm('produtos')
     this.formCalculate = this.formBuilder.group({
       gerar_codigo:[false],
@@ -42,6 +36,12 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
       markup_desejado:[0.01],
     })
 
+    this.paramsSubcription = this.activeRoute.params.subscribe(
+      (params: any) => {
+        this.id = params['id']
+        this.produtoService.loadById(this.id).subscribe(res => this.formCadastro.setValue(res.data))
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -51,12 +51,20 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
     // this.produtoService.onLoaded.next(true)
 
+
   }
   onSave(){
+    Object.keys (this.formCadastro.controls).forEach(item => {
+      const control = this.formCadastro.get(item)
+      console.log(item)
+      control?.markAsDirty();
+    })
+
     const data = this.formCadastro.value
      if (!data['id']){
        data.id = 0
      }
+     console.log(data)
      this.produtoService.save(data).subscribe(
        (resp) => {
          console.log(resp.data)
@@ -68,5 +76,9 @@ export class ProdutoEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSubcription.unsubscribe()
+  }
+
+  getPipeDate(): PipeEnum {
+    return PipeEnum.DateTime
   }
 }

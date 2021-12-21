@@ -46,8 +46,7 @@ export class ProdutoService {
     this.onLoaded.emit(false)
     return this.api.loadById(this.resource, id)
     .pipe(
-      tap((resp) => {
-         console.log(resp),
+      tap(() => {
          this.onLoaded.emit(false)
       })
     )

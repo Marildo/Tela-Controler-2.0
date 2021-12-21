@@ -14,5 +14,11 @@ export class InputDateComponent  extends BaseInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+
+  getDateValue(){
+    return "2021-01-01 01:01:01"
   }
 }

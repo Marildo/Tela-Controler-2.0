@@ -20,6 +20,6 @@ PRODUCT_ARGS = {
     'ativo': fields.Boolean(required=False, missing=True),
     'unidade': fields.Nested(UNITY_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
     'setor': fields.Nested(SECTION_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
-    'ultima_compra': fields.Date(required=False),
-    'ultima_venda': fields.Date(required=False)
+    'ultima_compra': fields.Str(required=False, missing=""),
+    'ultima_venda': fields.Str(required=False, missing="")
 }

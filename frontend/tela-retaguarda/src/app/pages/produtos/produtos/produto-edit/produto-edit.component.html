@@ -77,13 +77,13 @@
           [formGroup]="formCadastro">
         </ut-input-text>
 
-      <ut-input-date utFlexWidth xs="100%" sm="45%" md="16%" title="Última Compra" controlName="ultima_compra"
-        [formGroup]="formCadastro">
-      </ut-input-date>
+      <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Última Compra" controlName="ultima_compra"
+        [formGroup]="formCadastro" [readonly]="true" [pipeType]="getPipeDate()">
+      </ut-input-text>
 
-      <ut-input-date utFlexWidth xs="100%" sm="45%" md="16%" title="Última Venda" controlName="ultima_venda"
-        [formGroup]="formCadastro">
-      </ut-input-date>
+      <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Última Venda" controlName="ultima_venda"
+        [formGroup]="formCadastro" [readonly]="true"  [pipeType]="getPipeDate()">
+      </ut-input-text>
 
       </div>
 

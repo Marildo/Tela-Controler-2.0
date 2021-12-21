@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 //import { MatSliderModule } from '@angular/material/slider'
 //import { MatToolbarModule } from '@angular/material/toolbar'
@@ -24,6 +26,8 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatCheckboxModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     // MatToolbarModule,
     MatButtonModule,
     MatBadgeModule,

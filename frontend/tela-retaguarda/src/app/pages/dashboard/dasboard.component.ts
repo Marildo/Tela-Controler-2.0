@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
       idade:[null,[Validators.required, Validators.max(10), Validators.min(-5)]],
       valor:[null,[Validators.required, Validators.max(1000), Validators.min(-5)]],
       desconto:[null,[Validators.required, Validators.max(1000), Validators.min(-5)]],
-      ativo:[false,[Validators.required]]
+      ativo:[false,[Validators.required]],
+      data:['12/12/2021'],
     })
    }
 

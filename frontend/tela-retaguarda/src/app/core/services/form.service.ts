@@ -19,7 +19,7 @@ interface Properties {
 })
 export class FormService {
 
-  data: any ={
+  data: any = {
     "produtos": {
       "ativo": {
         "default": true,
@@ -115,6 +115,14 @@ export class FormService {
         },
         "required": false
       },
+      "ultima_compra": {
+        "required": false,
+        "default": "",
+      },
+      "ultima_venda": {
+        "required": false,
+        "default": "",
+      },
       "setor": {
         "ativo": {
           "required": false
@@ -155,7 +163,7 @@ export class FormService {
             "min": 2
           },
           "required": true
-        }
+        },
       }
     },
     "setores": {
@@ -221,7 +229,7 @@ export class FormService {
 
   private addItemForm(form: FormGroup, name: string, properties: Properties): void {
     const validators = []
-    let default_value:any = ''
+    let default_value: any = ''
 
     if (properties.required) {
       validators.push(Validators.required)

@@ -9,6 +9,8 @@
     [maxlength]="maxlength"
     [minlength]="minlength"
     [placeholder]="placeholder"
+    [readonly]="readonly"
+    [value]="getValue()"
     #target
     (focus)="setFocus(target)"
     (focusout)="lossFocus()"

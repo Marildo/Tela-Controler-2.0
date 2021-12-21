@@ -20,6 +20,10 @@
   [formGroup]="cadastro">
 </ut-input-money>
 
+<ut-input-date utFlexWidth  md="20%" title="data" controlName="data" [formGroup]="cadastro"
+>
+
+</ut-input-date>
 
 
 <input type="search" name="" id="">
@@ -34,8 +38,18 @@
 <br>
 <br>
 
-<ut-input-checkbox  utFlexWidth  md="10%" title="ativo" controlName="ativo" [formGroup]="cadastro">
+<ut-input-checkbox  utFlexWidth  md="20%" title="ativo" controlName="ativo" [formGroup]="cadastro">
 </ut-input-checkbox>
+
+
+
+  <input [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+
+
+
 
 
 <pre>
