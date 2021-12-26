@@ -19,7 +19,7 @@ PRODUCT_ARGS = {
     'qtd_embalagem': fields.Decimal(required=False, missing=1),
     'ativo': fields.Boolean(required=False, missing=True),
     'unidade': fields.Nested(UNITY_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
-    'setor': fields.Nested(SECTION_ARGS, required=True, error_messages={'_schema': 'A unidade é obrigatória'}),
-    'ultima_compra': fields.Str(required=False, missing=""),
-    'ultima_venda': fields.Str(required=False, missing="")
+    'setor': fields.Nested(SECTION_ARGS, required=True, error_messages={'_schema': 'o Setor é obrigatória'}),
+    'ultima_compra': fields.Str(required=False),
+    'ultima_venda': fields.Str(required=False)
 }

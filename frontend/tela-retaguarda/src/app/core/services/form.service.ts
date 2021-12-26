@@ -62,7 +62,7 @@ export class FormService {
           "max": 250,
           "min": null
         },
-        "required": true
+        "required": false
       },
       "outros": {
         "default": 0.01,

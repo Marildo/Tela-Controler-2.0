@@ -1,23 +1,26 @@
-<div [formGroup]="formGroup">
+<div class="form-field" [formGroup]="formGroup" [ngClass]="getDivClass()">
+  <label [for]="controlName">
+    {{ title }}
+  </label>
   <input [formControlName]="controlName" type="hidden" />
-  <mat-form-field>
-    <input
-    type="select"
-      matInput
-      [formControl]="field_aux"
-      [placeholder]="title"
-      [attr.list] ="dataList_id"
-      autocomplete="off"
-      onfocus="this.select()"
-    />
-    <mat-icon matSuffix>search</mat-icon>
-    <datalist [id]="dataList_id">
-      <option *ngFor="let item of dataList" [ngValue]="item">
-        {{ item[displayField] }} {{item.selected}}
-      </option>
-    </datalist>
-    <mat-error *ngFor="let error of getErrors()">
-      {{ error }}
-    </mat-error>
-  </mat-form-field>
+  <div class="flex-start flex-nowrap">
+    <input type="select"
+     [formControl]="field_aux"
+     [placeholder]="title"
+     [attr.list]="dataList_id"
+     autocomplete="off"
+     onfocus="this.select()"
+     #target
+     (focus)="setFocus(target)"
+     (focusout)="lossFocus()"
+     />
+  </div>
+  <datalist [id]="dataList_id">
+    <option *ngFor="let item of dataList" [ngValue]="item">
+      {{ item[displayField] }} {{item.selected}}
+    </option>
+  </datalist>
+  <mat-error *ngFor="let error of getErrors()">
+    {{ error }}
+  </mat-error>
 </div>

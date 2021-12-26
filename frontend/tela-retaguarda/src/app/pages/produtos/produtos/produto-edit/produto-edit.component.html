@@ -1,110 +1,120 @@
-<div class="flex-start ut-text-primary">
-  <div style="background-color: rgb(37, 70, 70); padding: 1em" utFlexWidth xs="100%" md="20%">
-    <div><img src="http://placekitten.com/200/300" width="98%" /></div>
-    <div>
-      <button mat-mini-fab>
-        <mat-icon>add</mat-icon>
+<mat-card>
+  <mat-card-content>
+    <div class="flex-start ut-text-primary">
+      <div style="background-color: rgb(46, 49, 49); padding: 1em" utFlexWidth xs="100%" md="10%">
+        <div><img src="http://placekitten.com/200/300" width="120px" /></div>
+        <div>
+          <button mat-mini-fab>
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab>
+            <mat-icon>remover</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div utFlexWidth xs="100%" md="85%">
+        <form [formGroup]="formCadastro">
+          <div class="flex-start">
+            <ut-input-text utFlexWidth sm="100%" md="20%" title="Código" controlName="codigo"
+              [formGroup]="formCadastro">
+            </ut-input-text>
+            <ut-input-checkbox utFlexWidth sm="100%" md="20%" title="Gerar codigo automaticamente"
+              controlName="gerar_codigo" [formGroup]="formCalculate">
+            </ut-input-checkbox>
+            <ut-input-text utFlexWidth sm="100%" md="56%" title="Nome" controlName="nome" [formGroup]="formCadastro">
+            </ut-input-text>
+          </div>
+          <div class="flex-start mt-2">
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Venda a Vista" controlName="pr_venda_vista"
+              prefix="R$ " [formGroup]="formCadastro">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Venda a Prazo" controlName="pr_venda_prazo"
+              prefix="R$ " [formGroup]="formCadastro">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Preço sugerido" controlName="pr_sugerido"
+              prefix="R$ " [formGroup]="formCalculate">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Custo de venda" controlName="custo_venda"
+              prefix="R$ " [formGroup]="formCalculate">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_real"
+              prefix="R$ " [formGroup]="formCalculate">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="18%" title="Markup Desejado"
+              controlName="markup_desejado" prefix="R$ " [formGroup]="formCalculate">
+            </ut-input-money>
+          </div>
+
+          <div class="flex-start mt-2">
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Preço Custo" controlName="pr_custo"
+              prefix="R$ " [formGroup]="formCadastro">
+            </ut-input-money>
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Outros" controlName="outros" prefix="R$ "
+              [formGroup]="formCadastro">
+            </ut-input-money>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Estoque" controlName="estoque"
+              [formGroup]="formCadastro">
+            </ut-input-money>
+
+            <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Estoque mínimo" controlName="estoque_minimo"
+              [formGroup]="formCadastro">
+            </ut-input-number>
+
+            <ut-input-number utFlexWidth xs="100%" sm="45%" md="15%" title="Quantidade Embal."
+              controlName="qtd_embalagem" [formGroup]="formCadastro">
+            </ut-input-number>
+
+            <ut-input-money utFlexWidth xs="100%" sm="45%" md="18%" title="Markup Real" controlName="markup_desejado"
+              prefix="R$ " [formGroup]="formCalculate">
+            </ut-input-money>
+          </div>
+
+          <div class="flex-start mt-2">
+            <ut-input-list utFlexWidth sm="100%" md="10%" title="Unidade" controlName="unidade" displayField="unid"
+              [dataSourceObservable]="obsUnidades" [formGroup]="formCadastro">
+            </ut-input-list>
+            <ut-input-list utFlexWidth sm="100%" md="15%" title="Setor" controlName="setor" displayField="nome"
+              [dataSourceObservable]="obsSetores" [formGroup]="formCadastro">
+            </ut-input-list>
+
+            <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Referencia" controlName="referencia"
+              [formGroup]="formCadastro">
+            </ut-input-text>
+
+            <ut-input-text utFlexWidth xs="100%" sm="45%" md="28%" title="Observação" controlName="observacao"
+              [formGroup]="formCadastro">
+            </ut-input-text>
+
+            <ut-input-text utFlexWidth xs="100%" sm="45%" md="12%" title="Última Compra" controlName="ultima_compra"
+              [formGroup]="formCadastro" [readonly]="true" [pipeType]="getPipeDate()">
+            </ut-input-text>
+
+            <ut-input-text utFlexWidth xs="100%" sm="45%" md="12%" title="Última Venda" controlName="ultima_venda"
+              [formGroup]="formCadastro" [readonly]="true" [pipeType]="getPipeDate()">
+            </ut-input-text>
+          </div>
+        </form>
+      </div>
+    </div>
+    <mat-error *ngFor="let item of error">
+      <div> {{ item.field }} : {{item.error}} </div>
+    </mat-error>
+
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <div class="flex-end mt-1">
+      <button mat-raised-button class="btn-secondary" (click)="onSave()">
+        <mat-icon>save</mat-icon> Salvar
       </button>
-      <button mat-mini-fab>
-        <mat-icon>remover</mat-icon>
+      <button mat-raised-button color="warn" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Cancelar
       </button>
     </div>
-  </div>
-  <div utFlexWidth xs="100%" md="70%">
-    <form [formGroup]="formCadastro">
-      <div class="flex-start">
-        <ut-input-text utFlexWidth sm="100%" md="20%" title="Código" controlName="codigo" [formGroup]="formCadastro">
-        </ut-input-text>
-        <ut-input-checkbox  utFlexWidth sm="100%" md="40%" title="Gerar codigo automaticamente"  controlName="gerar_codigo"  [formGroup]="formCalculate">
-        </ut-input-checkbox >
-        <ut-input-text utFlexWidth sm="100%" md="78%" title="Nome" controlName="nome" [formGroup]="formCadastro">
-        </ut-input-text>
-      </div>
-      <div class="flex-start mt-1">
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Vista" controlName="pr_venda_vista" prefix="R$ "
-          [formGroup]="formCadastro">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Venda a Prazo" controlName="pr_venda_prazo" prefix="R$ "
-        [formGroup]="formCadastro">
-      </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Preço sugerido" controlName="pr_sugerido" prefix="R$ "
-          [formGroup]="formCalculate">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Custo de venda" controlName="custo_venda" prefix="R$ "
-          [formGroup]="formCalculate">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Markup Real" controlName="markup_real" prefix="R$ "
-          [formGroup]="formCalculate">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Desejado" controlName="markup_desejado" prefix="R$ "
-          [formGroup]="formCalculate">
-        </ut-input-money>
-      </div>
-
-      <div class="flex-start mt-1">
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Preço Custo" controlName="pr_custo" prefix="R$ "
-          [formGroup]="formCadastro">
-        </ut-input-money>
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Outros" controlName="outros" prefix="R$ "
-          [formGroup]="formCadastro">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque" controlName="estoque"
-          [formGroup]="formCadastro">
-        </ut-input-money>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="16%" title="Estoque mínimo" controlName="estoque_minimo"
-          [formGroup]="formCadastro">
-        </ut-input-money>
-
-        <ut-input-number utFlexWidth xs="100%" sm="45%" md="16%" title="Quantidade Embal." controlName="qtd_embalagem"
-          [formGroup]="formCadastro">
-        </ut-input-number>
-
-        <ut-input-money utFlexWidth xs="100%" sm="45%" md="15%" title="Markup Real" controlName="markup_desejado" prefix="R$ "
-          [formGroup]="formCalculate">
-        </ut-input-money>
-        <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Referencia" controlName="referencia"
-          [formGroup]="formCadastro">
-        </ut-input-text>
-
-        <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Observação" controlName="observacao"
-          [formGroup]="formCadastro">
-        </ut-input-text>
-
-      <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Última Compra" controlName="ultima_compra"
-        [formGroup]="formCadastro" [readonly]="true" [pipeType]="getPipeDate()">
-      </ut-input-text>
-
-      <ut-input-text utFlexWidth xs="100%" sm="45%" md="16%" title="Última Venda" controlName="ultima_venda"
-        [formGroup]="formCadastro" [readonly]="true"  [pipeType]="getPipeDate()">
-      </ut-input-text>
-
-      </div>
-
-
-      <div class="flex-start mt-1">
-        <ut-input-list utFlexWidth sm="100%" md="10%" title="Unidade" controlName="unidade" displayField="unid"
-          [dataSourceObservable]="obsUnidades" [formGroup]="formCadastro"></ut-input-list>
-        <ut-input-list utFlexWidth sm="100%" md="18%" title="Setor" controlName="setor" displayField="nome"
-          [dataSourceObservable]="obsSetores" [formGroup]="formCadastro"></ut-input-list>
-      </div>
-
-
-    </form>
-  </div>
-</div>
-<mat-error *ngFor="let item of error">
-  <div> {{ item.field }} : {{item.error}} </div>
-</mat-error>
-
-<button (click)="onSave()">Salvar</button>
-
-<pre>
-  {{ formCadastro.value | json }}
-</pre>
+  </mat-card-actions>
+</mat-card>
