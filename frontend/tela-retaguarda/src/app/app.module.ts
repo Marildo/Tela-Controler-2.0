@@ -14,6 +14,7 @@ import { ProdutosModule } from './pages/produtos/produtos.module';
 import { TemplateModule } from './pages/template/template.module';
 import { SharedModule } from './shared/shared.module';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { ClientesComponent } from './pages/clientes/clientes.component';
 
 
 
@@ -28,6 +29,7 @@ registerLocaleData(localePt)
     IndexComponent,
     DashboardComponent,
     NotFoundComponent,
+    ClientesComponent,
   ],
   imports: [
     BrowserModule,

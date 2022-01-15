@@ -1,0 +1,45 @@
+<ut-page-title title="Cadastro de Clientes" [loading]="loading"></ut-page-title>
+<ut-toobar (eventSearch)="onSearch($event)" (eventNew)="onNewItem()"></ut-toobar>
+
+<div class="panel-content">
+  <div>
+    <table mat-table [dataSource]="clientes" class="mat-elevation-z5 ut-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let cliente"> {{ cliente.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fantasia">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let cliente"> {{ cliente.fantasia }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> Documento </th>
+        <td mat-cell *matCellDef="let cliente"> {{ cliente.getDocument() }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef> Ativo </th>
+        <td mat-cell *matCellDef="let cliente"> {{ cliente.ativo | yesNo }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let cliente">
+          <button mat-icon-button color="secondary" (click)='editItem(cliente.id)'>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)='deleteItem(cliente.id)'>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <ut-pagination [pagination]="pagination" (eventChangePage)="onChangePage($event)"></ut-pagination>
+  </div>
+</div>
