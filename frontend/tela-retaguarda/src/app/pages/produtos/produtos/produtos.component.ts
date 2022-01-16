@@ -16,7 +16,6 @@ export class ProdutosComponent implements OnInit {
     this.produtoService.onLoaded.subscribe( resp => {
       if (this.loading != resp){
         this.loading = resp
-        console.log('resp', resp)
       }
     })
   }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from 'src/app/pages/clientes/clientes.component';
+import { clientesRoute } from 'src/app/pages/clientes/clientes.router';
 import { AuthGuard } from './core/auth/auth.guard';
 import { DashboardComponent } from './pages/dashboard/dasboard.component';
 import { IndexComponent } from './pages/index/index.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
       produtosRoute,
       { path: 'unidades', component: UnidadesComponent },
       { path: 'setores', component: SetoresComponent },
-      { path: 'clientes', component: ClientesComponent },
+      clientesRoute
     ]
   },
 
